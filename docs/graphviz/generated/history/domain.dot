@@ -1,0 +1,58 @@
+
+		digraph domain_glossary_history {
+			label="История";
+			URL="images/generated/history/domain.svg";
+			labelloc=b;
+			labeljust=r;
+			fontsize=18;
+			fontcolor="#0000cc";
+			rankdir=LR;
+			compound=true;
+			node [shape=none, margin=0];
+			glossary_history_Resource [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:Resource" TITLE="Resource" PORT="glossary_history_Resource" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Ресурс</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Resource:URI" TITLE="" PORT="glossary_history_Resource_URI" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Resource:URI</FONT></TD></TR></TABLE>>];
+	glossary_history_Union [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:Union" TITLE="Union" PORT="glossary_history_Union" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Объединение</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Union:UUID" TITLE="" PORT="glossary_history_Union_UUID" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Union:UUID</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Union:dtOpen" TITLE="" PORT="glossary_history_Union_dtOpen" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Union:dtOpen</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Union:dtClose" TITLE="" PORT="glossary_history_Union_dtClose" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Union:dtClose</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Union:mission" TITLE="" PORT="glossary_history_Union_mission" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Union:mission</FONT></TD></TR></TABLE>>];
+	glossary_history_School [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:School" TITLE="School" PORT="glossary_history_School" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Школа</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Union:mission" TITLE="" PORT="glossary_history_Union_mission" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Union:mission</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Stuff" TITLE="Stuff" PORT="glossary_history_Stuff" BGCOLOR="#ffffff"><FONT COLOR="#0000cc">Школьный персонал</FONT></TD></TR></TABLE>>];
+	glossary_history_Year [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:Year" TITLE="Year" PORT="glossary_history_Year" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Параллель</FONT></TD></TR></TABLE>>];
+	glossary_history_Form [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:Form" TITLE="Form" PORT="glossary_history_Form" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Класс</FONT></TD></TR></TABLE>>];
+	glossary_history_HistoryName [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:HistoryName" TITLE="HistoryName" PORT="glossary_history_HistoryName" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Историческое наименование</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:HistoryName:name" TITLE="" PORT="glossary_history_HistoryName_name" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:HistoryName:name</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:HistoryName:dtStart" TITLE="" PORT="glossary_history_HistoryName_dtStart" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:HistoryName:dtStart</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:HistoryName:dtEnd" TITLE="" PORT="glossary_history_HistoryName_dtEnd" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:HistoryName:dtEnd</FONT></TD></TR></TABLE>>];
+	glossary_history_Person [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:Person" TITLE="Person" PORT="glossary_history_Person" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Персона</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Person:firstName" TITLE="" PORT="glossary_history_Person_firstName" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Person:firstName</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Person:secondName" TITLE="" PORT="glossary_history_Person_secondName" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Person:secondName</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Person:middleName" TITLE="" PORT="glossary_history_Person_middleName" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Person:middleName</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Person:enName" TITLE="" PORT="glossary_history_Person_enName" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Person:enName</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Person:DOB" TITLE="" PORT="glossary_history_Person_DOB" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Person:DOB</FONT></TD></TR></TABLE>>];
+	glossary_history_Document [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:Document" TITLE="Document" PORT="glossary_history_Document" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Документ</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Document:href" TITLE="" PORT="glossary_history_Document_href" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Document:href</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:Document:dt" TITLE="" PORT="glossary_history_Document_dt" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:Document:dt</FONT></TD></TR></TABLE>>];
+	glossary_history_LogItem [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:LogItem" TITLE="LogItem" PORT="glossary_history_LogItem" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Запись в журнале изменений</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:LogItem:dtCreate" TITLE="" PORT="glossary_history_LogItem_dtCreate" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:LogItem:dtCreate</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:LogItem:action" TITLE="" PORT="glossary_history_LogItem_action" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:LogItem:action</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:LogItem:author" TITLE="" PORT="glossary_history_LogItem_author" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:LogItem:author</FONT></TD></TR></TABLE>>];
+	glossary_history_TraversalRule [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:TraversalRule" TITLE="TraversalRule" PORT="glossary_history_TraversalRule" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Отношение между ресурсами</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:TraversalRule:role" TITLE="" PORT="glossary_history_TraversalRule_role" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:TraversalRule:role</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:TraversalRule:dtStart" TITLE="" PORT="glossary_history_TraversalRule_dtStart" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:TraversalRule:dtStart</FONT></TD></TR><TR><TD ALIGN="CENTER" HREF="#history:TraversalRule:dtEnd" TITLE="" PORT="glossary_history_TraversalRule_dtEnd" BGCOLOR="#ffffff"><FONT COLOR="#3c3c3c">glossary:history:TraversalRule:dtEnd</FONT></TD></TR></TABLE>>];
+	glossary_history_Source [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:Source" TITLE="Source" PORT="glossary_history_Source" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Источник отношения</FONT></TD></TR></TABLE>>];
+	glossary_history_Destination [label=<<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0"><TR><TD ALIGN="CENTER" HREF="#history:Destination" TITLE="Destination" PORT="glossary_history_Destination" BGCOLOR="#dddddd"><FONT COLOR="#0000cc">Назначение отношения</FONT></TD></TR></TABLE>>];
+	
+			
+			
+			edge [dir="back",arrowtail="odiamond"];
+			glossary_history_TraversalRule -> glossary_history_Destination;
+		glossary_history_TraversalRule -> glossary_history_Source;
+		
+			edge [dir="back",arrowtail="odiamond",headlabel="*"];
+			glossary_history_Union -> glossary_history_HistoryName;
+		glossary_history_School -> glossary_history_Year;
+		glossary_history_Year -> glossary_history_Form;
+		
+			
+			edge [dir="forward",arrowhead="onormal",headlabel=""];
+			glossary_history_Union:glossary_history_Union -> glossary_history_Resource;
+		
+	glossary_history_School:glossary_history_School -> glossary_history_Union;
+		
+	glossary_history_Year:glossary_history_Year -> glossary_history_Union;
+		
+	glossary_history_Form:glossary_history_Form -> glossary_history_Union;
+		
+	glossary_history_Person:glossary_history_Person -> glossary_history_Resource;
+		
+	glossary_history_Document:glossary_history_Document -> glossary_history_Resource;
+		
+	glossary_history_LogItem:glossary_history_LogItem -> glossary_history_Resource;
+		
+	glossary_history_Source:glossary_history_Source -> glossary_history_Resource;
+		
+	glossary_history_Destination:glossary_history_Destination -> glossary_history_Resource;
+		
+	
+		}
+	

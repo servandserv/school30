@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="stylesheets/glossary/toc.xsl" type="text/xsl"?><toc xmlns="urn:ru:battleship:meta:glossary:toc">
+  <chapter href="glossary.xml#" title="Глоссарий">
+    <chapter href="glossary.xml#history" title="История"/>
+  </chapter>
+  <chapter href="ucpackage.xml#" title="Прецеденты использования"/>
+  <chapter href="interface.xml#" title="Интерфейсы"/>
+</toc>
