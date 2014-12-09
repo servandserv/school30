@@ -1,0 +1,604 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xml:lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta><meta name="keywords" content="domain docs"></meta><link href="http://jumly.tmtk.net/release/jumly.min.css" rel="stylesheet"></link><script src="http://code.jquery.com/jquery-2.1.0.min.js">;</script><script src="http://coffeescript.org/extras/coffee-script.js">;</script><script src="http://jumly.tmtk.net/release/jumly.min.js">;</script><style type="text/css">
+    body {
+		padding: 2em 1em 2em 70px;margin: 0;font-family: sans-serif;color: black;background: white;
+	}
+	:link { color: #00C; background: transparent }
+	:visited { color: #609; background: transparent }
+	a:active { color: #C00; background: transparent }
+	a:link img, a:visited img { border-style: none }
+
+	h1, h2, h3, h4, h5, h6 { text-align: left }
+	h1, h2, h3, h4 { color: #005A9C; background: white }
+	h1 { font: 170% sans-serif }
+	h2 { font: 140% sans-serif }
+	h3 { font: 120% sans-serif }
+	h4 { font: bold 100% sans-serif }
+	h5 { font: italic 100% sans-serif }
+	h6 { font: small-caps 100% sans-serif }
+	/*@media print {*/
+	svg,img { max-width:100%; margin:0; }
+	polygon { fill: #ffffff; }
+	svg > g > g polygon { stroke: grey; stroke-width: 2px; }
+	svg > g > g > title + g polygon { fill: lightgrey; }
+	/*}*/
+
+	dt, dd { margin-top: 0; margin-bottom: 0 }
+	dt { font-weight: bold; color:#DB3706; }
+	dt:after {content:':'}
+	dd li {list-style: none;}
+
+	table { margin: 1em 1em; border-collapse: collapse; padding:0; }
+	td, th { border-bottom: solid 1px #005A9C; padding: 4px 10px; }
+
+	p { margin-top: 0.6em; margin-bottom: 0.6em; }
+	strong {font-weight:bold;}
+	strong:before {content: '\00AB';}
+	strong:after {content:'\00BB';}
+	pre { margin-left: 2em; background:#eeeeee;border:solid 2px #cccccc;}
+	code { font:120% monospace; }
+
+
+	.todo {font-style: italic; color: red;}
+	.error {font-style: italic; color: red;}
+	.disabled { color:#eeeeee; }
+
+	/* Автонумерация */
+	body,h1 {
+		counter-reset: h2counter;
+	}
+	h2:before {
+		content: counter(h2counter) ".\0000a0\0000a0";
+		counter-increment: h2counter;
+	}
+	h2 {
+		counter-reset: h3counter;
+	}
+	h3:before {
+		content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
+		counter-increment: h3counter;
+	}
+	.ToCLink {position:absolute; right:20px;text-decoration: none;}
+	.comments { font-size: 80%; color: #3c3c3c; }
+	.comments:before { content:'*' }
+
+	.contents li {list-style: none;}
+	.contents ol {counter-reset: licounter;}
+	.contents ol li:before {
+		counter-increment: licounter;
+		content: counter(licounter) ".\0000a0\0000a0";
+	}
+	.contents ol ol {counter-reset: lilicounter;}
+	.contents ol ol li:before {
+		counter-increment: lilicounter;
+		content: counter(licounter) "." counter(lilicounter) ".\0000a0\0000a0";
+	}
+
+	#header {
+		position:fixed; top:0px; left:0px; z-index:100; height:141px;
+		width:30px; background:#FFFFFF;font-size:90%;
+
+	}
+	#header p { font: 120% sans-serif; background:rgb(0,90,156); color: #fff; font-weight:bold;}
+	#header div { position:absolute; left:-10000px; }
+	#header:hover { width:400px; height:100%; background:rgb(0,90,156); padding-right: 50px; }
+	#header svg { position:absolute; top:40px; left: 0px; }
+	#header:hover { overflow: auto; }
+	#header:hover div { position:relative; left:40px; top:10px; }
+	#header ul { padding-left:0px; margin:0; }
+	#header ul ul { padding-left:10px; }
+	#header ul li {list-style:none;padding-top:10px; font-size:100%;}
+	#header ul li li {list-style:none;padding-top:4px; font-size:90%;}
+	#header a { color:#fff; }
+
+	#toc > ul > li { font-size:140%; }
+	#toc li { list-style:none; }
+</style><title>Термины и определения</title><script type="text/javascript">
+					window.onload = function(){
+						var clName, svgEls;
+						if (document.location.hash) {
+							document.location = document.location;
+						}
+						svgEls = document.getElementsByTagName('svg');
+						for(var i=0;i < svgEls.length; i++) {
+							clName = svgEls[i].getAttribute('class');
+							if(clName == 'graph') {
+								svgEls[i].onclick = function() {
+									if(this.style.width) {
+										this.style.width = null;
+									} else {
+										this.style.width = '20%';
+									}
+								}
+								svgEls[i].onclick();
+							}
+						}
+					}
+				</script></head><body><div id="header"><svg xmlns="http://www.w3.org/2000/svg" height="116px" width="24px" style="background:rgb(0,90,156);" viewBox="0 0 24 116"><g transform="translate(-3,116)"><text x="10" y="20" fill="white" transform="rotate(-90)" style="font-size:16px;font-family:Avenir;">Domain logic</text></g></svg><div><p>Content</p><ul><li><a href="domain.html#">Модель предметной области</a><ul><li><a href="domain.html#school">История школы</a><ul><li><a href="domain.html#school:actors">Участники</a></li></ul></li></ul></li><li><a href="ucpackage.html#">Прецеденты использования</a><ul><li><a href="ucpackage.html#school">История школы</a></li></ul></li></ul></div></div><h1>Модель предметной области</h1><hr></hr><h2 id="school">История школы</h2><h3>Диаграмма предметной области</h3><p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0.00 0.00 1140.00 936.00" class="graph" style="max-width:1140pt">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 932)">
+<title>domain_school</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-932 1136,-932 1136,4 -4,4"></polygon>
+
+<g id="node1" class="node"><title>school_Resource</title>
+<g id="a_node1_0"><polygon fill="#dddddd" stroke="none" points="979,-321 979,-353 1081,-353 1081,-321 979,-321"></polygon><text text-anchor="start" x="1008.5" y="-333.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Resource';
+						" href="../../school/docs/domain.html#school:Resource" title="school:Resource" style="text-decoration:underline;cursor:pointer;">Ресурс</a></text>
+</g>
+<g id="a_node1_1"><polygon fill="#ffffff" stroke="none" points="979,-290 979,-321 1081,-321 1081,-290 979,-290"></polygon><text text-anchor="start" x="987.5" y="-301.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Resource:URI</text>
+</g>
+</g>
+
+<g id="node2" class="node"><title>school_Union</title>
+<g id="a_node2_2"><polygon fill="#dddddd" stroke="none" points="686,-829 686,-861 890,-861 890,-829 686,-829"></polygon><text text-anchor="start" x="744" y="-841.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Union';
+						" href="../../school/docs/domain.html#school:Union" title="school:Union" style="text-decoration:underline;cursor:pointer;">Объединение</a></text>
+</g>
+<g id="a_node2_3"><polygon fill="#ffffff" stroke="none" points="686,-798 686,-829 890,-829 890,-798 686,-798"></polygon><text text-anchor="start" x="694.5" y="-809.8" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:HistoryName';
+						" href="../../school/docs/domain.html#school:HistoryName" title="school:HistoryName" style="text-decoration:underline;cursor:pointer;">Историческое наименование</a></text>
+</g>
+<g id="a_node2_4"><polygon fill="#ffffff" stroke="none" points="686,-767 686,-798 890,-798 890,-767 686,-767"></polygon><text text-anchor="start" x="751" y="-778.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Union:UUID</text>
+</g>
+<g id="a_node2_5"><polygon fill="#ffffff" stroke="none" points="686,-736 686,-767 890,-767 890,-736 686,-736"></polygon><text text-anchor="start" x="745" y="-747.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Union:dtOpen</text>
+</g>
+<g id="a_node2_6"><polygon fill="#ffffff" stroke="none" points="686,-705 686,-736 890,-736 890,-705 686,-705"></polygon><text text-anchor="start" x="745" y="-716.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Union:dtClose</text>
+</g>
+<g id="a_node2_7"><polygon fill="#ffffff" stroke="none" points="686,-674 686,-705 890,-705 890,-674 686,-674"></polygon><text text-anchor="start" x="744.5" y="-685.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Union:mission</text>
+</g>
+</g>
+
+<g id="edge8" class="edge"><title>school_Union:school_Union-&gt;school_Resource</title>
+<path fill="none" stroke="black" d="M891,-845C903.431,-845 989.75,-487.022 1019.19,-363.396"></path>
+<polygon fill="none" stroke="black" points="1022.62,-364.077 1021.53,-353.538 1015.81,-362.457 1022.62,-364.077"></polygon>
+</g>
+
+<g id="node7" class="node"><title>school_HistoryName</title>
+<g id="a_node7_8"><polygon fill="#dddddd" stroke="none" points="928,-844 928,-876 1132,-876 1132,-844 928,-844"></polygon><text text-anchor="start" x="936.5" y="-856.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:HistoryName';
+						" href="../../school/docs/domain.html#school:HistoryName" title="school:HistoryName" style="text-decoration:underline;cursor:pointer;">Историческое наименование</a></text>
+</g>
+<g id="a_node7_9"><polygon fill="#ffffff" stroke="none" points="928,-813 928,-844 1132,-844 1132,-813 928,-813"></polygon><text text-anchor="start" x="970.5" y="-824.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">HistoryName:name</text>
+</g>
+<g id="a_node7_10"><polygon fill="#ffffff" stroke="none" points="928,-782 928,-813 1132,-813 1132,-782 928,-782"></polygon><text text-anchor="start" x="967" y="-793.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">HistoryName:dtStart</text>
+</g>
+<g id="a_node7_11"><polygon fill="#ffffff" stroke="none" points="928,-751 928,-782 1132,-782 1132,-751 928,-751"></polygon><text text-anchor="start" x="970" y="-762.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">HistoryName:dtEnd</text>
+</g>
+</g>
+
+<g id="edge4" class="edge"><title>school_Union:school_HistoryName-&gt;school_HistoryName</title>
+<path fill="none" stroke="black" d="M903.121,-814C911.202,-814 919.438,-814 927.633,-814"></path>
+<polygon fill="none" stroke="black" points="903,-814 897,-818 891,-814 897,-810 903,-814"></polygon>
+<text text-anchor="middle" x="923.633" y="-802.8" font-family="Times,serif" font-size="14.00">*</text>
+</g>
+
+<g id="node3" class="node"><title>school_School</title>
+<g id="a_node3_12"><polygon fill="#dddddd" stroke="none" points="34,-813 34,-845 184,-845 184,-813 34,-813"></polygon><text text-anchor="start" x="87.5" y="-825.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:School';
+						" href="../../school/docs/domain.html#school:School" title="school:School" style="text-decoration:underline;cursor:pointer;">Школа</a></text>
+</g>
+<g id="a_node3_13"><polygon fill="#ffffff" stroke="none" points="34,-782 34,-813 184,-813 184,-782 34,-782"></polygon><text text-anchor="start" x="65.5" y="-793.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Union:mission</text>
+</g>
+<g id="a_node3_14"><polygon fill="#ffffff" stroke="none" points="34,-751 34,-782 184,-782 184,-751 34,-751"></polygon><text text-anchor="start" x="74" y="-762.8" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Year';
+						" href="../../school/docs/domain.html#school:Year" title="school:Year" style="text-decoration:underline;cursor:pointer;">Параллель</a></text>
+</g>
+<g id="a_node3_15"><polygon fill="#ffffff" stroke="none" points="34,-720 34,-751 184,-751 184,-720 34,-720"></polygon><text text-anchor="start" x="42.5" y="-731.8" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Stuff';
+						" href="../../school/docs/domain.html#school:Stuff" title="school:Stuff" style="text-decoration:underline;cursor:pointer;">Школьный персонал</a></text>
+</g>
+</g>
+
+<g id="edge9" class="edge"><title>school_School:school_School-&gt;school_Union</title>
+<path fill="none" stroke="black" d="M185,-829C391.399,-829 443.284,-819.301 648,-793 657.019,-791.841 666.342,-790.494 675.692,-789.036"></path>
+<polygon fill="none" stroke="black" points="676.512,-792.449 685.834,-787.415 675.407,-785.537 676.512,-792.449"></polygon>
+</g>
+
+<g id="node4" class="node"><title>school_Stuff</title>
+<g id="a_node4_16"><polygon fill="#dddddd" stroke="none" points="254,-683 254,-715 404,-715 404,-683 254,-683"></polygon><text text-anchor="start" x="262.5" y="-695.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Stuff';
+						" href="../../school/docs/domain.html#school:Stuff" title="school:Stuff" style="text-decoration:underline;cursor:pointer;">Школьный персонал</a></text>
+</g>
+</g>
+
+<g id="edge1" class="edge"><title>school_School:school_Stuff-&gt;school_Stuff</title>
+<path fill="none" stroke="black" d="M197.358,-734.599C226.415,-732.767 256.679,-724.95 280.754,-717.105"></path>
+<polygon fill="none" stroke="black" points="196.994,-734.611 191.127,-738.803 185,-735 190.867,-730.807 196.994,-734.611"></polygon>
+</g>
+
+<g id="node5" class="node"><title>school_Year</title>
+<g id="a_node5_17"><polygon fill="#dddddd" stroke="none" points="286,-766 286,-798 373,-798 373,-766 286,-766"></polygon><text text-anchor="start" x="294.5" y="-778.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Year';
+						" href="../../school/docs/domain.html#school:Year" title="school:Year" style="text-decoration:underline;cursor:pointer;">Параллель</a></text>
+</g>
+<g id="a_node5_18"><polygon fill="#ffffff" stroke="none" points="286,-735 286,-766 373,-766 373,-735 286,-735"></polygon><text text-anchor="start" x="311" y="-746.8" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Form';
+						" href="../../school/docs/domain.html#school:Form" title="school:Form" style="text-decoration:underline;cursor:pointer;">Класс</a></text>
+</g>
+</g>
+
+<g id="edge5" class="edge"><title>school_School:school_Year-&gt;school_Year</title>
+<path fill="none" stroke="black" d="M197.032,-766.011C227.594,-766.066 260.345,-766.313 285.451,-766.547"></path>
+<polygon fill="none" stroke="black" points="197,-766.011 190.996,-770.006 185,-766 191.004,-762.006 197,-766.011"></polygon>
+<text text-anchor="middle" x="281.451" y="-755.347" font-family="Times,serif" font-size="14.00">*</text>
+</g>
+
+<g id="edge10" class="edge"><title>school_Stuff:school_Stuff-&gt;school_Union</title>
+<path fill="none" stroke="black" d="M404.033,-697.489C468.984,-697.565 565.651,-701.094 648,-718 657.229,-719.895 666.672,-722.276 676.078,-724.964"></path>
+<polygon fill="none" stroke="black" points="675.272,-728.375 685.855,-727.869 677.266,-721.665 675.272,-728.375"></polygon>
+</g>
+
+<g id="edge11" class="edge"><title>school_Year:school_Year-&gt;school_Union</title>
+<path fill="none" stroke="black" d="M374,-782C476.1,-782 592.316,-777.673 675.401,-773.831"></path>
+<polygon fill="none" stroke="black" points="675.795,-777.316 685.621,-773.353 675.468,-770.324 675.795,-777.316"></polygon>
+</g>
+
+<g id="node6" class="node"><title>school_Form</title>
+<g id="a_node6_19"><polygon fill="#dddddd" stroke="none" points="517,-729 517,-761 571,-761 571,-729 517,-729"></polygon><text text-anchor="start" x="525.5" y="-741.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Form';
+						" href="../../school/docs/domain.html#school:Form" title="school:Form" style="text-decoration:underline;cursor:pointer;">Класс</a></text>
+</g>
+</g>
+
+<g id="edge6" class="edge"><title>school_Year:school_Form-&gt;school_Form</title>
+<path fill="none" stroke="black" d="M386.007,-749.96C433.715,-749.65 486.357,-747.614 516.951,-746.249"></path>
+<polygon fill="none" stroke="black" points="386,-749.96 380.013,-753.98 374,-750 379.987,-745.98 386,-749.96"></polygon>
+<text text-anchor="middle" x="512.951" y="-735.049" font-family="Times,serif" font-size="14.00">*</text>
+</g>
+
+<g id="edge12" class="edge"><title>school_Form:school_Form-&gt;school_Union</title>
+<path fill="none" stroke="black" d="M571.359,-747.505C596.717,-749.915 636.819,-753.727 675.598,-757.412"></path>
+<polygon fill="none" stroke="black" points="675.665,-760.934 685.951,-758.396 676.327,-753.966 675.665,-760.934"></polygon>
+</g>
+
+<g id="node8" class="node"><title>school_Person</title>
+<g id="a_node8_20"><polygon fill="#dddddd" stroke="none" points="717,-624 717,-656 860,-656 860,-624 717,-624"></polygon><text text-anchor="start" x="761.5" y="-636.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Person';
+						" href="../../school/docs/domain.html#school:Person" title="school:Person" style="text-decoration:underline;cursor:pointer;">Персона</a></text>
+</g>
+<g id="a_node8_21"><polygon fill="#ffffff" stroke="none" points="717,-593 717,-624 860,-624 860,-593 717,-593"></polygon><text text-anchor="start" x="735" y="-604.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Person:firstName</text>
+</g>
+<g id="a_node8_22"><polygon fill="#ffffff" stroke="none" points="717,-562 717,-593 860,-593 860,-562 717,-562"></polygon><text text-anchor="start" x="725.5" y="-573.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Person:secondName</text>
+</g>
+<g id="a_node8_23"><polygon fill="#ffffff" stroke="none" points="717,-531 717,-562 860,-562 860,-531 717,-531"></polygon><text text-anchor="start" x="726.5" y="-542.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Person:middleName</text>
+</g>
+<g id="a_node8_24"><polygon fill="#ffffff" stroke="none" points="717,-500 717,-531 860,-531 860,-500 717,-500"></polygon><text text-anchor="start" x="739.5" y="-511.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Person:enName</text>
+</g>
+<g id="a_node8_25"><polygon fill="#ffffff" stroke="none" points="717,-469 717,-500 860,-500 860,-469 717,-469"></polygon><text text-anchor="start" x="751" y="-480.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Person:DOB</text>
+</g>
+</g>
+
+<g id="edge13" class="edge"><title>school_Person:school_Person-&gt;school_Resource</title>
+<path fill="none" stroke="black" d="M861,-640C984.75,-640 1017.58,-449.399 1026.1,-363.321"></path>
+<polygon fill="none" stroke="black" points="1029.59,-363.642 1027.02,-353.361 1022.61,-362.996 1029.59,-363.642"></polygon>
+</g>
+
+<g id="node9" class="node"><title>school_Documents</title>
+<g id="a_node9_26"><polygon fill="#dddddd" stroke="none" points="461,-420 461,-452 627,-452 627,-420 461,-420"></polygon><text text-anchor="start" x="469.5" y="-432.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Documents';
+						" href="../../school/docs/domain.html#school:Documents" title="school:Documents" style="text-decoration:underline;cursor:pointer;">Коллекция документов</a></text>
+</g>
+<g id="a_node9_27"><polygon fill="#ffffff" stroke="none" points="461,-389 461,-420 627,-420 627,-389 461,-389"></polygon><text text-anchor="start" x="513" y="-400.8" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Document';
+						" href="../../school/docs/domain.html#school:Document" title="school:Document" style="text-decoration:underline;cursor:pointer;">Документ</a></text>
+</g>
+</g>
+
+<g id="node10" class="node"><title>school_Document</title>
+<g id="a_node10_28"><polygon fill="#dddddd" stroke="none" points="733,-419 733,-451 843,-451 843,-419 733,-419"></polygon><text text-anchor="start" x="757" y="-431.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Document';
+						" href="../../school/docs/domain.html#school:Document" title="school:Document" style="text-decoration:underline;cursor:pointer;">Документ</a></text>
+</g>
+<g id="a_node10_29"><polygon fill="#ffffff" stroke="none" points="733,-388 733,-419 843,-419 843,-388 733,-388"></polygon><text text-anchor="start" x="741.5" y="-399.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Document:href</text>
+</g>
+<g id="a_node10_30"><polygon fill="#ffffff" stroke="none" points="733,-357 733,-388 843,-388 843,-357 733,-357"></polygon><text text-anchor="start" x="747.5" y="-368.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">Document:dt</text>
+</g>
+</g>
+
+<g id="edge7" class="edge"><title>school_Documents:school_Document-&gt;school_Document</title>
+<path fill="none" stroke="black" d="M640.015,-404C671.699,-404 705.637,-404 732.909,-404"></path>
+<polygon fill="none" stroke="black" points="640,-404 634,-408 628,-404 634,-400 640,-404"></polygon>
+<text text-anchor="middle" x="728.909" y="-392.8" font-family="Times,serif" font-size="14.00">*</text>
+</g>
+
+<g id="edge14" class="edge"><title>school_Document:school_Document-&gt;school_Resource</title>
+<path fill="none" stroke="black" d="M844,-435C902.432,-435 958.034,-393.437 992.747,-360.725"></path>
+<polygon fill="none" stroke="black" points="995.492,-362.94 1000.26,-353.477 990.631,-357.903 995.492,-362.94"></polygon>
+</g>
+
+<g id="node11" class="node"><title>school_LogItem</title>
+<g id="a_node11_31"><polygon fill="#dddddd" stroke="none" points="685,-306 685,-338 892,-338 892,-306 685,-306"></polygon><text text-anchor="start" x="693.5" y="-318.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:LogItem';
+						" href="../../school/docs/domain.html#school:LogItem" title="school:LogItem" style="text-decoration:underline;cursor:pointer;">Запись в журнале изменений</a></text>
+</g>
+<g id="a_node11_32"><polygon fill="#ffffff" stroke="none" points="685,-275 685,-306 892,-306 892,-275 685,-275"></polygon><text text-anchor="start" x="734" y="-286.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">LogItem:dtCreate</text>
+</g>
+<g id="a_node11_33"><polygon fill="#ffffff" stroke="none" points="685,-244 685,-275 892,-275 892,-244 685,-244"></polygon><text text-anchor="start" x="741.5" y="-255.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">LogItem:action</text>
+</g>
+<g id="a_node11_34"><polygon fill="#ffffff" stroke="none" points="685,-213 685,-244 892,-244 892,-213 685,-213"></polygon><text text-anchor="start" x="740" y="-224.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">LogItem:author</text>
+</g>
+</g>
+
+<g id="edge15" class="edge"><title>school_LogItem:school_LogItem-&gt;school_Resource</title>
+<path fill="none" stroke="black" d="M892,-322C917.182,-322 944.968,-322 968.896,-322"></path>
+<polygon fill="none" stroke="black" points="968.897,-325.5 978.896,-322 968.896,-318.5 968.897,-325.5"></polygon>
+</g>
+
+<g id="node12" class="node"><title>school_TraversalRule</title>
+<g id="a_node12_35"><polygon fill="#dddddd" stroke="none" points="440,-154 440,-186 648,-186 648,-154 440,-154"></polygon><text text-anchor="start" x="448.5" y="-166.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:TraversalRule';
+						" href="../../school/docs/domain.html#school:TraversalRule" title="school:TraversalRule" style="text-decoration:underline;cursor:pointer;">Отношение между ресурсами</a></text>
+</g>
+<g id="a_node12_36"><polygon fill="#ffffff" stroke="none" points="440,-123 440,-154 648,-154 648,-123 440,-123"></polygon><text text-anchor="start" x="468" y="-134.8" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Destination';
+						" href="../../school/docs/domain.html#school:Destination" title="school:Destination" style="text-decoration:underline;cursor:pointer;">Назначение отношения</a></text>
+</g>
+<g id="a_node12_37"><polygon fill="#ffffff" stroke="none" points="440,-92 440,-123 648,-123 648,-92 440,-92"></polygon><text text-anchor="start" x="476" y="-103.8" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Source';
+						" href="../../school/docs/domain.html#school:Source" title="school:Source" style="text-decoration:underline;cursor:pointer;">Источник отношения</a></text>
+</g>
+<g id="a_node12_38"><polygon fill="#ffffff" stroke="none" points="440,-61 440,-92 648,-92 648,-61 440,-61"></polygon><text text-anchor="start" x="488" y="-72.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">TraversalRule:role</text>
+</g>
+<g id="a_node12_39"><polygon fill="#ffffff" stroke="none" points="440,-30 440,-61 648,-61 648,-30 440,-30"></polygon><text text-anchor="start" x="478.5" y="-41.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">TraversalRule:dtStart</text>
+</g>
+<g id="a_node12_40"><polygon fill="#ffffff" stroke="none" points="440,1 440,-30 648,-30 648,1 440,1"></polygon><text text-anchor="start" x="481.5" y="-10.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">TraversalRule:dtEnd</text>
+</g>
+</g>
+
+<g id="edge16" class="edge"><title>school_TraversalRule:school_TraversalRule-&gt;school_Resource</title>
+<path fill="none" stroke="black" d="M648,-170C757.492,-170 792.237,-158.88 892,-204 932.392,-222.268 969.911,-256.291 995.435,-283.126"></path>
+<polygon fill="none" stroke="black" points="992.925,-285.566 1002.31,-290.486 998.041,-280.788 992.925,-285.566"></polygon>
+</g>
+
+<g id="node13" class="node"><title>school_Source</title>
+<g id="a_node13_41"><polygon fill="#dddddd" stroke="none" points="712,-69 712,-101 865,-101 865,-69 712,-69"></polygon><text text-anchor="start" x="720.5" y="-81.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Source';
+						" href="../../school/docs/domain.html#school:Source" title="school:Source" style="text-decoration:underline;cursor:pointer;">Источник отношения</a></text>
+</g>
+</g>
+
+<g id="edge3" class="edge"><title>school_TraversalRule:school_Source-&gt;school_Source</title>
+<path fill="none" stroke="black" d="M660.258,-107.726C677.262,-106.989 694.827,-104.838 711.263,-102.137"></path>
+<polygon fill="none" stroke="black" points="659.997,-107.731 654.088,-111.865 648,-108 653.909,-103.867 659.997,-107.731"></polygon>
+</g>
+
+<g id="node14" class="node"><title>school_Destination</title>
+<g id="a_node14_42"><polygon fill="#dddddd" stroke="none" points="704,-123 704,-155 873,-155 873,-123 704,-123"></polygon><text text-anchor="start" x="712.5" y="-135.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:Destination';
+						" href="../../school/docs/domain.html#school:Destination" title="school:Destination" style="text-decoration:underline;cursor:pointer;">Назначение отношения</a></text>
+</g>
+</g>
+
+<g id="edge2" class="edge"><title>school_TraversalRule:school_Destination-&gt;school_Destination</title>
+<path fill="none" stroke="black" d="M660.31,-139C674.485,-139 689.129,-139 703.206,-139"></path>
+<polygon fill="none" stroke="black" points="660,-139 654,-143 648,-139 654,-135 660,-139"></polygon>
+</g>
+
+<g id="edge17" class="edge"><title>school_Source:school_Source-&gt;school_Resource</title>
+<path fill="none" stroke="black" d="M865.06,-97.9817C874.639,-101.571 883.908,-106.153 892,-112 951.745,-155.174 992.394,-233.114 1013.07,-280.937"></path>
+<polygon fill="none" stroke="black" points="1009.94,-282.523 1017.06,-290.371 1016.39,-279.797 1009.94,-282.523"></polygon>
+</g>
+
+<g id="edge18" class="edge"><title>school_Destination:school_Destination-&gt;school_Resource</title>
+<path fill="none" stroke="black" d="M858.64,-155.005C870.259,-159.238 881.837,-164.5 892,-171 937.497,-200.097 977.424,-248.145 1002.26,-282.221"></path>
+<polygon fill="none" stroke="black" points="999.572,-284.477 1008.24,-290.563 1005.26,-280.397 999.572,-284.477"></polygon>
+</g>
+
+<g id="node15" class="node"><title>school_actors_User</title>
+<g id="a_node15_43"><polygon fill="#dddddd" stroke="none" points="276,-894 276,-926 383,-926 383,-894 276,-894"></polygon><text text-anchor="start" x="284.5" y="-906.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:actors:User';
+						" href="../../school/docs/domain.html#school:actors:User" title="school:actors:User" style="text-decoration:underline;cursor:pointer;">Пользователь</a></text>
+</g>
+</g>
+
+<g id="node16" class="node"><title>school_actors_AuthorizedUser</title>
+<g id="a_node16_44"><polygon fill="#dddddd" stroke="none" points="1,-894 1,-926 218,-926 218,-894 1,-894"></polygon><text text-anchor="start" x="9.5" y="-906.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:actors:AuthorizedUser';
+						" href="../../school/docs/domain.html#school:actors:AuthorizedUser" title="school:actors:AuthorizedUser" style="text-decoration:underline;cursor:pointer;">Авторизованный пользователь</a></text>
+</g>
+<g id="a_node16_45"><polygon fill="#ffffff" stroke="none" points="1,-863 1,-894 218,-894 218,-863 1,-863"></polygon><text text-anchor="start" x="26" y="-874.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">actors:AutorizedUser:UUID</text>
+</g>
+</g>
+
+<g id="edge19" class="edge"><title>school_actors_AuthorizedUser:school_actors_AuthorizedUser-&gt;school_actors_User</title>
+<path fill="none" stroke="black" d="M218,-910C233.352,-910 249.91,-910 265.402,-910"></path>
+<polygon fill="none" stroke="black" points="265.405,-913.5 275.405,-910 265.405,-906.5 265.405,-913.5"></polygon>
+</g>
+</g>
+</svg></p><h3>Разделы</h3><ul><li><a href="#school:actors">Участники</a></li></ul><h3>Термины и определения</h3><ul><li><a href="#school:Resource">Ресурс</a></li><li><a href="#school:Union">Объединение</a></li><li><a href="#school:School">Школа</a></li><li><a href="#school:Stuff">Школьный персонал</a></li><li><a href="#school:Year">Параллель</a></li><li><a href="#school:Form">Класс</a></li><li><a href="#school:HistoryName">Историческое наименование</a></li><li><a href="#school:Person">Персона</a></li><li><a href="#school:Documents">Коллекция документов</a></li><li><a href="#school:Document">Документ</a></li><li><a href="#school:LogItem">Запись в журнале изменений</a></li><li><a href="#school:TraversalRule">Отношение между ресурсами</a></li><li><a href="#school:Source">Источник отношения</a></li><li><a href="#school:Destination">Назначение отношения</a></li></ul><dl><dt id="school:Resource">Ресурс</dt><dd><p><small>URN: school:Resource</small></p><p>
+			<p>
+				Объект модели отличающийся от других объектов своим <a href="../../school/docs/domain.html#school:Resource:URI" title="">идентификатором</a>.
+			</p>
+		</p></dd><dt id="school:Union">Объединение</dt><dd><p><small>URN: school:Union</small></p><p>
+			<p>
+				<a href="../../school/docs/domain.html#school:Resource" title="">Ресурс</a> представляющий из себя объединение людей, 
+				ограниченное определенными рамками. Как минимум, имеет свои исторические
+				<a href="../../school/docs/domain.html#school:HistoryName" title="">наименования</a>,
+				<a href="../../school/docs/domain.html#school:Union:UUID" title="">идентификатор</a>,
+				<a href="../../school/docs/domain.html#school:Union:dtOpen" title="">дату создания</a> и
+				<a href="../../school/docs/domain.html#school:Union:dtClose" title="">дату роспуска</a>(которая может быть открытой). 
+				Объединение состоит из множества участников, которые присоединяются к
+				объединению на определенный срок и играют в нем определенную роль. Связь со множеством участников
+				определяется через отношениями
+				Объединение может быть связано с другими объединениями различными типами связей(например "родитель-наследник").
+				Объединение создается с определенной <a href="../../school/docs/domain.html#school:Union:mission" title="">целью - миссией</a>,
+				которая отражает смысл его существования.
+			</p>
+		</p><p><i>Пример: 
+			Примером объединения является школьный класс, который именуется определенным образом, организуется с
+			какого-то момента и распускается в конце процесса обучения. Ученики класса являются его участниками
+			они начинают учиться в классе, каждый в свое время, и так же заканчивают учебу в нем. Участником
+			класса может быть классный руководитель, который тоже присоединяется к объединению на какой-то период.
+		</i></p></dd><dt id="school:School">Школа</dt><dd><p><small>URN: school:School</small></p><p>
+			<p>
+				Учебное заведение для получения общего образования. Является <a href="../../school/docs/domain.html#school:Union" title="">объединением</a>
+				людей объединенным общими целями и задачами, основными из которых являются
+				<a href="../../school/docs/domain.html#school:Union:mission" title="">обучение и воспитание детей</a>.
+				Образовательные учреждения, дающие общее среднее образование,
+				включают в себя общеобразовательные школы, лицеи и гимназии.
+			</p>
+			<p>
+				Школа формируется из классов объединенных в параллели. В разные периоды истории число параллелей в
+				общеобразовательных школах составляло от <a href="../../school/docs/domain.html#school:Year" title="">10 до 12 штук </a>.
+				Параллели составляют субобъединения в рамках школы.
+			</p>
+			<p>
+				Другим примером субобъединения в рамках школы является <a href="../../school/docs/domain.html#school:Stuff" title="">школьный персонал,</a>
+				который объединяет всех учителей, административных и вспомогательных работников школы.
+			</p>
+			<p>
+				Кроме параллелей состоящих из классов и преподавательского состава можно выделить и другие виды
+				объединений существующих в школе, таких как, кружки, пионерские дружины, комсомольские организации
+				спортивные секции и т.п.
+			</p>
+		</p><p><i>Пример: 
+			Например, МБОУ «ИЕГЛ «Школа-30», была организована в сентябре 1934 года и действует по настоящее время.
+			за время своей работы сменила несколько наименований.
+		</i></p></dd><dt id="school:Stuff">Школьный персонал</dt><dd><p><small>URN: school:Stuff</small></p><p>
+			<p>
+				<a href="../../school/docs/domain.html#school:Union" title="">Объединение</a> всех учителей, административных работников и 
+				вспомогательного персонала обеспечивающих
+				организацию и реализацию учебно-воспитательного процесса в школе. Школьный персонал состоит из участников
+				каждый из которых в конкретный момент времени выполняет одну или более ролей. Можно выделить роли
+				преподавателей, директора, завучей и пр. Жизненный цикл школьного персонала совпадает с жизненным циклом школы.
+			</p>
+		</p></dd><dt id="school:Year">Параллель</dt><dd><p><small>URN: school:Year</small></p><p>
+			<p>
+				Параллель - это <a href="../../school/docs/domain.html#school:Union" title="">объединение</a> состоящее из других объединений -
+				<a href="../../school/docs/domain.html#school:Form" title="">классов</a>
+				в которых учатся ученики одного возраста. Параллель начинает свой жизненный цикл с 1 класса и заканчивает
+				в 10-12 классах в зависимости от периода обучения.
+			</p>
+		</p></dd><dt id="school:Form">Класс</dt><dd><p><small>URN: school:Form</small></p><p>
+			<p>
+				<a href="../../school/docs/domain.html#school:Union" title="">Объединение</a> совместно обучающихся людей. Жизненный цикл класса начинается
+				с момента начала обучения набранных в него учеников и заканчивается их выпуском. Кроме учеников
+				участие в классе принимают классные руководители, которые осуществляют общее управление процессом
+				образования, учителя, отвечающие за преподавание отдельных предметов. Состав участников в течении
+				жизненного цикла класса может существенным образом меняться.
+			</p>
+		</p></dd><dt id="school:HistoryName">Историческое наименование</dt><dd><p><small>URN: school:HistoryName</small></p><p>
+			<p>
+				<a href="../../school/docs/domain.html#school:HistoryName:name" title="">Наименование</a> какого-то объекта системы,
+				которое объект имел <a href="../../school/docs/domain.html#school:HistoryName:dtStart" title="">начиная</a> с определенной
+				даты <a href="../../school/docs/domain.html#school:HistoryName:dtEnd" title="">по</a> конкретную дату или по настоящий день.
+			</p>
+		</p></dd><dt id="school:Person">Персона</dt><dd><p><small>URN: school:Person</small></p><p>
+			<p>
+				Человеческий индивид, субъект отношений в рамках образовательного процесса. Обладает следующими атрибутами
+			</p>
+			<ul>
+				<li>
+					<a href="../../school/docs/domain.html#school:Person:firstName" title="">Имя</a>
+				</li>
+				<li>
+					<a href="../../school/docs/domain.html#school:Person:secondName" title="">Фамилия</a>
+				</li>
+				<li>
+					<a href="../../school/docs/domain.html#school:Person:middleName" title="">Отчество</a>
+				</li>
+				<li>
+					<a href="../../school/docs/domain.html#school:Person:enName" title="">Транслит полного имени</a>
+				</li>
+				<li>
+					<a href="../../school/docs/domain.html#school:Person:DOB" title="">Дата рождения</a>
+				</li>
+			</ul>
+			<p>
+				В нашем случае является участником множества объединений.
+				<a href="../../school/docs/domain.html#school:Resource" title="">Уникально</a> идентифицируется по своим
+				атрибутам. Связь между объединениями и участниками устанавливается
+				через отношения. Примеры ролей в этих отношениях:
+			</p>
+			<ul>
+				<li>Директор школы</li>
+				<li>Завуч</li>
+				<li>Учитель</li>
+				<li>Классный руководитель</li>
+				<li>Ученик</li>
+				<li>...</li>
+			</ul>
+		</p></dd><dt id="school:Documents">Коллекция документов</dt><dd><p><small>URN: school:Documents</small></p><p>
+			<p>
+				Для отражения истории того или иного объекта документы объединяются в коллекции.
+				Каждая коллекция состоит из <a href="../../school/docs/domain.html#school:Document" title="">одного или более</a> документов.
+				Документы в коллекцию конкретного объекта отбираются на основе отношений.
+			</p>
+		</p></dd><dt id="school:Document">Документ</dt><dd><p><small>URN: school:Document</small></p><p>
+			<p>
+				История объединения или конкретной персоны находит свое отражение в документах разного вида: фотографий,
+				свидетельств, публикаций и тп. Каждый документ <a href="../../school/docs/domain.html#school:Resource" title="">уникален</a> и представлен отдельным
+				<a href="../../school/docs/domain.html#school:Document:href" title="">файлом</a> в
+				графическом формате содержащем соответствующее изображение. Исторический момент в который возникает этот документ
+				является <a href="../../school/docs/domain.html#school:Document:dt" title="">датой документа</a>.
+			</p>
+			<p>
+				Каждый документ может быть связан с одним или несколькими объединениями или персонами. Связь обозначается
+				отношениями.
+			</p>
+			<p>
+				Публикация документа связана с определенной последовательностью действий, которая находит свое отражение
+				в логе.
+			</p>
+		</p></dd><dt id="school:LogItem">Запись в журнале изменений</dt><dd><p><small>URN: school:LogItem</small></p><p>
+			<p>
+				Запись в журнале, отражающая определенное действие пользователя системы над ее ресурсами. Является
+				<a href="../../school/docs/domain.html#school:Resource" title="">ресурсом</a>.
+			</p>
+			<p>
+				Запись характеризуется <a href="../../school/docs/domain.html#school:LogItem:dtCreate" title="">временем совершения</a>
+				действия, его <a href="../../school/docs/domain.html#school:LogItem:action" title="">содержанием</a>, <a href="../../school/docs/domain.html#school:LogItem:author" title="">автором</a>
+				и связывается с ресурсами системы через отношения.
+			</p>
+		</p></dd><dt id="school:TraversalRule">Отношение между ресурсами</dt><dd><p><small>URN: school:TraversalRule</small></p><p>
+			<p>
+				Отношение характеризует ссылку на <a href="../../school/docs/domain.html#school:Destination" title="">ресурс</a> системы
+				<a href="../../school/docs/domain.html#school:Source" title="">другого ресурса</a> системы.
+				Отражает определенный <a href="../../school/docs/domain.html#school:TraversalRule:role" title="">тип связи</a> между объектами.
+			</p>
+			<p>
+				Ссылка <a href="../../school/docs/domain.html#school:Resource" title="">уникальна</a> и может иметь смысл какой-то период времени, 
+				поэтому у нее может быть
+				<a href="../../school/docs/domain.html#school:TraversalRule:dtStart" title="">время начала</a> действия и
+				<a href="../../school/docs/domain.html#school:TraversalRule:dtEnd" title="">время окончания</a>.
+			</p>
+		</p></dd><dt id="school:Source">Источник отношения</dt><dd><p><small>URN: school:Source</small></p><p>
+			<a href="../../school/docs/domain.html#school:Resource" title="">Ресурс</a>.
+		</p></dd><dt id="school:Destination">Назначение отношения</dt><dd><p><small>URN: school:Destination</small></p><p>
+			<a href="../../school/docs/domain.html#school:Resource" title="">Ресурс</a>.
+		</p></dd></dl><h3 id="school:actors">Участники</h3><h4>Диаграмма предметной области</h4><p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0.00 0.00 370.00 72.00" class="graph" style="max-width:370pt">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 68)">
+<title>domain_school_actors</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-68 366,-68 366,4 -4,4"></polygon>
+
+<g id="node1" class="node"><title>school_actors_User</title>
+<g id="a_node1_0"><polygon fill="#dddddd" stroke="none" points="255,-30 255,-62 362,-62 362,-30 255,-30"></polygon><text text-anchor="start" x="263.5" y="-42.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:actors:User';
+						" href="../../school/docs/domain.html#school:actors:User" title="school:actors:User" style="text-decoration:underline;cursor:pointer;">Пользователь</a></text>
+</g>
+</g>
+
+<g id="node2" class="node"><title>school_actors_AuthorizedUser</title>
+<g id="a_node2_1"><polygon fill="#dddddd" stroke="none" points="1,-30 1,-62 218,-62 218,-30 1,-30"></polygon><text text-anchor="start" x="9.5" y="-42.3" font-family="Tahoma" fill="blue" font-size="14.00"><a xmlns="http://www.w3.org/1999/xhtml" onclick="
+							document.location='../../school/docs/domain.html#school:actors:AuthorizedUser';
+						" href="../../school/docs/domain.html#school:actors:AuthorizedUser" title="school:actors:AuthorizedUser" style="text-decoration:underline;cursor:pointer;">Авторизованный пользователь</a></text>
+</g>
+<g id="a_node2_2"><polygon fill="#ffffff" stroke="none" points="1,1 1,-30 218,-30 218,1 1,1"></polygon><text text-anchor="start" x="47.5" y="-10.8" font-family="Tahoma" fill="#3c3c3c" font-size="14.00">AutorizedUser:UUID</text>
+</g>
+</g>
+
+<g id="edge1" class="edge"><title>school_actors_AuthorizedUser:school_actors_AuthorizedUser-&gt;school_actors_User</title>
+<path fill="none" stroke="black" d="M218,-46C226.44,-46 235.331,-46 244.095,-46"></path>
+<polygon fill="none" stroke="black" points="244.291,-49.5001 254.291,-46 244.291,-42.5001 244.291,-49.5001"></polygon>
+</g>
+</g>
+</svg></p><h4>Термины и определения</h4><ul><li><a href="#school:actors:User">Пользователь</a></li><li><a href="#school:actors:AuthorizedUser">Авторизованный пользователь</a></li></ul><dl><dt id="school:actors:User">Пользователь</dt><dd><p><small>URN: school:actors:User</small></p><p>
+			<p>
+				Пользователь приложения. Любой посетитель сайта.
+			</p>
+		</p></dd><dt id="school:actors:AuthorizedUser">Авторизованный пользователь</dt><dd><p><small>URN: school:actors:AuthorizedUser</small></p><p>
+			<p>
+				<a href="../../school/docs/domain.html#school:actors:User" title="">Пользователь</a> приложения зарегистрировавшийся на сайте любым из предложенных сайтом 
+				способов. Авторизованный пользователь <a href="../../school/docs/domain.html#school:actors:AutorizedUser:UUID" title="">обладает уникальным идентификатором</a>
+				в пределах сайта.
+			</p>
+		</p></dd></dl></body></html>

@@ -3,67 +3,72 @@
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:wadl="http://wadl.dev.java.net/2009/02"
-	xmlns:glo="urn:ru:battleship:meta:glossary:glossary"
-	xmlns:uc="urn:ru:battleship:meta:glossary:ucpackage"
+	xmlns:d="urn:docs:domain"
+	xmlns:uc="urn:docs:ucpackage"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:exsl="http://exslt.org/common"
 	extension-element-prefixes="exsl"
-    exclude-result-prefixes="html xlink glo uc xsl">
+    exclude-result-prefixes="html xlink d uc xsl">
 	
     <xsl:output method="text" omit-xml-declaration="yes" indent="no"/>
 	
+	<!-- пространство имен домена  -->
+	<xsl:param name="NS" />
+	
 	<!-- глобальные переменные сделаем UPPERCASE  чтобы отличать их в коде  -->
-	<xsl:variable name="ROOT" select="/" />
+	<!--xsl:variable name="ROOT" select="/" />
 	<xsl:variable name="UCPACKAGE-ID" select="/uc:ucpackage/@ID" />
-	<xsl:variable name="UCPACKAGE-TITLE" select="/uc:ucpackage/@xlink:title" />
+	<xsl:variable name="UCPACKAGE-TITLE" select="/uc:ucpackage/@xlink:title" /-->
 	<!-- путь от файла пакета до корня проекта  -->
-	<xsl:variable name="PROJECT-BASE">
+	<!--xsl:variable name="PROJECT-BASE">
 		<xsl:call-template name="get-base">
 			<xsl:with-param name="path" select="$UCPACKAGE-ID"/>
 		</xsl:call-template>
-	</xsl:variable>
+	</xsl:variable-->
 	
-	<xsl:variable name="UCPACKAGES-SET" select="document(concat($PROJECT-BASE,'ucpackage.xml'),/)" />
-	<xsl:variable name="UCPACKAGE" select="$UCPACKAGES-SET//uc:ucpackage[@ID = $UCPACKAGE-ID]" />
+	<xsl:variable name="UCPACKAGES-SET" select="document('ucpackage.xml',/)" />
+	<!--  текущий пакет сценариев -->
+	<xsl:variable name="UCPACKAGE" select="$UCPACKAGES-SET//uc:ucpackage[@URN = $NS]" />
+	<xsl:variable name="UCPACKAGE-TITLE" select="$UCPACKAGE/@xlink:title" />
+	<!--  все сценарии проекта  -->
 	<xsl:variable name="USECASES" select="$UCPACKAGES-SET//uc:usecase" />
 	
 	<!-- dot -->
 	<xsl:template match="uc:ucpackage">
-		digraph usecase_<xsl:value-of select="translate($UCPACKAGE-ID,':','_')" /> {
-			label="<xsl:value-of select="$UCPACKAGE-TITLE" />";
-			URL="<xsl:value-of select="$UCPACKAGE-ID" />";
+		digraph usecase_<xsl:value-of select="translate($NS,':','_')" /> {
 			labelloc=t;
 			rankdir=LR;
+			fontsize=14;
+			fontcolor="#0000cc";
 			compound=true;
 			
-			node [shape=record,style="bold",height=.5];
+			node [shape=record,style="bold",height=.5,color=grey,fontname=Tahoma];
 			{
 			rank=same;
 			<xsl:for-each select="$UCPACKAGE/uc:actor">
-				<xsl:variable name="urn">
+				<!--xsl:variable name="urn">
 					<xsl:call-template name="get-urn">
 						<xsl:with-param name="id" select="@xlink:label" />
 						<xsl:with-param name="node" select="." />
 					</xsl:call-template>
-				</xsl:variable>
-				<xsl:value-of select="translate($urn,':','_')" />
+				</xsl:variable-->
+				<xsl:value-of select="translate(@URN,':','_')" />
 				<xsl:text> [label="</xsl:text>
 				<xsl:call-template name="split-spaces">
 					<xsl:with-param name="str" select="@xlink:title" />
 					<xsl:with-param name="splitter" select="' '" />
 				</xsl:call-template>
 				<xsl:text> | &#171;actor&#187;", tooltip="</xsl:text>
-				<xsl:value-of select="$urn" />
+				<xsl:value-of select="@URN" />
 				<xsl:text>",URL="</xsl:text>
-				<xsl:value-of select="@xlink:label" />
+				<xsl:value-of select="@xlink:href" />
 				<xsl:text>"];</xsl:text>
 			</xsl:for-each>
 			}
 			
 			subgraph cluster_package {
 				style="dashed,bold";
-				label="<xsl:value-of select="$UCPACKAGE-ID" />";
-				node [shape=ellipse,style="bold",height=.5];
+				node [shape=ellipse,style="bold",height=.5,fontname=Tahoma];
 				
 				<xsl:for-each select="$UCPACKAGE/uc:usecase">
 					<xsl:apply-templates select="." mode="node" />
@@ -72,7 +77,7 @@
 			}
 			
 			// use
-			edge [arrowhead="none"];
+			edge [arrowhead="none",fillcolor=grey];
 			<xsl:for-each select="uc:use">
 				<xsl:variable name="tail_urn">
 					<xsl:call-template name="get-urn">
@@ -94,15 +99,15 @@
 			</xsl:for-each>
 			
 			// proceed
-			node [shape=ellipse,style="bold,filled",height=.5,fillcolor=yellow];
-			edge [arrowhead="vee",style="dashed",label="&#171;proceed&#187;"];
+			node [shape=ellipse,style="bold,filled",height=.5,fillcolor=yellow,color=grey];
+			edge [arrowhead="vee",style="dashed",label="&#171;proceed&#187;",fillcolor=grey];
 			
 			<xsl:for-each select="uc:proceed">
 				<xsl:apply-templates select="." mode="edge" />
 			</xsl:for-each>
 			
 			// invoke
-			edge [arrowhead="vee",style="dotted",label="&#171;invoke&#187;"];
+			edge [arrowhead="vee",style="dotted",label="&#171;invoke&#187;",fillcolor=grey];
 			<xsl:for-each select="uc:invoke">
 				<xsl:apply-templates select="." mode="edge" />
 			</xsl:for-each>
@@ -130,22 +135,16 @@
 	</xsl:template>
 	
 	<xsl:template match="uc:usecase" mode="node">
-		<xsl:variable name="urn">
-			<xsl:call-template name="get-urn">
-				<xsl:with-param name="id" select="@URN" />
-				<xsl:with-param name="node" select="." />
-			</xsl:call-template>
-		</xsl:variable>
-		<xsl:value-of select="translate($urn,':','_')" />
+		<xsl:value-of select="translate(@URN,':','_')" />
 		<xsl:text> [label="</xsl:text>
 		<xsl:call-template name="split-spaces">
 			<xsl:with-param name="str" select="@xlink:title" />
 			<xsl:with-param name="splitter" select="' '" />
 		</xsl:call-template>
 		<xsl:text>",tooltip="</xsl:text>
-		<xsl:value-of select="$urn" />
+		<xsl:value-of select="@URN" />
 		<xsl:text>",URL="</xsl:text>
-		<xsl:value-of select="$urn" />
+		<xsl:value-of select="@xlink:href" />
 		<xsl:text>"];</xsl:text>
 	</xsl:template>
 	
@@ -193,7 +192,7 @@
 		<xsl:param name="node" />
 		<xsl:choose>
 			<xsl:when test="substring-after($id,'#')">
-				<xsl:value-of select="concat($node/ancestor::uc:ucpackage[1]/@ID,':',substring-after($id,'#'))" />
+				<xsl:value-of select="concat($node/ancestor::uc:ucpackage[1]/@URN,':',substring-after($id,'#'))" />
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:value-of select="$id" />
