@@ -14,7 +14,8 @@ set :application, hz_config[:name]
 
 # GIT
 set :scm, :git
-set :repo_url, "git@hz.vetov.com:/home/git/#{hz_config[:gitname]}"
+set :repo_url, "git@github.com:servandserv/school30.git"
+set :repo_tree, "school"
 set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
 set :copy_exclude, [".git", ".gitignore"]
