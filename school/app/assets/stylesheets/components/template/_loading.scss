@@ -1,0 +1,23 @@
+.b-loading {
+  @include border-radius(2.5px);
+  border: 1px solid #fff;
+  height: 5px;
+  line-height: 1;
+  width: 69px;
+}
+
+.b-loading__scale {
+  height: 5px;
+}
+
+.b-loading__scale_small {
+  background-color: rgba(239, 26, 26, 0.7);
+}
+
+.b-loading__scale_medium {
+  background-color: rgba(228, 171, 38, 0.7);
+}
+
+.b-loading__scale_large {
+  background-color: rgba(71, 202, 49, 0.7);
+}

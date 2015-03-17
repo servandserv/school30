@@ -1,0 +1,36 @@
+!!!
+%html{:lang => "ru"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %title
+    %link{:href => "/assets/favicon.png", :rel => "shortcut icon", :type => "image/png"}/
+    %link{:rel => "stylesheet", :href => "http://fonts.googleapis.com/css?family=Open+Sans:300,600"}
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    /[if lt IE 9]
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    /[if lte IE 7]
+      <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script>
+  %body.b-page
+    .b-wrapper
+      .b-head
+        %img.b-head__img{:src => "/system/static/main.jpg", :alt => ""}/
+        .b-head__title.b-title
+          .b-title__name Фотоархив Ижевского ественно-гуманитарного лицея «Школа № 30»
+          %h1.b-title__h1.b-h1 История школы в фотографиях, документах и письмах
+        .b-head__numbers.b-work-done
+      = yield
+      .b-footer{ :style => "background-image: url(/system/static/main.jpg)" }
+        .b-container.i-clearfix
+          .b-footer__copyright.i-pull_left © 2015, фотоархив ИЕГЛ Школа № 30
+          .b-footer__create.i-pull_right
+            Сделано на
+            %a.i-remove-underline{:href => "http://www.13f.ru", :target => "_blank"}
+              «
+              %span.i-set-border-underline> Тринадцатом этаже
+              »
+
+
+    .b-popup-overlay#show-image
+      .b-popup.b-wrapper.b-popup_content
+    = render :partial => "shared/counters"

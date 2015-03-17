@@ -1,0 +1,12 @@
+.b-document-pages {}
+
+.b-document-pages__title {
+  margin-bottom: 5px;
+}
+
+.b-document-pages__items {}
+
+.b-document-pages__item {
+  margin-right: 15px;
+  // @extend %inline-block;
+}

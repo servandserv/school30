@@ -1,0 +1,31 @@
+.b-head {
+  color: #fff;
+  font-family: 'Trebuchet MS', sans-serif;
+  @extend %relative;
+}
+
+.b-head__img {
+  width: 100%;
+  @extend %block;
+}
+
+.b-head__title {
+  max-width: em(700px);
+  @include absolute-lt(30px, 15px);
+}
+
+.b-head__numbers {
+  @include absolute-lb(30px, 20px);
+}
+
+
+
+
+
+.b-head__about-project-link a {
+  @include link-style(#fff, #fff);
+}
+
+.b-head__search {
+  text-align: center;
+}

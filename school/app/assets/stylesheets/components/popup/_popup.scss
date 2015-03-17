@@ -1,0 +1,40 @@
+.b-popup-overlay {
+  background: rgba(#fff, .9);
+  display: none;
+  height: 100%;
+  left: 0;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+  
+.b-popup {
+  background: #fff;
+  margin: 10px;
+  overflow: hidden;
+  @extend %relative;
+  @include border-radius(0);
+  @include box-shadow(0 1px 13px rgba(#261900, .54));
+}
+
+.b-popup__close {
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+ 
+.popup-lock {
+  overflow: hidden !important;
+  width: auto;
+
+  &.body {
+    overflow: hidden !important;
+  }
+}
+
+.popup-lock-test {
+  overflow-y: hidden !important;
+}

@@ -1,0 +1,116 @@
+@import compass
+@mixin lg ($direction, $colorList)
+  background-image: -ms-linear-gradient($direction, $colorList)
+  @include background-image(linear-gradient($direction, $colorList))
+
+.b-digets-counter__count
+  text-align: center
+.b-digest-card__month
+  text-align: center
+.b-documents-image__link
+  max-width: 100%
+  display: block
+.b-documents-image__img
+  max-width: 100%
+  margin-bottom: 0
+.b-documents-image_active
+  margin-right: 13px
+
+.b-documents-image_2sided
+  .b-documents-image__link
+    margin-right: 10px
+    margin-bottom: 10px
+
+.b-digest-item_min
+  max-width: 8.84615em
+  .b-digest-item__img, .b-digest-item__link, .b-digest-item__image
+    max-width: 100%
+  .b-digest-item__image
+    margin-bottom: 0
+  .b-digest-item__line
+    max-width: 100%
+  &.b-document-digets__item_list
+    .b-digest-item__link
+      margin-right: 10px
+      margin-bottom: 10px
+
+.b-document-members__members-col
+  width: 45%
+.b-document-members__members-col:first-child
+  margin-right: 10%
+
+.b-document-members__members_unions
+  margin-bottom: 1em
+.b-document-members__member_union
+  font-size: 113%
+
+.b-digest__sections
+  margin-top: -27px
+
+.b-areas
+  position: relative
+  .b-areas__file
+    position: absolute
+    top: 0
+    left: 0
+    display: none
+  .b-areas__file_active
+    display: block
+  .b-areas__area
+    position: absolute
+    z-index: 10
+    cursor: pointer
+    .b-areas__area-title
+      display: none
+      background: #f9f5ed
+      padding: 3px
+      color: #000
+      position: absolute
+      top: 100%
+      white-space: nowrap
+      margin-top: 2px
+    &:hover, &.b-areas__area_active
+      border: 1px solid #d39770
+      box-shadow: 0 1px 5px rgba(#bc5d00, .7)
+      .b-areas__area-title
+        display: block
+    &.b-areas__area_highlight
+      border: 1px solid #d39770
+      box-shadow: 0 1px 5px rgba(#bc5d00, .7)
+
+
+.b-document-pages__items
+  position: relative    
+.b-document-pages__items-inner
+  white-space: nowrap
+  overflow: hidden
+  .b-document-pages__item
+    white-space: normal
+    margin-right: 15px - 6px // Поправка на пробел
+  .b-documents-image_active
+    margin-right: 13px - 6px
+.b-document-pages__items-lighter
+  pointer-events: none
+  position: absolute
+  height: 100%
+  top: 0
+  width: 20px
+  z-index: 5
+.b-document-pages__items-lighter_left
+  left: 0
+  @include lg(left, (#f9f5ed, rgba(#f9f5ed, 0)))
+.b-document-pages__items-lighter_right
+  right: 0
+  @include lg(right, (#f9f5ed, rgba(#f9f5ed, 0)))
+.b-document-pages__items-arrow
+  position: absolute
+  top: 50%
+  margin-top: -0.5em
+  cursor: pointer
+  color: #0072bc
+  &:hover
+    color: #c11628
+.b-document-pages__items-arrow_left
+  left: -1.5em
+.b-document-pages__items-arrow_right
+  right: -1.5em

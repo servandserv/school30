@@ -1,0 +1,30 @@
+.b-social {}
+
+.b-social__container {
+  margin-right: -30px;
+}
+
+.b-social__section {
+  margin: 0 5.5% 20px 0; 
+  vertical-align: top;
+  @extend %inline-block;
+}
+
+.b-social__section_last {
+  margin-right: 0;
+}
+
+.b-social__title {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: em(18px);
+  font-weight: bold;
+}
+
+.b-social__txt {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  line-height: em(18px);
+}
+
+.b-social__line {
+  margin-bottom: 10px;
+}

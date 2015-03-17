@@ -1,0 +1,11 @@
+<% for digest in @digests: %>
+  <a href="#digests/<%= digest.get('ID') %>" class="b-digest-cards__item b-digest-card i-remove-underline b-digest-card_id_<%= digest.get('ID') %>">
+    <span class="b-digest-card__number i-pull_left">
+      <%= digest.friendlyID() %>
+      <span class='b-digest-card__month'><%= digest.friendlyMonth() %></span>
+    </span>
+    <span class="b-digest-card__txt">
+      <span class="i-set-border-underline"><%- digest.get('title') %></span>
+    </span>
+  </a>
+<% end %>

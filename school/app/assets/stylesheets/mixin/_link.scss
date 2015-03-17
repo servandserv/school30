@@ -1,0 +1,27 @@
+@mixin partial-underline($partialColor, $partialHoverColor: $link-color) {
+  color: $partialColor;
+
+  .i-set-border-underline {
+    border-bottom-color: rgba($partialColor,.15);
+  }
+
+  &:hover {
+    color: $partialHoverColor;
+
+    .i-set-border-underline {
+      border-bottom-color: rgba($partialHoverColor,.15);
+    }
+  }
+}
+
+@mixin link-style($colorLink: $link-color, $colorHoverLink: $link-hover-color, $underlineStyleLink: solid, $underlineWidthLink: 1px) {
+  border-bottom-color: rgba($colorLink,.15);
+  border-bottom-style: $underlineStyleLink;
+  border-bottom-width: $underlineWidthLink;
+  color: $colorLink;
+
+  &:hover {
+    border-bottom-color: rgba($colorHoverLink,.15);
+    color: $colorHoverLink;
+  }
+}

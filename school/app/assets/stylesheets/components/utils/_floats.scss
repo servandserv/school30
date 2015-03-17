@@ -1,0 +1,19 @@
+%pull_right {
+  float: right;
+}
+
+%pull_left {
+  float: left;
+}
+
+%no-float {
+  float: none;
+}
+
+.i-pull_left {
+  @extend %pull_left;
+}
+
+.i-pull_right {
+  @extend %pull_right;
+}

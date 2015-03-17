@@ -1,0 +1,20 @@
+.b-control-menu {}
+
+.b-control-menu__item {
+  display: inline-block;
+  padding: 0 4px;
+}
+
+.b-control-menu__link {
+  border-bottom-style: dashed;
+}
+
+.b-control-menu__item_active {
+  background-color: #e77951;
+
+  .b-control-menu__link {
+    border-bottom: 0;
+    color: #fff;
+    cursor: default;
+  }
+}

@@ -1,0 +1,21 @@
+.b-switch {
+  background-color: #f9f5ed;
+  border: 1px solid #ebe5da;
+  display: inline-block;
+  @include border-radius(3px);
+}
+
+.b-switch__item {
+  font-size: em(11px);
+  padding: 3px 5px;
+  @extend %inline-block;
+}
+
+.b-switch__item_active {
+  background-color: #ada195;
+  color: #f9f5ed;
+
+  .i-set-border-underline {
+    border-bottom: 0;
+  }
+}

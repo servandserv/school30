@@ -1,0 +1,40 @@
+.b-digest-cards {}
+
+.b-digest-cards__title {
+  margin-bottom: 15px;
+}
+
+.b-digest-cards__items {
+  margin: -10px 0 33px -20px;
+  @extend %relative;
+}
+
+.b-digest-cards__items_close {
+  height: 90px;
+  overflow: hidden;
+}
+
+.b-digest-cards__item {
+  margin: 10px 0 0 20px;
+  vertical-align: top;
+}
+
+.b-digest-cards__items-show {
+  background-color: #f9f5ed;
+  border: 0;
+  border-left: 1px solid #e2dcd0;
+  height: 100%;
+  text-align: center;
+  width: 80px;
+  @include absolute-rt;
+}
+
+.b-digest-cards__items-show-floater {
+  float: left;
+  height: 40%;
+  width: 100%;
+}
+
+.b-digest-cards__items-show-icon {
+  clear: both;
+}

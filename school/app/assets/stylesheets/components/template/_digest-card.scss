@@ -1,0 +1,41 @@
+.b-digest-card {
+  box-sizing: border-box;
+  padding: 10px;
+  width: em(220px);
+  @extend %inline-block;
+}
+
+.b-digest-card__number {
+  font-size: em(40px);
+  line-height: 1;
+}
+
+.b-digest-card__month {
+  display: block;
+  font-size: em(9px, 40px);
+  text-transform: uppercase;
+}
+
+.b-digest-card__txt {
+  display: block;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  line-height: em(18px);
+  margin-left: 60px;
+  margin-top: 3px;
+}
+
+.b-digest-card_active {
+  border: 1px solid #d7cebd !important;
+  border-radius: 5px;
+  color: #ada195;
+  cursor: default;
+  padding: 9px;
+
+  &:hover {
+    color: #ada195;
+  }
+
+  .i-set-border-underline {
+    border: 0;
+  }
+}

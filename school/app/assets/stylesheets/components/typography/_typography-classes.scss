@@ -1,0 +1,123 @@
+@include font-face("Ruble", font-files("fonts/rub/rouble.woff", "fonts/rub/rouble.ttf", "fonts/rub/rouble.otf", "fonts/rub/rouble.svg", "fonts/rub/rouble.eot")); 
+
+body,
+input,
+select,
+textarea {
+  font-family: $base-font-family;
+}
+
+/* Code */
+
+pre, code {
+  font-family: Consolas, Monaco, "Lucida Console", monospace;
+}
+
+/* Headings and paragraph */
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+.b-h1, .b-h2 {
+  font-family: 'Trebuchet MS', sans-serif;
+  @extend %bold;
+}
+
+.b-h1 {
+  font-size: em(42px);
+  line-height: em(47px, 42px);
+}
+
+.b-h2 {
+  font-size: em(30px);
+  line-height: em(35px, 30px);
+}
+
+.b-h3 {}
+
+.b-paragraph {
+  margin: 0.6em 0;
+}
+
+/* Classes */
+
+.b-rub {
+  font-family: "Ruble";
+}
+
+%normal {
+  font-weight: normal;
+}
+
+%bold {
+  font-weight: bold;
+}
+
+%italic {
+  font-style: italic;
+}
+
+%underline {
+  text-decoration: underline;
+}
+
+%no-underline {
+  text-decoration: none;
+}
+
+%strike {
+  text-decoration: line-through;
+}
+
+%overline {
+  text-decoration: overline;
+}
+
+%justify {
+  text-align: justify;
+}
+
+%left-text {
+  text-align: left;
+}
+
+%right-text {
+  text-align: right;
+}
+
+%center-text {
+  text-align: center;
+}
+
+%no-style {
+  font-style: normal;
+}
+
+%word-wrap {
+  word-wrap: break-word;
+}
+
+%nowrap {
+  white-space: nowrap;
+}
+
+.i-center-text {
+  @extend %center-text;
+}
+
+.i-left-text {
+  @extend %left-text;
+}
+
+.i-right-text {
+  @extend %right-text;
+}
+
+.i-uppercase {
+  text-transform: uppercase;
+}
+
+.i-nowrap {
+  @extend %nowrap;
+}

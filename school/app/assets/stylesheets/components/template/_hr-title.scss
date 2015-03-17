@@ -1,0 +1,17 @@
+.b-hr-title {}
+
+.b-hr-title__hr {
+  top: 10px;
+  @extend %relative;
+}
+
+.b-hr-title__txt {
+  background-color: #f9f5ed;
+  color: #ada195;
+  font-size: em(9px);
+  letter-spacing: 1px;
+  padding: 0 5px;
+  text-transform: uppercase;
+  @extend %inline-block;
+  @extend %relative;
+}

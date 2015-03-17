@@ -1,0 +1,18 @@
+%clearfix {
+  
+  &:after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+.i-clearfix:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.b-clear {
+  clear: both;
+}

@@ -1,0 +1,9 @@
+.b-photo-album {
+  border-top: 1px solid rgba(186, 216, 98, 0.4);
+  padding-right: em(120px);
+  @extend %relative;
+}
+
+.b-photo-album__scrollbar {
+  @include absolute-rt(7px, 20px);
+}

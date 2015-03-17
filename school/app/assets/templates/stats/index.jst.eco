@@ -1,0 +1,15 @@
+<% for type in @stat.groupNames: %>
+  <div class="b-work-done__col">
+    <div class="b-work-done__title"><%= type[1] %></div>
+    <div class="b-work-done__numbers">
+      <% for pair in @stat.fieldNames: %>
+        <% if @stat.get(type[0])[pair[0]]: %>
+          <div class="b-work-done__number b-work-count">
+            <div class="b-work-count__number"><%= @stat.get(type[0])[pair[0]] %></div>
+            <div class="b-work-count__txt"><%= ViewsHelpers.ruCount @stat.get(type[0])[pair[0]], pair[1], pair[2], pair[3], false %></div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

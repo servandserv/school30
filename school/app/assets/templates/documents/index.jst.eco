@@ -1,0 +1,30 @@
+<div class='b-container'>
+  <% for year, i in @years: %><div
+    class='b-digest-sections__section<%= if i == 0 then ' b-digest-sections__section_first' %><%= if i == @years.length - 1 then ' b-digest-sections__section_last' %>'>
+      <div class='b-digest-sections__year'><%= year %></div>
+      <div class='b-digest-sections__items'>
+        <% for doc in @hash[year]: %>
+          <div class='b-digest-sections__item b-digest-item'>
+            <a class='b-digest-item__link open-popup' href='#documents/<%= doc.get('ID') %>'>
+              <span class='b-digest-item__image'>
+                <img alt='' class='b-digest-item__img' src='<%= doc.thumb() %>' width='<%= (m = doc.meta();m.width) %>' height='<%= m.height %>'>
+                <% if doc.get('File').length > 1 : %>
+                  <img alt='' class='b-digest-item__img b-digest-item__img_substrate' src='<%= doc.thumb(doc.get('File')[1]) %>'>
+                <% end %>
+                <span class='b-digets-item__zoom b-icon b-icon_zoom'></span>
+                <% if doc.get('readiness') : %>
+                  <div class='b-digest-item__loading b-loading'>
+                    <div class='b-loading__scale b-loading__scale_<%= doc.readinessClass() %>' style='width: <%= doc.get('readiness') %>%'></div>
+                  </div>
+                <% end %>
+              </span>
+              <span class='b-digest-item__line'>
+                <span class='b-digest-item__name i-set-border-underline'><%= doc.get('comments') %></span>
+              </span>
+            </a>
+            <div class='b-digest-item__txt'><%= doc.get('Link').comments %></div>
+          </div>
+        <% end %>
+      </div>
+  </div><% end %>
+</div>
