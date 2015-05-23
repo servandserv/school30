@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
+school/.bundle
 
 # Ignore the default SQLite database.
 school/db/*.sqlite3
@@ -20,7 +20,11 @@ school/public/system
 
 # Ignore tmp assets
 school/public/assets
-.ruby-version
-.DS_Store
-Thumbs.db*
+school/.ruby-version
+*.DS_Store
+*Thumbs.db*
 school/doc/*
+
+docs/bin/*
+docs/domain/*
+docs/ucpackage/*
