@@ -1,0 +1,263 @@
+#header {
+    padding-top: 2.25rem;
+    padding-bottom: 3rem;
+}
+#header > h6 {
+    font-weight: 300;
+    line-height:1.45;
+    max-width: 90%;
+}
+#header > h1 {
+    font-size: 2.4rem;
+    font-weight: 400;
+    margin-top: 2.5rem;
+}
+
+#header > .menu {
+    display: none;
+}
+
+#files {
+    padding: 0;
+}
+#files > div {
+    padding: 0;
+    margin:0;
+}
+#files > div img {
+    width: 100%;
+}
+#files > div > div h3 {
+    text-align: left;
+    font-weight: 300;
+    margin: 0 1.5rem;
+    margin-top: 2rem;
+}
+#files > div > div div > p {
+    margin: 0 1.5rem;
+    margin-top: 2rem;
+}
+#files > div > div div > p:last-child {
+    margin-bottom: 1.75rem;
+}
+#files .face {
+    cursor:pointer;
+}
+#files .face > div {
+    display: none;
+    background: rgba(255,255,255,.97);
+}
+#files .face > div > div {
+    margin: 1.5rem;
+}
+#files .face > div > div > div {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    max-width: 160px;
+    border-radius: 50%;
+}
+#files .face > div > div > h6 {
+    text-align: center;
+    margin: 3rem;
+}
+#files .face:hover > div,
+#files .face:active > div {
+    z-index: 15000;
+    position: fixed;
+    top:0;
+    left: 0;
+    
+    display: -webkit-flex;
+    -webkit-flex-flow: row wrap;
+    
+    display: flex;
+    flex-flow: row wrap;
+}
+@media only screen and (max-width : 768px) {
+    #files .face:hover > div,
+    #files .face:active > div {
+        width: 100%;
+    }
+}
+@media only screen and (min-width : 769px) {
+    #files .face  h6 {
+        font-size: 2rem;
+    }
+    #files .face > div > div {
+        display: -webkit-flex;
+        -webkit-flex-flow: column;
+        -webkit-justify-content: center;
+        -webkit-align-items: center;
+        
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width : 1024px) {
+    #main {
+        height: 100%;
+    }
+    #header {
+        -webkit-flex:1 25%;
+        flex:1 25%;
+        max-width: 25%;
+    }
+    #header + div {
+        -webkit-flex:1 25%;
+        flex:3 75%;
+        max-width: 75%;
+        
+        display: -webkit-flex;
+        -webkit-flex-flow: row wrap;
+        -webkit-align-items: stretch;
+        
+        display: flex;
+        flex-flow: row wrap;
+        align-items: stretch;
+    }
+    #header > .menu {
+        margin-top: 3rem;
+        display: block;
+    }
+    #main > .menu {
+        display: none;
+    }
+    
+    #main > .portrait #files {
+        -webkit-flex:3 75%;
+        flex:3 75%;
+    }
+    #main > .landscape #files {
+        -webkit-flex:1 100%;
+        flex:1 100%;
+        min-width: 100%;
+    }
+    
+    #files .face:hover {
+        background: rgba(255,255,255,.25);
+        border-radius: 50%;
+    }
+    #files .face:hover > div,
+    #files .face:active > div {
+        top:0;
+        left: 0;
+        margin: auto;
+        width: 20%;
+        height: 100%;
+        
+        -webkit-justify-content: center;
+        -webkit-align-content: center;
+        -webkit-align-items: center;
+        
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+    
+    #main > .portrait #links {
+        -webkit-flex: 1 25%;
+        flex: 1 25%;
+        
+        display: -webkit-flex;
+        -webkit-flex-flow: column wrap;
+        -webkit-justify-content: flex-start;
+        -webkit-align-items: flex-start;
+        -webkit-align-content: flex-start;
+        
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-content: flex-start;
+    }
+    
+    #main > .portrait > #links > div {
+        -webkit-flex: none;
+        flex: none;
+    }
+    
+    #main > .landscape #links {
+        min-width: 100%;
+        
+        display: -webkit-flex;
+        -webkit-flex-flow: row wrap;
+        
+        display: flex;
+        flex-flow: row wrap;
+    }
+    
+    #main > .lanscape > #links > div {
+        max-width: 40%;
+    }
+    
+    #main > .landscape > #links > div + div {
+        max-width: 60%;
+    }
+    
+}
+
+@media only screen and (min-width : 1280px) {
+    #header {
+        -webkit-flex: 1 20%;
+        flex: 1 20%;
+        max-width: 20%;
+    }
+    #header + div {
+        -webkit-flex: 4 80%;
+        flex: 4 80%;
+        max-width: 80%;
+        
+        display: -webkit-flex;
+        -webkit-flex-flow: row wrap;
+        -webkit-align-items: stretch;
+        
+        display: flex;
+        flex-flow: row wrap;
+        align-items: stretch;
+    }
+    #main > .landscape > #links > div + div ul {
+        display: -webkit-flex;
+        -webkit-flex-flow: row wrap;
+        
+        display: flex;
+        flex-flow: row wrap;
+    }
+    #main > .landscape > #links > div + div ul li {
+        display: block;
+        width: 49%;
+        margin-right: 1%;
+    }
+}
+/*
+@-webkit-keyframes fadeIn { from { opacity:1; } to { opacity:0; } }
+@-moz-keyframes fadeIn { from { opacity:1; } to { opacity:0; } }
+@-o-keyframes fadeIn { from { opacity:1; } to { opacity:0; } }
+@keyframes fadeIn { from { opacity:1; } to { opacity:0; } }
+                 
+#files .face {
+    border-radius: 50%;
+    border: dashed 1px rgba(255,255,255,1);
+    -webkit-animation:fadeIn ease-in 1;
+    -moz-animation:fadeIn ease-in 1;
+                    -o-animation:fadeIn ease-in 1;
+                    animation:fadeIn ease-in 1;
+                    -webkit-animation-fill-mode:forwards;
+                    -moz-animation-fill-mode:forwards;
+                    -o-animation-fill-mode:forwards;
+                    animation-fill-mode:forwards;
+                     
+                    -webkit-animation-duration:1s;
+                    -moz-animation-duration:1s;
+                    -o-animation-duration:1s;
+                    animation-duration:1s;
+                }
+                #files .face {
+                    -webkit-animation-delay: 1s;
+                    -moz-animation-delay: 1s;
+                    animation-delay: 1s;
+                }
+*/

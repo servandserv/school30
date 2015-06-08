@@ -1,0 +1,78 @@
+body { 
+    background: url(../system/static/main.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+small {
+    font-size: 1rem;
+}
+a {
+    font-weight: normal;
+    /*color: rgba(128,0,0,1);*/
+}
+h6,p,small {
+    font-weight: normal;
+}
+#nav, #main, #header .menu { 
+    background-color: rgba(0,0,0,.7); 
+}
+#header small,
+#header p,
+#header h1,
+#header h2,
+#header h3,
+#header h4,
+#header h5,
+#header h6 {
+    color: #fff;
+}
+#docs, #files, #links, #menu, #copy, .slider { 
+    background-color: rgba(0,0,0,.8); 
+}
+#docs p,
+#docs h2,
+#docs h3,
+#docs h4,
+#docs h5,
+#docs h6,
+#files p,
+#files h2,
+#files h3,
+#files h4,
+#files h5,
+#files h6,
+#menu p,
+#menu h2,
+#copy small {
+    color: #fff;
+}
+#files .face h6 {
+    color: #000;
+}
+@media only screen and (min-width : 1024px) {
+    #menu { 
+        background: url(../system/static/old_bg.jpg);
+        /*background-color: rgba(255,255,255,1);*/
+    }
+    /*
+    #docs p,
+    #docs h2,
+    #docs h3,
+    #docs h4,
+    #docs h5,
+    #docs h6,
+    #files p,
+    #files h2,
+    #files h3,
+    #files h4,
+    #files h5,
+    #files h6,
+    */
+    #menu h2,
+    #menu p {
+        color: #000;
+    }
+    
+}
