@@ -1,0 +1,41 @@
+.b-digest
+  .b-digest__header.b-digest-header
+  .b-digest__sections.b-digest-sections
+  .b-digest__digest-cards.b-digest-cards
+    .b-container
+      .b-digest-cards__title.b-hr-title.i-center-text
+        %hr.b-hr-title__hr
+        .b-hr-title__txt Дайджесты
+      .b-digest-cards__items.b-digest-cards__items_close
+        %span.b-digest-cards__items-inner
+        %a.b-digest-cards__items-show.i-center-text{:href => "javascript:void(0)"}
+          %span.b-digest-cards__items-show-floater
+          %span.b-digest-cards__items-show-icon.span.b-icon.b-icon_dot
+      %hr
+  .b-digest__social.b-social.b-container
+    .b-social__container
+      .b-social__section
+        .b-social__title
+          Обсуждаем, общаемся
+          %br/
+          и комментируем
+          %br/
+          %a{:href => "https://www.facebook.com/groups/school.30.izhevsk/", :target => "_blank"} в фейсбуке
+      .b-social__section>
+        .b-social__line
+          .b-loading
+            .b-loading__scale.b-loading__scale_small{:style => "width: 10%"}
+        .b-social__txt
+          Есть фотографии, о которых ничего не известно.
+          %br/
+          Если вы узнали фотографию — расскажите нам
+          о ней
+          %br/
+          %a{:href => "https://www.facebook.com/groups/school.30.izhevsk/", :target => "_blank"} на странице в фейсбуке.
+      .b-social__section.b-social__section_last
+        .b-social__line.b-social__title Рассказать друзьям
+        .social-likes{"data-counters" => "no"}
+          .facebook{:title => "Поделиться ссылкой на Фейсбуке"} Facebook
+          .twitter{:title => "Поделиться ссылкой в Твиттере"} Twitter
+          .vkontakte{:title => "Поделиться ссылкой во Вконтакте"} Вконтакте
+          .odnoklassniki{:title => "Поделиться ссылкой в Одноклассниках"} Одноклассники

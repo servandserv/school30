@@ -1,0 +1,19 @@
+<div class="b-container">
+  <div class="b-digets-header__digets-counter b-digets-counter i-pull_right">
+    <div class="b-digets-counter__title">Дайджест</div>
+    <div class="b-digets-counter__count">
+      <div class="b-digets-counter__arrow b-digets-counter__arrow_prev b-digets-counter__arrow_disabled">
+        <a href="javascript:void(0)" class="b-icon b-icon_arrow-prev-blue b-digets-counter__arrow-a"></a>
+        <a href="javascript:void(0)" class="b-icon b-icon_arrow-prev-brown"></a>
+      </div>
+      <div class="b-digets-counter__arrow b-digets-counter__arrow_next">
+        <a href="javascript:void(0)" class="b-icon b-icon_arrow-next-blue b-digets-counter__arrow-a"></a>
+        <a href="javascript:void(0)" class="b-icon b-icon_arrow-next-brown"></a>
+      </div>
+      <%= @digest.friendlyID() %>
+    </div>
+    <div class='b-digets-counter__month'><%= @digest.friendlyMonth() %></div>
+  </div>
+  <h2 class="b-digest-header__title b-h2"><%= @digest.get('title') %></h2>
+  <div class="b-digest-header__txt"><%= @digest.get('comments') %></div>
+</div>

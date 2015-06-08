@@ -1,0 +1,63 @@
+@mixin absolute-lt($x: 0, $y: 0) {
+  left: $x;
+  position: absolute;
+  top: $y;
+}
+
+@mixin absolute-rt($x: 0, $y: 0) {
+  right: $x;
+  position: absolute;
+  top: $y;
+}
+
+@mixin absolute-lb($x: 0, $y: 0) {
+  bottom: $y;
+  left: $x;
+  position: absolute;
+}
+
+@mixin absolute-rb($x: 0, $y: 0) {
+  bottom: $y;
+  right: $x;
+  position: absolute;
+}
+
+@mixin absolute-all($x1: 0, $x2: 0, $y1: 0, $y2: 0) {
+  bottom: $y1;
+  left: $x1;
+  right: $x2;
+  position: absolute;
+  top: $y2;
+}
+
+@mixin fixed-lt($x: 0, $y: 0) {
+  left: $x;
+  position: fixed;
+  top: $y;
+}
+
+@mixin fixed-rt($x: 0, $y: 0) {
+  right: $x;
+  position: fixed;
+  top: $y;
+}
+
+@mixin fixed-lb($x: 0, $y: 0) {
+  bottom: $y;
+  left: $x;
+  position: fixed;
+}
+
+@mixin fixed-rb($x: 0, $y: 0) {
+  bottom: $y;
+  right: $x;
+  position: fixed;
+}
+
+@mixin fixed-all($x1: 0, $x2: 0, $y1: 0, $y2: 0) {
+  bottom: $y1;
+  left: $x1;
+  right: $x2;
+  position: fixed;
+  top: $y2;
+}

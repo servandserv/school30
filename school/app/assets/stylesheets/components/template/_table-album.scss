@@ -1,0 +1,56 @@
+.b-table-album {}
+
+.b-table-album__year {
+  line-height: 67px;
+}
+
+// .b-table-album__year-top {
+//   display: inline-block;
+//   font-size: 16px;
+//   line-height: 1;
+//   vertical-align: 15px;
+// }
+
+.b-table-album__photos {
+  margin: -15px 0 0 -5px;
+}
+
+.b-table-album__photo {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+}
+
+.b-table-album__img {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.b-table-album__txt {
+  font-size: em(15px);
+}
+
+.b-table-album__photo_horizontal {
+  margin: 15px 0 0 5px;
+}
+
+.b-table-album__photo_vertical {}
+
+.b-table-album__col_color {
+  background-color: rgba(222, 216, 185, 0.2);;
+}
+
+.b-table-album__loading {
+  @include absolute-lt(5px, 5px);
+}
+
+.b-col-2 {
+  padding-right: 7px;
+  width: em(330px);
+}
+
+.b-col-1 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: em(160px);
+}

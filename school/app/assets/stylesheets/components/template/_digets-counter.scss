@@ -1,0 +1,52 @@
+.b-digets-counter {
+  color: #ada195;
+  padding: 0 10px;
+  @extend %relative;
+}
+
+.b-digets-counter__arrow {
+  top: 0;
+  @extend %absolute;
+
+  .b-icon_arrow-prev-brown,
+  .b-icon_arrow-next-brown {
+    display: none;
+  }
+}
+
+.b-digets-counter__arrow_prev {
+  left: -25px;
+}
+
+.b-digets-counter__arrow_next {
+  right: -25px;
+}
+
+.b-digets-counter__title, .b-digets-counter__month {
+  font-size: em(9px);
+  margin-bottom: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.b-digets-counter__count {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: em(61px);
+  line-height: em(47px, 61px);
+  margin: 5px 0;
+  @extend %relative;
+}
+
+.b-digets-counter__arrow_disabled {
+
+  .b-icon_arrow-prev-blue,
+  .b-icon_arrow-next-blue {
+    display: none;
+  }
+
+  .b-icon_arrow-prev-brown,
+  .b-icon_arrow-next-brown {
+    cursor: default;
+    display: inline-block;
+  }
+}

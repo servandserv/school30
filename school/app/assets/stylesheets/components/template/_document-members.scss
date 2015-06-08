@@ -1,0 +1,32 @@
+.b-document-members {}
+
+.b-document-members__title {
+  margin-bottom: 5px;
+}
+
+.b-document-members__members {}
+
+.b-document-members__members-col {
+  vertical-align: top;
+  @extend %inline-block;
+
+  &:first-child {
+    margin-right: 16%;
+  }
+}
+
+.b-document-members__member {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  margin-bottom: 3px;
+
+  a {
+    border: 0;
+    margin-left: -3px;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+}
+
+.b-document-members__member_active a {
+  background-color: rgba(231, 121, 81, .6);
+}

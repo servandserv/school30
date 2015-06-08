@@ -1,0 +1,13 @@
+.b-work-count {
+  @extend %inline-block;
+}
+
+.b-work-count__number {
+  font-size: em(61px);
+  line-height: 1;
+}
+
+.b-work-count__txt {
+  font-size: em(13px);
+  font-weight: bold;
+}

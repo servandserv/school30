@@ -1,0 +1,56 @@
+a {
+  border-bottom: 1px solid rgba($link-color, .15);
+  color: $link-color;
+  outline: none;
+  text-decoration: none;
+  @extend %cursor-pointer;
+
+  &:hover {
+    border-bottom-color: rgba($link-hover-color, .15);
+    color: $link-hover-color;
+  }
+}
+
+.i-remove-underline {
+  border-bottom: 0;
+  @extend %no-underline;
+
+  &:hover .i-set-border-underline {
+    border-bottom-color: rgba($link-hover-color, .15);
+  }
+}
+
+.i-set-border-underline {
+  border-bottom-color: rgba($link-color, .15);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  @extend %no-underline;
+}
+
+.i-set-border-underline_dashed {
+  border-bottom-style: dashed !important;
+}
+
+.i-set-border-underline_dotted {
+  border-bottom-style: dotted !important;
+}
+
+.i-set-text-underline {
+  border-bottom: 0 !important;
+  @extend %underline;
+}
+
+.i-image-link {
+  border: 0;
+  text-decoration: none;
+  @extend %block;
+  @extend %relative;
+
+  &:hover {
+    border: 0;
+  }
+
+  img {
+    @extend %block;
+  }
+}

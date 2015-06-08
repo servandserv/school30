@@ -1,0 +1,159 @@
+<div class='b-show-image'>
+  <div class='b-show-image__header'><%= @document.get('comments') %></div>
+  <div class='b-show-image__image'>
+    <div class='b-areas'>
+      <% for file in @document.get('File') : %>
+        <div class='b-areas__file' data-file="<%= @document.image(file) %>">
+          <% if file.Obverse.Large.Area and file.Obverse.Large.Area.length > 0 : %>
+            <% for label in file.Obverse.Large.Area : %>
+              <div class='b-areas__area' style='<%= @document.areaStyle(label, file) %>' data-refs='<%= ("#{ref.rel}/#{ref.href}" for ref in label.Ref).join(";") %>'></div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class='fotorama' data-nav="false" data-maxheight="80%" data-width="100%" data-allowfullscreen="true">
+      <% for file in @document.get('File') : %>
+        <img src='<%= @document.image(file) %>' />
+        <% if @document.hasBack() : %>
+          <img src='<%= @document.image(file, 'back') %>' />
+        <% end %>
+      <% end %>
+    </div>
+    <div class='b-show-image__switch b-switch'><a class='b-switch__item b-switch__item_active i-remove-underline' href='<%= @document.image() %>' rel='face'>
+        <span class='i-set-border-underline i-set-border-underline_dashed'>Лицевая</span>
+      </a><a class='b-switch__item i-remove-underline' href='javascript:void(0)' rel='back'>
+        <span class='i-set-border-underline i-set-border-underline_dashed'>оборот</span>
+    </a></div>
+  </div>
+  <div class='b-container'>
+    <div class='b-show-image__sections'>
+      <% if @document.staff.length > 0 or @document.unions.length > 0 : %>
+        <div class='b-show-image__section b-show-image__section_right i-pull_right'>
+          <div class='b-document-members'>
+            <div class='b-document-members__title b-show-image-title'>На документе</div>
+            <% if @document.unions.length > 0 : %>
+              <div class='b-document-members__members b-document-members__members_unions'>
+                <% for unions in @document.unionsGroups() : %><div class='b-document-members__members-col'>
+                    <% for union in unions : %>
+                      <div class='b-document-members__member b-document-members__member_union'>
+                        <a href='javascript:void(0)' title="<%= union.get('Link').comments %>"><%= union.displayName() %></a>
+                      </div>
+                    <% end %>
+                </div><% end %>
+              </div>
+            <% end %>
+            <div class='b-document-members__members'>
+              <% for persons in @document.staffGroups() : %><div class='b-document-members__members-col'>
+                  <% for person in persons : %>
+                    <div class='b-document-members__member' data-ref="<%= person.refName() %>">
+                      <a href='javascript:void(0)' title="<%= person.get('Link').comments %>"><%= person.displayName() %></a>
+                    </div>
+                  <% end %>
+              </div><% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class='b-show-image__section<%= if @document.staff.length > 0 or @document.unions.length > 0 then ' b-show-image__section_left' %>'>
+        <div class='b-document-pages'>
+          <div class='b-document-pages__title b-show-image-title'>Страницы документа</div>
+          <div class='b-document-pages__items'>
+            <div class='b-document-pages__items-inner'>
+              <% for file, index in @document.get('File') : %>
+                <div class='b-document-pages__item b-documents-image<%= if index == 0 then ' b-documents-image_active' %><%= if @document.hasBack(file) then ' b-documents-image_2sided' %>'>
+                  <a class='b-documents-image__link i-remove-underline' href='<%= @document.image(file) %>'>
+                    <% if @document.hasBack(file) : %>
+                      <img alt='' class='b-documents-image__img b-documents-image__img_substrate' src='<%= @document.thumb(file, 'back') %>'>
+                    <% end %>
+                    <img alt='' class='b-documents-image__img' src='<%= @document.thumb(file) %>'>
+                    <% if false : %>
+                      <span class='b-documents-image__name i-set-border-underline i-set-border-underline_dashed'><%= @document.get('comments') %></span>
+                    <% end %>
+                  </a>
+                  <% if @document.hasBack(file) : %>
+                    <div class='b-documents-image__switch'>
+                      <a class='b-documents-image__switch-item b-documents-image__switch-item_active' href='<%=  @document.image(file) %>' rel='face'>Лицевая</a>
+                      <a class='b-documents-image__switch-item' href='<%= @document.image(file, 'back') %>' rel='back'>оборот</a>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class='b-document-pages__items-lighter b-document-pages__items-lighter_left'></div>
+            <div class='b-document-pages__items-lighter b-document-pages__items-lighter_right'></div>
+            <div class='b-document-pages__items-arrow b-document-pages__items-arrow_left'>&larr;</div>
+            <div class='b-document-pages__items-arrow b-document-pages__items-arrow_right'>&rarr;</div>
+          </div>
+          <hr class='b-show-image__hr'>
+        </div>
+        <div class='b-show-image__document-info b-document-info'>
+          <h3 class='b-document-info__title'><%= @document.digestYear() %></h3>
+          <p><%= @document.digestComments() %></p>
+        </div>
+        <div class='b-show-image__document-detected b-document-detected'>
+          <% if @document.get('readiness') : %>
+            <div class='b-document-detected__title b-show-image-title'>
+              <div class='b-document-detected__loading b-loading i-pull_left'>
+                <div class='b-loading__scale b-loading__scale_<%= @document.readinessClass() %>' style='width: <%= @document.get('readiness') %>%'></div>
+              </div>
+              <%= @document.readinessWord() %>
+            </div>
+          <% end %>
+          <div class='b-document-detected__txt'>
+            Если вы узнали фотографию — расскажите нам о ней
+            <br>
+            <a href='https://www.facebook.com/groups/school.30.izhevsk/' target="_blank">на странице в фейсбуке.</a>
+          </div>
+        </div>
+        <div class='b-show-image__social'>
+          <div class='b-show-image__social-title b-show-image-title'>Рассказать друзьям</div>
+          <div class='social-likes' data-counters='no'>
+            <div class='facebook' title='Поделиться ссылкой на Фейсбуке'>Facebook</div>
+            <div class='twitter' title='Поделиться ссылкой в Твиттере'>Twitter</div>
+            <div class='vkontakte' title='Поделиться ссылкой во Вконтакте'>Вконтакте</div>
+            <div class='odnoklassniki' title='Поделиться ссылкой в Одноклассниках'>Одноклассники</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if @document.digest and @document.digest.documents.length > 0 : %>
+      <div class='b-document-digets'>
+        <div class='b-document-digets__title b-hr-title'>
+          <hr class='b-hr-title__hr'>
+          <div class='b-hr-title__txt'>Содержание дайджеста</div>
+        </div>
+        <% if @document.digest.documents.length > 0 : %>
+          <div class='b-document-digets__items'>
+            <% for doc in @document.digest.documents : %>
+              <div class='b-document-digets__item b-digest-item b-digest-item_min<%= if doc.get('ID') == @document.get('ID') then ' b-document-digets__item_active' %><%= if doc.get('File').length > 1 then ' b-document-digets__item_list' %>'>
+                <a class='b-digest-item__link' href='#documents/<%= doc.get('ID') %>'>
+                  <span class='b-digest-item__image'>
+                    <img alt='' class='b-digest-item__img' src='<%= doc.thumb() %>'>
+                    <% if doc.get('File').length > 1 : %>
+                      <img alt='' class='b-digest-item__img b-digest-item__img_substrate' src='<%= doc.thumb(doc.get('File')[1]) %>'>
+                    <% end %>
+                    <span class='b-digets-item__zoom b-icon b-icon_zoom'></span>
+                    <% if doc.get('readiness') : %>
+                      <div class='b-digest-item__loading b-loading'>
+                        <div class='b-loading__scale b-loading__scale_<%= doc.readinessClass() %>' style='width: <%= doc.get('readiness') %>%'></div>
+                      </div>
+                    <% end %>
+                  </span>
+                  <span class='b-digest-item__line'>
+                    <span class='b-digest-item__name i-set-border-underline'><%= doc.get('comments') %></span>
+                  </span>
+                </a>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <% if @document.digest: %>
+    <a class='b-popup__close b-icon b-icon_close' href="#digests/<%= @document.digest.id %>"></a>
+  <% else: %>
+    <div class='b-popup__close b-icon b-icon_close'></div>
+  <% end %>
+</div>

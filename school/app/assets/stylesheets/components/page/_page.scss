@@ -1,0 +1,23 @@
+.b-page {
+  color: $base-text-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  //line-height: $base-line-height;
+  min-width: 580px;
+  padding: 10px;
+  @extend %relative;
+}
+
+.b-wrapper {
+  background-color: #f9f5ed;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: em(1280px);
+  @extend %relative;
+}
+
+.b-container {
+  padding-left: em(30px);
+  padding-right: em(30px);
+  @extend %relative; 
+}

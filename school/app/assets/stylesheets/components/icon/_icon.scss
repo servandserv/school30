@@ -1,0 +1,46 @@
+/* Variables */
+
+$icons: sprite-map("icons/*.png");
+$icons-spacing: 1px;
+$icons-sprite-dimensions: true;
+@import "icons/*.png";
+
+
+.b-icon {
+  border: 0 none;
+  text-decoration: none;
+  @extend %inline-block;
+  @extend %relative;
+
+  &:hover {
+    border: 0 !important;
+  }
+}
+
+.b-icon_dot {
+  @include icons-sprite(icon_1-1);
+}
+
+.b-icon_close {
+  @include icons-sprite(icon_2-1);
+}
+
+.b-icon_arrow-prev-blue {
+  @include icons-sprite(icon_3-1);
+}
+
+.b-icon_arrow-next-blue {
+  @include icons-sprite(icon_3-2);
+}
+
+.b-icon_arrow-prev-brown {
+  @include icons-sprite(icon_4-1);
+}
+
+.b-icon_arrow-next-brown {
+  @include icons-sprite(icon_4-2);
+}
+
+.b-icon_zoom {
+  @include icons-sprite(icon_5-1);
+}

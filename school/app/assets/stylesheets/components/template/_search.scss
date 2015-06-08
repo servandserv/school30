@@ -1,0 +1,10 @@
+.b-search {
+  display: inline-block;
+  position: relative;
+  width: em(257px);
+}
+
+.b-search__icon {
+  margin-top: - image-height('icons/icon_1-1.png') / 2;
+  @include absolute-lt(5px, 50%);
+}

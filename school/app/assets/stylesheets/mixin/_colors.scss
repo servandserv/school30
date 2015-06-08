@@ -1,0 +1,10 @@
+@mixin lg ($direction, $colorList) {
+  background-image: -ms-linear-gradient($direction, $colorList);
+  @include background-image(linear-gradient($direction, $colorList));
+}
+
+@mixin type-color($name, $color) {
+  .#{$name} {
+    color: $color;
+  }
+}

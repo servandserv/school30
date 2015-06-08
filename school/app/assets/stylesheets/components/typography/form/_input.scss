@@ -1,0 +1,59 @@
+input, textarea {
+
+  &:-ms-input-placeholder, &::-webkit-input-placeholder {
+    color: #999;
+  }
+
+  &::-moz-placeholder {
+    color: #999;
+    opacity: 1;
+  }
+
+  &:focus:-ms-input-placeholder, &::-webkit-input-placeholder {
+    color: #fff;
+  }
+
+  &:focus::-moz-placeholder {
+    color: #fff;
+  }
+}
+    
+@media all and (-webkit-min-device-pixel-ratio:0) {
+  input[type="search"] {
+    border-radius: none;
+    height: 30px; /*хак для Chrome и Safari */
+  }
+}
+
+.b-input {
+  background: #fff;
+  border: 0;
+  color: #000;
+  height: auto;
+  vertical-align: baseline;
+  width: 100%;
+  @include box-sizing(border-box);
+  @extend %inline-block;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.b-input_text {
+  height: auto;
+  padding: 0;
+  @extend %relative;
+}
+
+.b-input_textarea {
+  height: auto;
+  padding: 0;
+  line-height: 1em;
+}
+
+.b-select {
+  @include box-shadow(none);
+  line-height: 23px;
+  padding: 3px;
+}

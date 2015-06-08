@@ -1,0 +1,18 @@
+.b-button {
+  border: 0;
+  cursor: pointer;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: baseline;
+  @extend %inline-block;
+  @extend %relative;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    border: 0 !important;
+  }
+}
