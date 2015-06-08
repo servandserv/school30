@@ -7,7 +7,7 @@
 	<entity ID="Resource" xlink:title="Ресурс">
 		<definition>
 			<html:p>
-				Объект модели отличающийся от других объектов своим <has-a xlink:href="#Resource:URI">идентификатором</has-a>.
+				Любой уникальный объект модели отличающийся от других объектов своим <has-a xlink:href="#Resource:URI">идентификатором</has-a>.
 			</html:p>
 		</definition>
 	</entity>
@@ -15,15 +15,14 @@
 	<entity ID="Union" xlink:title="Объединение">
 		<definition>
 			<html:p>
-				<is-a xlink:href="#Resource">Ресурс</is-a> представляющий из себя объединение людей, 
-				ограниченное определенными рамками. Как минимум, имеет свои исторические
+				<is-a xlink:href="#Resource">Ресурс</is-a> представляющий из себя объединение людей. Как минимум, имеет свои исторические
 				<has-many xlink:href="#HistoryName">наименования</has-many>,
-				<has-a xlink:href="#Union:UUID">идентификатор</has-a>,
+				<has-a xlink:href="#Union:ID">идентификатор</has-a>,
 				<has-a xlink:href="#Union:dtOpen">дату создания</has-a> и
 				<has-a xlink:href="#Union:dtClose">дату роспуска</has-a>(которая может быть открытой). 
 				Объединение состоит из множества участников, которые присоединяются к
 				объединению на определенный срок и играют в нем определенную роль. Связь со множеством участников
-				определяется через <tl xlink:href="#TraversalRule">отношениями</tl>
+				определяется через <tl xlink:href="#Link">отношениями</tl>
 				Объединение может быть связано с другими объединениями различными типами связей(например "родитель-наследник").
 				Объединение создается с определенной <has-a xlink:href="#Union:mission">целью - миссией</has-a>,
 				которая отражает смысл его существования.
@@ -115,7 +114,7 @@
 	<entity ID="Person" xlink:title="Персона">
 		<definition>
 			<html:p>
-				Человеческий индивид, субъект отношений в рамках образовательного процесса. Обладает следующими атрибутами
+				Человеческий <has-a xlink:href="#Person:ID">индивид</has-a>, субъект отношений в рамках образовательного процесса. Обладает следующими атрибутами
 			</html:p>
 			<html:ul>
 				<html:li>
@@ -128,7 +127,10 @@
 					<has-a xlink:href="#Person:middleName">Отчество</has-a>
 				</html:li>
 				<html:li>
-					<has-a xlink:href="#Person:enName">Транслит полного имени</has-a>
+					<has-a xlink:href="#Person:fullName">Полное ФИО</has-a>
+				</html:li>
+				<html:li>
+					<has-a xlink:href="#Person:enFullName">Транслит полного имени</has-a>
 				</html:li>
 				<html:li>
 					<has-a xlink:href="#Person:DOB">Дата рождения</has-a>
@@ -138,7 +140,7 @@
 				В нашем случае является участником множества объединений.
 				<is-a xlink:href="#Resource">Уникально</is-a> идентифицируется по своим
 				атрибутам. Связь между объединениями и участниками устанавливается
-				через <tl xlink:href="#TraversalRule">отношения</tl>. Примеры ролей в этих отношениях:
+				через <tl xlink:href="#Link">отношения</tl>. Примеры ролей в этих отношениях:
 			</html:p>
 			<html:ul>
 				<html:li>Директор школы</html:li>
@@ -156,7 +158,7 @@
 			<html:p>
 				Для отражения истории того или иного объекта документы объединяются в коллекции.
 				Каждая коллекция состоит из <has-many xlink:href="#Document">одного или более</has-many> документов.
-				Документы в коллекцию конкретного объекта отбираются на основе <tl xlink:href="#TraversalRule">отношений</tl>.
+				Документы в коллекцию конкретного объекта отбираются на основе <tl xlink:href="#Link">отношений</tl>.
 			</html:p>
 		</definition>
 	</entity>
@@ -166,22 +168,39 @@
 			<html:p>
 				История объединения или конкретной персоны находит свое отражение в документах разного вида: фотографий,
 				свидетельств, публикаций и тп. Каждый документ <is-a xlink:href="#Resource">уникален</is-a> и представлен отдельным
-				<has-a xlink:href="#Document:href">файлом</has-a> в
-				графическом формате содержащем соответствующее изображение. Исторический момент в который возникает этот документ
-				является <has-a xlink:href="#Document:dt">датой документа</has-a>.
+				<has-a xlink:href="#Document:ID">документом</has-a>. Содержание каждого документа раскрывается посредством
+				<has-many xlink:href="#File">файлов</has-many> - представляющих из себя сканированные документы.
+				Исторический момент в который возникает этот документ является <has-a xlink:href="#Document:dtCreate">датой документа</has-a>.
 			</html:p>
 			<html:p>
 				Каждый документ может быть связан с одним или несколькими объединениями или персонами. Связь обозначается
-				<tl xlink:href="#TraversalRule">отношениями</tl>.
-			</html:p>
-			<html:p>
-				Публикация документа связана с определенной последовательностью действий, которая находит свое отражение
-				в логе.
+				<tl xlink:href="#Link">отношениями</tl>.
 			</html:p>
 		</definition>
 	</entity>
+	
+	<entity ID="File" xlink:title="Файл">
+		<definition>
+			<html:p>
+				<is-a xlink:href="#Resource">Ресурс</is-a>, являющийся <has-a xlink:href="#File:ID">конкретным</has-a> 
+				конечным файлом содержащим информацию представляющую содержание документа. Каждый файл описывается набором параметров
+				таких как
+			</html:p>
+			<html:ul>
+				<html:li>
+					<has-a xlink:href="#File:name">Имя файла</has-a>.
+				</html:li>
+				<html:li>
+					<has-a xlink:href="#File:href">Ссылка на файл</has-a>.
+				</html:li>
+				<html:li>
+					<has-a xlink:href="#File:extention">Тип файла</has-a>.
+				</html:li>
+			</html:ul>
+		</definition>
+	</entity>
 
-	<entity ID="LogItem" xlink:title="Запись в журнале изменений">
+	<!--entity ID="LogItem" xlink:title="Запись в журнале изменений">
 		<definition>
 			<html:p>
 				Запись в журнале, отражающая определенное действие пользователя системы над ее ресурсами. Является
@@ -193,20 +212,21 @@
 				и связывается с ресурсами системы через отношения.
 			</html:p>
 		</definition>
-	</entity>
+	</entity-->
 
-	<entity ID="TraversalRule" xlink:title="Отношение между ресурсами">
+	<entity ID="Link" xlink:title="Ссылка между ресурсами">
 		<definition>
 			<html:p>
-				Отношение характеризует ссылку на <has-a xlink:href="#Destination">ресурс</has-a> системы
-				<has-a xlink:href="#Source">другого ресурса</has-a> системы.
-				Отражает определенный <has-a xlink:href="#TraversalRule:role">тип связи</has-a> между объектами.
+				Связь одного <has-a xlink:href="#Destination">ресурса</has-a> системы с
+				<has-a xlink:href="#Source">другим ресурсом</has-a>.
+				Характеризуется определенным <has-a xlink:href="#Link:role">типом</has-a>. Например, 
+				некоторые из "Персон" являются учениками. Т.е. существует связь типа "Ученик" ресурса "Персона" с ресурсом "Класс".
 			</html:p>
 			<html:p>
 				Ссылка <is-a xlink:href="#Resource">уникальна</is-a> и может иметь смысл какой-то период времени, 
 				поэтому у нее может быть
-				<has-a xlink:href="#TraversalRule:dtStart">время начала</has-a> действия и
-				<has-a xlink:href="#TraversalRule:dtEnd">время окончания</has-a>.
+				<has-a xlink:href="#Link:dtStart">время начала</has-a> действия и
+				<has-a xlink:href="#Link:dtEnd">время окончания</has-a>.
 			</html:p>
 		</definition>
 	</entity>
