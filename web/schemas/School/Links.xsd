@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:ru:battleship:School:Links"
+	targetNamespace="urn:ru:battleship:School:Links">
+
+<xsd:element name="Link">
+	<xsd:complexType>
+		<xsd:annotation>
+			<xsd:documentation>Ссылка</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="autouid" type="xsd:integer" minOccurs="0" />
+			<xsd:element name="ID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="source" type="xsd:string" />
+			<xsd:element name="destination" type="xsd:string" />
+			<xsd:element name="dtStart" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="dtEnd" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="type" type="xsd:string" />
+			<xsd:element name="comments" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Links">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Link" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+</xsd:schema>

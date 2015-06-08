@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:ru:battleship:School:Documents"
+	xmlns:ns0="urn:ru:battleship:School:Links"
+	xmlns:ns1="urn:ru:battleship:School:Resources"
+	targetNamespace="urn:ru:battleship:School:Documents">
+
+<xsd:import schemaLocation="Links.xsd" namespace="urn:ru:battleship:School:Links" /> 
+<xsd:import schemaLocation="Resources.xsd" namespace="urn:ru:battleship:School:Resources" /> 
+
+<!--xsd:element name="Digest">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="autoid" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="ID" type="xsd:string" minOccurs="1" />
+			<xsd:element name="published" type="xsd:dateTime" minOccurs="1" />
+			<xsd:element name="comments" type="xsd:string" minOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element-->
+
+<xsd:element name="Documents">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Document" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Document">
+	<xsd:complexType>
+		<xsd:annotation>
+			<xsd:documentation>
+			Документом называем один/группу отдельных изображений, представляющих собой единый реальный физический объект хранимый в архиве.
+			Например, документ будут составлять два изображения (лицевая и оборотная часть) физической фотографии находящейся в архиве.
+			Документ будут составлять сканированные изображения нескольких страниц письма. Документ будут составлять хранимые в архиве
+			альбомы, состоящие из многих страниц, но представляющие из себя единый хранимый объект.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="autouid" type="xsd:string" minOccurs="0" />
+			<xsd:element name="ID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="type" type="documentTypeType" />
+			<xsd:element name="year" type="documentYearType" />
+			<xsd:element name="path" type="xsd:string" minOccurs="0" />
+			<xsd:element name="published" type="xsd:integer" minOccurs="0" />
+			<xsd:element name="readiness" type="readinessType" minOccurs="0" default="0"/>
+			<xsd:element name="comments" type="xsd:string" minOccurs="0" />
+			<xsd:element ref="File" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element ref="ns0:Link" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="DocumentPosition">
+	<xsd:simpleType>
+		<xsd:restriction base="xsd:int" />
+	</xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="Files">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="File" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="File">
+	<xsd:complexType>
+		<xsd:annotation>
+			<xsd:documentation>
+				Страница документа. Документы могут иметь одну или более страниц. Каждая страница документа
+				может иметь лицевую и оборотную сторону.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="0" />
+			<xsd:element name="face" type="xsd:string" minOccurs="1" />
+			<xsd:element name="back" type="xsd:string" minOccurs="0" />
+			<xsd:element name="opened" type="xsd:boolean" minOccurs="0" />
+			<xsd:element name="comments" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Obverse" type="SideType" minOccurs="1" />
+			<xsd:element name="Reverse" type="SideType" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:complexType name="SideType">
+	<xsd:annotation>
+		<xsd:documentation>Сторона страницы документа</xsd:documentation>
+	</xsd:annotation>
+	<xsd:sequence>
+		<xsd:element name="name" type="xsd:string" minOccurs="1" />
+		<xsd:element name="Large" type="ImageType" minOccurs="0" />
+		<xsd:element name="Thumb" type="ImageType" minOccurs="0" />
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="ImageType">
+	<xsd:annotation>
+		<xsd:documentation>Изображение - соответствует физическому файлу изображения.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:sequence>
+		<xsd:element name="src" type="xsd:string" minOccurs="1" />
+		<xsd:element name="width" type="xsd:integer" minOccurs="1" />
+		<xsd:element name="height" type="xsd:integer" minOccurs="1" />
+		<xsd:element name="size" type="xsd:double" minOccurs="1" />
+		<xsd:element ref="Area" minOccurs="0" maxOccurs="unbound" />
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:element name="Area">
+	<xsd:annotation>
+		<xsd:documentation>Область изображения</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType>
+		<xsd:element name="x" type="xsd:double" minOccurs="1" />
+		<xsd:element name="y" type="xsd:double" minOccurs="1" />
+		<xsd:element name="width" type="xsd:double" minOccurs="1" />
+		<xsd:element name="height" type="xsd:double" minOccurs="1" />
+		<xsd:element ref="ns1:Ref" minOccurs="0" maxOccurs="unbound" />
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:simpleType name="documentTypeType">
+	<xsd:restriction base="xsd:int">
+		<xsd:enumeration value="1" />
+		<xsd:enumeration value="2" />
+		<xsd:enumeration value="3" />
+		<xsd:enumeration value="4" />
+		<xsd:enumeration value="5" />
+		<xsd:enumeration value="6" />
+		<xsd:enumeration value="7" />
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="documentYearType">
+	<xsd:restriction base="xsd:string">
+		<xsd:pattern value="(19|20)[0-9\?]{2}" />
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="readinessType">
+	<xsd:restriction base="xsd:int">
+		<xsd:minInclusive value="0" />
+		<xsd:maxInclusive value="100" />
+	</xsd:restriction>
+</xsd:simpleType>
+
+</xsd:schema>

@@ -1,0 +1,1826 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="stylesheets/wadl2html.xsl"?>
+
+<application 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://www.w3.org/Submission/wadl/wadl.xsd" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="http://wadl.dev.java.net/2009/02"
+	xmlns:wadlext="urn:wadlext"
+	xmlns:ns0="urn:ru:battleship:School:Persons"
+	xmlns:ns1="urn:ru:battleship:School:Unions"
+	xmlns:ns2="urn:ru:battleship:School:Resources"
+	xmlns:ns3="urn:ru:battleship:School:Digests"
+	xmlns:ns4="urn:ru:battleship:School:Documents"
+	xmlns:ns5="urn:ru:battleship:School:Links"
+	>
+	 
+	<doc title="School30 API">
+		<html:p>API сервиса архивных документов школы 30 города Ижевска.</html:p>
+		<!--html:p>Документация</html:p>
+		<html:ul>
+			<html:li>
+				<html:a href="http://www.battleship.ru/school/docs/domain.html">Предметная область</html:a>
+			</html:li>
+			<html:li>
+				<html:a href="http://www.battleship.ru/school/docs/ucpackage.html">Прецеденты использования</html:a>
+			</html:li>
+		</html:ul-->
+	</doc>
+	<grammars>
+		<include href="schemas/School/Persons.xsd" />
+		<include href="schemas/School/Unions.xsd" />
+		<include href="schemas/School/Resources.xsd" />
+		<include href="schemas/School/Digests.xsd" />
+		<include href="schemas/School/Documents.xsd" />
+		<include href="schemas/School/Links.xsd" />
+	</grammars>
+	
+	<resources base="http://www.school-30.com/api/v0.1/">
+		<resource id="stat" path="stat">
+			<doc title="Статистика архива">
+			</doc>
+			<method name="GET" id="FindStatisticsUseCase">
+				<doc title="Запрос на получение статистики">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="ns2:Statistics">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+		</resource>
+		<resource id="staff" path="staff">
+			<doc title="Коллекция учителей и прочего персонала школы">
+			</doc>
+			<method name="GET" id="FindStaffUseCase">
+				<doc title="Запрос на получение коллекции персонала">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="ln" style="query" type="xsd:string">
+						<doc>Параметр для фильтрации списка персон по фамилии</doc>
+					</param>
+					<param name="dob" style="query" type="xsd:string">
+						<doc>Параметр для фильтрации списка персон по году рождения. Фильтрация производится по подстроке указанной в параметре.</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Номер страницы списка. Если список больше 100 записей, то он разбивается на страницы.</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="100">
+						<doc>максимальное количество записей в списке на одной странице.</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="ns0:Staff">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreateStaffPersonUseCase">
+				<doc title="Запрос на создание нового учителя">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="ns0:Person"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="ns0:Person"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="ns0:Person">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+		</resource>
+		<resource id="persons" path="persons">
+			<doc title="Список персон связанных с документами архива">
+			</doc>
+			<method name="GET" id="FindPersonsUseCase">
+				<doc title="Запрос на получение списка персон">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="ln" style="query" type="xsd:string">
+						<doc>Параметр для фильтрации списка персон по фамилии</doc>
+					</param>
+					<param name="dob" style="query" type="xsd:string">
+						<doc>Параметр для фильтрации списка персон по году рождения. Фильтрация производится по подстроке указанной в параметре.</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Номер страницы списка. Если список больше 100 записей, то он разбивается на страницы.</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="100">
+						<doc>максимальное количество записей в списке на одной странице.</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="ns0:Persons">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreatePersonUseCase">
+				<doc title="Запрос на создание новой персоны">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="ns0:Person"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="ns0:Person"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="ns0:Person">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="person:id" path="{id}">
+				<doc title="Учетная карточка конкретного человека">
+				</doc>
+				<method name="GET" id="FindPersonUseCase">
+					<doc title="Запрос на получение учетной карточки конкретного человека">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор человека</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="ns0:Person">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Человек с даным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdatePersonUseCase">
+					<doc title="Запрос на изменение данных персоны">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор человека</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="ns0:Person"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="ns0:Person"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns0:Person">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Человек с даным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeletePersonUseCase">
+					<doc title="Запрос на удаление персоны">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор человека</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns0:Person">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Человек с даным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<resource id="person:id:destinations" path="destinations">
+					<doc title="Коллекция ресурсов проекта к которым конкретный человек имеет непосредственное отношение">
+					</doc>
+					<method name="GET" id="FindPersonDestinationsUseCase">
+						<doc title="Запрос на получение списка ресурсов">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Идентификатор человека</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="ns2:Resources">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Человек с даным идентификатором не найден
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+				<resource id="person:id:sources" path="sources">
+					<doc title="Коллекция ресурсов проекта имеющих непосредственное отношение к конкретному человеку">
+					</doc>
+					<method name="GET" id="FindPersonSourcesUseCase">
+						<doc title="Запрос на получение списка ресурсов">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Идентификатор человека</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="ns2:Resources">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Человек с даным идентификатором не найден
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+			</resource>
+		</resource>
+		<resource id="documents" path="documents">
+			<doc title="Коллекция документов архива">
+			</doc>
+			<method name="GET" id="FindDocumentsUseCase">
+				<doc title="Запрос на получение коллекции документов">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="dec" style="query" type="xsd:string">
+						<doc>Год документа. Поиск по подстроке</doc>
+					</param>
+					<param name="order" style="query" type="xsd:string">
+						<doc>Правила сортировки списка документов.  autoid==desc,year</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Номер страницы коллекции. Если коллекция содержит более 100 записей, то она разбивается на страницы.</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="100">
+						<doc>Максимальное количество записей в коллекции, отображаемых на одной странице.</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="ns4:Documents">
+						<doc title="OK" />
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK" />
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreateDocumentUseCase">
+				<doc title="Запрос на создание нового документа">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="ns4:Document"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="ns4:Document"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="ns4:Document">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="documents:published" path="published">
+				<doc title="Коллекция опубликованных документов архива">
+				</doc>
+				<method name="GET" id="FindPublishedUseCase">
+					<doc title="Запрос на получение коллекции опубликованных документов">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="dec" style="query" type="xsd:string">
+							<doc>Год документа. Поиск по подстроке. Выбираются опубликованные документы датированные указанной датой.</doc>
+						</param>
+						<param name="pub" style="query" type="xsd:integer">
+							<doc>Время timestamp публикации. Выбираются документы опубликованные позже указанного времени</doc>
+						</param>
+						<param name="start" style="query" type="xsd:integer" default="0">
+							<doc>Номер коллекции списка. Если коллекция содержит более 100 записей, то она разбивается на страницы.</doc>
+						</param>
+						<param name="count" style="query" type="xsd:integer" default="100">
+							<doc>Максимальное количество записей в коллекции, отображаемых на одной странице.</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="ns4:Documents">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+			</resource>
+			<resource id="documents:id" path="{id}">
+				<doc title="Учетная карточка конкретного документа">
+				</doc>
+				<method name="GET" id="FindDocumentUseCase">
+					<doc title="Запрос на получение учетной карточки конкретного документа">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор документа</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="ns2:Document">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Документ с данным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdateDocumentUseCase">
+					<doc title="Запрос на изменение документа">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор документа</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="ns4:Document"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="ns4:Document"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns4:Document">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Документ с данным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PATCH" id="PatchDocumentUseCase">
+					<doc title="Запрос на изменение данных документа">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор документа</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="ns4:Document"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="ns4:Document"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns4:Document">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Документ с данным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeleteDocumentUseCase">
+					<doc title="Запрос на удаление документа">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор документа</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns4:Document">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Документ с данным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<resource id="documents:id:files" path="files">
+					<doc title="Обновление данных файла документа">
+					</doc>
+					<method name="PATCH" id="PatchFilesUseCase">
+						<doc title="Запрос на обновление данных файла документа">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<representation mediaType="application/xml; charset=UTF-8" element="ns4:Files">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="ns4:Files">
+								<doc title="OK" />
+							</representation>
+						</request>
+						<response status="200">
+							<representation mediaType="application/xml; charset=UTF-8" element="ns4:Files">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="ns4:Files">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Документ с данным идентификаторами не найден
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+				<resource id="documents:id:destinations" path="destinations">
+					<doc title="Коллекция ресурсов проекта к которым конкретный документ имеет непосредственное отношение">
+					</doc>
+					<method name="GET" id="FindDocumentDestinationsUseCase">
+						<doc title="Запрос на получение коллекции ресурсов">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Идентификатор документа</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="ns2:Resources">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="ns2:Resources">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Документ с данным идентификатором не найден
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+				<resource id="documents:id:sources" path="sources">
+					<doc title="Коллекция ресурсов проекта имеющих непосредственное отношение к конкретному документу">
+					</doc>
+					<method name="GET" id="FindDocumentSourcesUseCase">
+						<doc title="Запрос на получение коллекции ресурсов">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Идентификатор документа</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="ns2:Resources">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="ns2:Resources">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Документ с данным идентификатором не найден
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+				<resource id="documents:id:forms" path="forms">
+					<doc title="Классы привязанные к конкретному документу">
+					</doc>
+					<method name="POST" id="CreateDocumentFormUseCase">
+						<doc title="Запрос на создание класса">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Идентификатор документа</doc>
+							</param>
+							<representation mediaType="application/xml; charset=UTF-8" element="ns1:Form" />
+							<representation mediaType="application/json; charset=UTF-8" element="ns1:Form" />
+						</request>
+						<response status="200">
+							<representation mediaType="application/xml; charset=UTF-8" element="ns1:Form">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="ns1:Form">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Документ с данным идентификатором не найден
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+				<resource id="documents:id:files:name:side:areas" path="files/{name}/{side}/areas">
+					<doc title="Области изображения">
+					</doc>
+					<method name="POST" id="CreateDocumentFileAreaUseCase">
+						<doc title="Запрос на создание области изображения">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Идентификатор документа</doc>
+							</param>
+							<param name="name" style="template" type="xsd:string" required="true">
+								<doc>Имя файла</doc>
+							</param>
+							<param name="side" style="template" type="xsd:string" required="true">
+								<doc>Изображение(сторона файла)</doc>
+							</param>
+							<representation mediaType="application/xml; charset=UTF-8" element="ns4:Area" />
+							<representation mediaType="application/json; charset=UTF-8" element="ns4:Area" />
+						</request>
+						<response status="200">
+							<representation mediaType="application/xml; charset=UTF-8" element="ns4:Document">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8" element="ns4:Document">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Документ, файл, сторона с указанными идентификаторами не найдены
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+					<resource id="documents:id:files:name:side:areas:pos" path="{pos}">
+						<doc title="Конкретная область изображения">
+						</doc>
+						<method name="DELETE" id="DeleteDocumentFileAreaUseCase">
+							<doc title="Запрос на удаление области изображения">
+							</doc>
+							<request>
+								<param name="Accept" style="header">
+									<doc>application/xml</doc>
+								</param>
+								<param name="Accept" style="header">
+									<doc>application/json</doc>
+								</param>
+								<param name="id" style="template" type="xsd:string" required="true">
+									<doc>Идентификатор документа</doc>
+								</param>
+								<param name="name" style="template" type="xsd:string" required="true">
+									<doc>Имя файла</doc>
+								</param>
+								<param name="side" style="template" type="xsd:string" required="true">
+									<doc>Изображение(сторона файла)</doc>
+								</param>
+								<param name="pos" style="template" type="xsd:string" required="true">
+									<doc>Идентификатор области(простой порядковый номер)</doc>
+								</param>
+							</request>
+							<response status="200">
+								<representation mediaType="application/xml; charset=UTF-8" element="ns4:Document">
+									<doc title="OK" >Accept header application/xml</doc>
+								</representation>
+								<representation mediaType="application/json; charset=UTF-8">
+									<doc title="OK">Accept header application/json</doc>
+								</representation>
+							</response>
+							<response status="404">
+								<representation mediaType="text/html; charset=UTF-8">
+									<doc title="Not found">
+										Ссылка с даным идентификатором не найдена
+									</doc>
+								</representation>
+							</response>
+							<response status="550">
+								<representation mediaType="text/plain">
+									<doc title="Internal server error">
+										Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+									</doc>
+								</representation>
+							</response>
+						</method>
+					</resource>
+				</resource>
+			</resource>
+		</resource>
+		<resource id="links" path="links">
+			<doc title="Коллекция ссылок на ресурсы">
+			</doc>
+			<method name="GET" id="FindLinksUseCase">
+				<doc title="Запрос на получение коллекции ссылок">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Номер страницы списка. Если список больше 100 записей, то он разбивается на страницы.</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="100">
+						<doc>максимальное количество записей в списке на одной странице.</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="ns5:Links">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8" element="ns5:Links">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreateLinkUseCase">
+				<doc title="Запрос на создание новой ссылки">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="ns5:Link"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="ns5:Link"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="ns5:Link">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="link:id" path="{id}">
+				<doc title="Учетная карточка конкретной ссылки">
+				</doc>
+				<method name="GET" id="FindLinkUseCase">
+					<doc title="Запрос на получение учетной карточки конкретной ссылки">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор ссылки</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="ns5:Link">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8" element="ns5:Link">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Ссылка с даным идентификатором не найдена
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdateLinkUseCase">
+					<doc title="Запрос на изменение ссылки">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор ссылки</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="ns5:Link"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="ns5:Link"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns5:Link">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8" element="ns5:Link">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Ссылка с даным идентификатором не найдена
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PATCH" id="PatchLinkUseCase">
+					<doc title="Запрос на изменение данных ссылки">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор ссылки</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="ns5:Link"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="ns5:Link"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns5:Link">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8" element="ns5:Link">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Ссылка с даным идентификатором не найдена
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeleteLinkUseCase">
+					<doc title="Запрос на удаление ссылки">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор ссылки</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns5:Link">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Ссылка с даным идентификатором не найдена
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+			</resource>
+		</resource>
+		<resource id="forms" path="forms/{cohort}/{year}">
+			<doc title="Коллекция классов">
+			</doc>
+			<method name="GET" id="FindFormsUseCase">
+				<doc title="Запрос на получение коллекции классов">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="cohort" style="template" type="xsd:string">
+						<doc>Год параллели (например 1976, 197, 19 )</doc>
+					</param>
+					<param name="year" style="template" type="xsd:string">
+						<doc>Цифра класса (например 10)</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Номер страницы коллекции. Если коллекция больше 100 записей, то он разбивается на страницы.</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="100">
+						<doc>Максимальное количество записей в коллекции на одной странице.</doc>
+					</param>
+					<param name="order" style="query" type="xsd:string" default="100">
+						<doc>Порядок сортировки коллекции.</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="ns1:Forms">
+						<doc title="OK" />
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK" />
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreateFormUseCase">
+				<doc title="Запрос на создание нового класса">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="cohort" style="template" type="xsd:string">
+						<doc>Год параллели (например 1976 )</doc>
+					</param>
+					<param name="year" style="template" type="xsd:string">
+						<doc>Цифра класса (например 10)</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="ns1:Form"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="ns1:Form"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="ns1:Form">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="forms:league" path="{league}">
+				<doc title="Учетная карточка конкретного класса">
+				</doc>
+				<method name="GET" id="FindFormUseCase">
+					<doc title="Запрос на получение учетной карточки конкретного класса">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="cohort" style="template" type="xsd:string" required="true">
+							<doc>Год параллели (например 1976 )</doc>
+						</param>
+						<param name="year" style="template" type="xsd:string" required="true">
+							<doc>Цифра класса (например 10)</doc>
+						</param>
+						<param name="league" style="template" type="xsd:string" required="true">
+							<doc>Буква класса</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="ns1:Form">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Класс с данным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdateFormUseCase">
+					<doc title="Запрос на изменение данных класса">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="cohort" style="template" type="xsd:string" required="true">
+							<doc>Год параллели (например 1976 )</doc>
+						</param>
+						<param name="year" style="template" type="xsd:string" required="true">
+							<doc>Цифра класса (например 10)</doc>
+						</param>
+						<param name="league" style="template" type="xsd:string" required="true">
+							<doc>Буква класса</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="ns1:Form"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="ns1:Form"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns1:Form">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8" element="ns1:Form">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Класс с даным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeleteFormUseCase">
+					<doc title="Запрос на удаление класса">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="cohort" style="template" type="xsd:string" required="true">
+							<doc>Год параллели (например 1976 )</doc>
+						</param>
+						<param name="year" style="template" type="xsd:string" required="true">
+							<doc>Цифра класса (например 10)</doc>
+						</param>
+						<param name="league" style="template" type="xsd:string" required="true">
+							<doc>Буква класса</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns1:Form">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Класс с даным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<resource id="forms:league:pupils" path="pupils">
+					<doc title="Коллекция учеников класса">
+					</doc>
+					<method name="GET" id="FindFormPupilsUseCase">
+						<doc title="Запрос на получение коллекции учеников класса">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="cohort" style="template" type="xsd:string" required="true">
+								<doc>Год параллели (например 1976 )</doc>
+							</param>
+							<param name="year" style="template" type="xsd:string" required="true">
+								<doc>Цифра класса (например 10)</doc>
+							</param>
+							<param name="league" style="template" type="xsd:string" required="true">
+								<doc>Буква класса</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="ns0:Persons">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Класс с данным идентификатором не найден
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+			</resource>
+		</resource>
+		<resource id="unions" path="unions">
+			<doc title="Коллекция объединений связанных с документами архива">
+			</doc>
+			<method name="GET" id="FindUnionsUseCase">
+				<doc title="Запрос на получение коллекции объединений">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Номер страницы списка. Если список больше 100 записей, то он разбивается на страницы.</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="100">
+						<doc>максимальное количество записей в списке на одной странице.</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="ns1:Unions">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+		</resource>
+		<resource id="paths:id:position" path="paths/{id}/position">
+				<doc title="Порядковый номер документа в общей коллекции документов">
+				</doc>
+				<method name="GET" id="FindPathPositionUseCase">
+					<doc title="Запрос на получение порядкового номера документа">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Путь документа</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="ns2:DocumentPosition">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Документ с данным путем не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+		</resource>
+		<resource id="digests" path="digests">
+			<doc title="Коллекция дайджестов(публикаций) архива">
+			</doc>
+			<method name="GET" id="FindDigestsUseCase">
+				<doc title="Запрос на получение коллекции дайджестов">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Номер страницы коллекции. Если коллекция содержит более 100 записей, то он разбивается на страницы.</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="100">
+						<doc>Максимальное количество записей в коллекции, отображаемых на одной странице.</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="ns3:Digests">
+						<doc title="OK" />
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK" />
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreateDigestUseCase">
+				<doc title="Запрос на создание нового дайджеста">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="ns3:Digest"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="ns3:Digest"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="ns3:Digest">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="digests:id" path="{id}">
+				<doc title="Учетная карточка конкретного дайджеста">
+				</doc>
+				<method name="GET" id="FindDigestUseCase">
+					<doc title="Запрос на получение учетной карточки конкретного дайджеста">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор дайджеста</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="ns3:Digest">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Дайджест с указанным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdateDigestUseCase">
+					<doc title="Запрос на изменение дайджеста">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор дайджеста</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="ns3:Digest"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="ns3:Digest"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns3:Digest">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Дайджест с данным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeleteDigestUseCase">
+					<doc title="Запрос на удаление дайджеста">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор дайджеста</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns3:Digest">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Дайджест с данным идентификатором не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<resource id="digests:id:source" path="sources">
+					<doc title="Коллекция ресурсов проекта имеющих непосредственное отношение к конкретному дайджесту">
+					</doc>
+					<method name="GET" id="FindDigestSourcesUseCase">
+						<doc title="Запрос на получение списка ресурсов">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Идентификатор дайджеста</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="ns2:Resources">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Дайджест с указанным идентификатором не найден
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+			</resource>
+		</resource>
+	</resources>
+</application>

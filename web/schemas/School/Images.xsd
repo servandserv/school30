@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:ru:battleship:School:Images"
+	xmlns:ns0="urn:ru:battleship:School:Resources"
+	targetNamespace="urn:ru:battleship:School:Images">
+
+<xsd:import schemaLocation="Resources.xsd" namespace="urn:ru:battleship:School:Resources" /> 
+
+<xsd:element name="Image">
+	<xsd:complexType>
+		<xsd:annotation>
+			<xsd:documentation>Изображение</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="autoid" type="xsd:integer" minOccurs="0" />
+			<xsd:element name="ID" type="xsd:string" minOccurs="1" />
+			<xsd:element name="src" type="xsd:string" minOccurs="1" />
+			<xsd:element name="name" type="xsd:string" minOccurs="1" />
+			<xsd:element name="width" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="height" type="xsd:integer" minOccurs="1" />
+			<xsd:element ref="Area" minOccurs="0" maxOccurs="unbound" />
+			<xsd:element ref="ns0:Ref" minOccurs="0" maxOccurs="unbound" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Area">
+	<xsd:complexType>
+		<xsd:element name="x" type="xsd:double" minOccurs="1" />
+		<xsd:element name="y" type="xsd:double" minOccurs="1" />
+		<xsd:element name="width" type="xsd:double" minOccurs="1" />
+		<xsd:element name="height" type="xsd:double" minOccurs="1" />
+		<xsd:element name="size" type="xsd:double" minOccurs="1" />
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Images">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Image" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+</xsd:schema>

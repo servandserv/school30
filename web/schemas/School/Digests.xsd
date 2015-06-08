@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:ru:battleship:School:Dogests"
+	xmlns:ns0="urn:ru:battleship:School:Links"
+	targetNamespace="urn:ru:battleship:School:Digests">
+
+<xsd:import schemaLocation="Links.xsd" namespace="urn:ru:battleship:School:Links" /> 
+
+<xsd:element name="Digest">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:string" minOccurs="1" />
+			<xsd:element name="published" type="xsd:date" minOccurs="0" />
+			<xsd:element name="title" type="xsd:string" minOccurs="1" />
+			<xsd:element name="comments" type="xsd:string" minOccurs="1" />
+			<xsd:element ref="ns0:Link" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Digests">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Digest" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+</xsd:schema>

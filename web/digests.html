@@ -1,0 +1,105 @@
+<!DOCTYPE html> 
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]--> 
+<html class="no-js" lang="en" >
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Школа 30</title>
+		<link type="text/css" rel="stylesheet" href="../../bower_components/materialize/dist/css/materialize.min.css"  media="screen,projection" />
+		<!--link rel="stylesheet" href="css/app.css"-->
+		
+	</head> 
+	<body>
+		<header>
+			<!--ul id="dropdown1" class="dropdown-content">
+				<li><a href="#document">Document</a></li>
+				<li><a href="#documents">Documents</a></li>
+			</ul-->
+			<nav class="blue-grey darken-2">
+			
+				<div class="container">
+					<div class="nav-wrapper">
+						<a id="logo-container" href="#home" class="brand-logo">Школа 30</a>
+						<ul id="nav-mobile" class="right side-nav">
+							<li><a href="index.html#documents/0">Documents</a></li>
+							<li><a href="digests.html">Дайджесты</a></li>
+							<!--li><a href="#cards/0">Documents</a></li-->
+							<!--li><a class="dropdown-button" href="#!" data-activates="dropdown1">Menu<i class="mdi-navigation-arrow-drop-down right"></i></a></li-->
+						</ul>
+						<!--form>
+							<div class="input-field col s6 right" style="margin-top:0;">
+								<input id="document-searchbypath" type="text" required>
+								<label for="document-searchbypath"><i class="mdi-action-search"></i></label>
+							 </div>
+						</form-->
+						<a href="#home" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<main>
+			<br/><br/>
+			<div class="container">
+				<div id="digests" class="row">
+					
+				</div>
+				<div id="view" class="row">
+					<div class="col s12">
+						<h4>Дайджест</h4>
+						<div id="digest">
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		
+		<a class="waves-effect waves-light btn modal-trigger" style="position:absolute;left:-10000px;" href="#error-modal">Modal</a>
+		<div id="error-modal" class="modal">
+			<h4>Error received</h4>
+			<p id="error-message"></p>
+			<a href="#" class="waves-effect btn-flat modal-close">Close</a>
+		</div>
+
+		<!-- Templates -->
+		<script id="digests-select-view" type="text/template">
+			<br/>
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s5">
+						<label></label>
+						<select id="digest-select-id" class="">
+							<option value="" disabled>Digest</option>
+							<% _.each(digests, function(digest,index) { %>
+								<option value="<%= digest.ID %>"><%= digest.published %></option>
+							<% }); %>
+						</select>
+					</div>
+				</div>
+			</form>
+		</script>
+		
+		<script id="digests-view" type="text/template">
+
+		
+		<script id="digests-list-view" type="text/template">
+			<% _.each(digests, function(digest,index) { %>
+				<option value="<%= digest.ID %>"><%= digest.published %></option>
+			<% }); %>
+		</script>
+		
+		<!--  Scripts-->
+		<script src="../../bower_components/jquery/dist/jquery.min.js">;</script>
+		<script type="text/javascript" src="js/libs/underscore-min.js">;</script>
+		<script type="text/javascript" src="js/libs/backbone-min.js">;</script>
+		<script src="../../bower_components/materialize/dist/js/materialize.min.js">;</script>
+		<script src="js/Happymeal.js">;</script>
+		<script src="js/School.Port.Adaptor.Data.js">;</script>
+		<script src="js/app2.js">;</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//$(".dropdown-button").dropdown({ hover: false });
+			})
+		</script>
+	</body>
+</html>

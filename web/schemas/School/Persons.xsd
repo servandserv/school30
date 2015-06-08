@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:ru:battleship:School:Persons"
+	xmlns:ns0="urn:ru:battleship:School:Links"
+	xmlns:ns1="urn:ru:battleship:School:Resources"
+	targetNamespace="urn:ru:battleship:School:Persons">
+
+<xsd:import schemaLocation="Links.xsd" namespace="urn:ru:battleship:School:Links" />
+<xsd:import schemaLocation="Resources.xsd" namespace="urn:ru:battleship:School:Resources" />
+
+<xsd:element name="Person">
+	<xsd:complexType>
+		<xsd:annotation>
+			<xsd:documentation>Персона</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="autouid" type="xsd:integer" minOccurs="0" />
+			<xsd:element name="ID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="fullName" type="xsd:string" />
+			<xsd:element name="firstName" type="xsd:string" minOccurs="0" />
+			<xsd:element name="lastName" type="xsd:string" minOccurs="0" />
+			<xsd:element name="newName" type="xsd:string" minOccurs="0" />
+			<xsd:element name="middleName" type="xsd:string" minOccurs="0" />
+			<xsd:element name="enFullName" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DOB" type="xsd:string" minOccurs="0" />
+			<xsd:element name="comments" type="xsd:string" minOccurs="0" />
+			<xsd:element ref="ns0:Link" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Persons">
+	<xsd:complexType>
+		<xsd:sequence>
+		    <xsd:element ref="ns1:Ref" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element ref="Person" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Staff">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Person" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+</xsd:schema>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:ru:battleship:School:Unions"
+	xmlns:ns0="urn:ru:battleship:School:Links"
+	targetNamespace="urn:ru:battleship:School:Unions">
+
+<xsd:import schemaLocation="Links.xsd" namespace="urn:ru:battleship:School:Links" /> 
+
+<xsd:element name="Form">
+	<xsd:complexType>
+		<xsd:annotation>
+			<xsd:documentation>класс</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="autouid" type="xsd:integer" minOccurs="0" />
+			<xsd:element name="ID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="cohort" type="formCohortType" />
+			<xsd:element name="year" type="formYearType" />
+			<xsd:element name="league" type="formLeagueType" />
+			<xsd:element name="comments" type="xsd:string" minOccurs="0" />
+			<xsd:element ref="ns0:Link" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Forms">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Form" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Union">
+	<xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation>Группа</xsd:documentation>
+	</xsd:annotation>
+	<xsd:sequence>
+			<xsd:element name="autouid" type="xsd:integer" minOccurs="0" />
+			<xsd:element name="ID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="name" type="xsd:string" />
+			<xsd:element name="comments" type="xsd:string" minOccurs="0" />
+			<xsd:element ref="ns0:Link" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Unions">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Union" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:simpleType name="formCohortType">
+	<xsd:restriction base="xsd:string">
+		<xsd:pattern value="(19|20)[0-9]{2}" />
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="formLeagueType">
+	<xsd:restriction base="xsd:string">
+		<xsd:pattern value="(А|Б|В|Г|Д|Е)" />
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="formYearType">
+	<xsd:restriction base="xsd:integer">
+		<xsd:minInclusive value="1" />
+		<xsd:maxInclusive value="12" />
+	</xsd:restriction>
+</xsd:simpleType>
+
+</xsd:schema>

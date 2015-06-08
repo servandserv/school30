@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:ru:battleship:School:Resources"
+	xmlns:ns0="urn:ru:battleship:School:Persons"
+	xmlns:ns1="urn:ru:battleship:School:Unions"
+	xmlns:ns2="urn:ru:battleship:School:Documents"
+	xmlns:ns3="urn:ru:battleship:School:Digests"
+	targetNamespace="urn:ru:battleship:School:Resources">
+
+<xsd:import schemaLocation="Persons.xsd" namespace="urn:ru:battleship:School:Persons" /> 
+<xsd:import schemaLocation="Unions.xsd" namespace="urn:ru:battleship:School:Unions" /> 
+<xsd:import schemaLocation="Documents.xsd" namespace="urn:ru:battleship:School:Documents" /> 
+<xsd:import schemaLocation="Digests.xsd" namespace="urn:ru:battleship:School:Digests" /> 
+
+<xsd:element name="Resources">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Ref" minOccurs="0" maxOccurs="unbound" />
+			<xsd:element ref="ns0:Persons" minOccurs="0" />
+			<xsd:element ref="ns0:Staff" minOccurs="0" />
+			<xsd:element ref="ns1:Forms" minOccurs="0" />
+			<xsd:element ref="ns1:Unions" minOccurs="0" />
+			<xsd:element ref="ns2:Documents" minOccurs="0" />
+			<xsd:element ref="ns3:Digests" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Resource">
+    <xsd:annotation>
+        <xsd:documentation>
+            <html:p>
+				Любая сущность предметной области. Отличается от других сущностей
+				уникальным идентификатором и набором ключей.
+			</html:p>
+        </xsd:documentation>
+    </xsd:annotation>
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:string" minOccurs="1" />
+			<xsd:element name="type" type="xsd:string" minOccurs="1" />
+			<xsd:element name="key1" type="xsd:string" minOccurs="0" />
+			<xsd:element name="key2" type="xsd:string" minOccurs="0" />
+			<xsd:element name="key3" type="xsd:string" minOccurs="0" />
+			<xsd:element name="key4" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Ref">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="rel" type="xsd:string" minOccurs="0" />
+			<xsd:element name="href" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Statistics">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Total" minOccurs="1" />
+			<xsd:element ref="Identified" minOccurs="1" />
+			<xsd:element ref="Published" minOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Total">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="documents" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="files" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="forms" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="persons" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="unions" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="staff" type="xsd:integer" minOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Identified">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="photos" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="docs" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="articles" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="albums" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="letters" type="xsd:integer" minOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Published">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="photos" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="docs" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="articles" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="albums" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="letters" type="xsd:integer" minOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+</xsd:schema>

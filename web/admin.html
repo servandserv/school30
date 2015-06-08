@@ -1,0 +1,587 @@
+<!DOCTYPE html> 
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]--> 
+<html class="no-js" lang="en" >
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Школа 30</title>
+		<!--link type="text/css" rel="stylesheet" href="../../bower_components/materialize/dist/css/materialize.min.css"  media="screen,projection" /-->
+		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection" />
+		<!--link rel="stylesheet" href="css/app.css"-->
+		<style type="text/css">
+			.face {
+				position: absolute;
+				border: 1px dashed white;
+			}
+			.face-detected {
+				position: absolute;
+				border: 1px dashed red;
+			}
+			.crop-area {
+				position: absolute;
+				border: 1px dashed black;
+				background: #F5DEB3;
+				opacity: 0.3;
+				filter:progid:DXImageTransform.Microsoft.Alpha(opacity=30); /* IE opacity */
+			}
+		</style>
+	</head> 
+	<body>
+		<header>
+			<!--ul id="dropdown1" class="dropdown-content">
+				<li><a href="#document">Document</a></li>
+				<li><a href="#documents">Documents</a></li>
+			</ul-->
+			<nav class="blue-grey darken-2">
+			
+				<div class="container">
+					<div class="nav-wrapper">
+						<a id="logo-container" href="#home" class="brand-logo">Школа 30</a>
+						<ul id="nav-mobile" class="right side-nav">
+							<li><a href="#documents/0">Documents</a></li>
+							<li><a href="#digests">Digests</a></li>
+							<!--li><a class="dropdown-button" href="#!" data-activates="dropdown1">Menu<i class="mdi-navigation-arrow-drop-down right"></i></a></li-->
+						</ul>
+						<form>
+							<div class="input-field col s4 right" style="margin-top:0;">
+								<input id="path-position-search" type="text" required>
+								<label for="path-position-search"><i class="mdi-action-search"></i></label>
+							 </div>
+						</form>
+						<a href="#home" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<main>
+			<br/><br/>
+			<div class="containe">
+				<div id="document-view" class="row">
+					<div class="col s12 m6">
+						<div>
+							<h4>Тэги</h4>
+							<ul class="collapsible" data-collapsible="expandable">
+								<li>
+									<div class="collapsible-header"><i class="mdi-action-info-outline"></i>Общая информация о документе</div>
+									<div id="document-form-cont" class="collapsible-body">
+									</div>
+								</li>
+								<li>
+									<div class="collapsible-header">
+										<i class="mdi-social-school"></i>Параллели и классы<span id="form-counter-cont" class="badge"></span>
+									</div>
+									<div id="form-form-cont" class="collapsible-body">
+									</div>
+								</li>
+								<li>
+									<div class="collapsible-header">
+										<i class="mdi-social-person"></i>Преподаватели и персонал<span id="staff-counter-cont" class="badge"></span>
+									</div>
+									<div class="collapsible-body">
+										<form class="col s12">
+											<div class="row">
+												<div class="input-field col s9">
+													<input id="search-staff-field" type="text" />
+													<label for="search-staff-field">Search by Lastname</label>
+												</div>
+												<div class="input-field col s3">
+													<a id="search-staff-submit" class="waves-effect waves-light btn orange">Go</a>
+												</div>
+											</div>
+										</form>
+										<div id="staff-form-cont" class="col s12">
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="collapsible-header">
+										<i class="mdi-social-people"></i>Ученики<span id="persons-counter-cont" class="badge"></span>
+									</div>
+									<div class="collapsible-body">
+									    <form class="col s12">
+											<div class="row">
+												<div class="input-field col s9">
+													<input id="search-pupil-field" type="text" />
+													<label for="search-pupil-field">Search by Lastname</label>
+												</div>
+												<div class="input-field col s3">
+													<a id="search-pupil-submit" class="waves-effect waves-light btn orange">Go</a>
+												</div>
+											</div>
+										</form>
+										<div id="persons-form-cont" class="col s12">
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="collapsible-header">
+										<i class="mdi-action-theaters"></i>Кружки, организации, клубы<span id="unions-counter-cont" class="badge"></span>
+									</div>
+									<div class="collapsible-body">
+										<form class="col s12">
+											<div class="row">
+												<div class="input-field col s3">
+													<a id="search-union-submit" class="waves-effect waves-light btn orange">Search union</a>
+												</div>
+											</div>
+										</form>
+										<div id="unions-form-cont" class="col s12">
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="collapsible-header">
+										<i class="mdi-social-public"></i>Дайджесты<span id="digests-counter-cont" class="badge"></span>
+									</div>
+									<div class="collapsible-body">
+										<form class="col s12">
+											<div class="row">
+												<div class="input-field col s3">
+													<a id="search-digest-submit" class="waves-effect waves-light btn orange">Search digest</a>
+												</div>
+											</div>
+										</form>
+										<div id="digests-form-cont" class="col s12">
+										</div>
+									</div>
+								</li>
+								<!--li>
+									<div class="collapsible-header"><i class="mdi-maps-directions-bike"></i>События, мероприятия</div>
+									<div class="collapsible-body"><p>Under construction.</p></div>
+								</li-->
+							</ul>
+						</div>
+					</div>
+					<div class="col s12 m6">
+						<div class="row">
+							<div class="col s12">
+								<a id="skip-previous" class="btn-floating waves-effect waves-light orange"><i class="mdi-av-skip-previous"></i></a>
+								<a id="fast-rewind" class="btn-floating waves-effect waves-light orange"><i class="mdi-av-fast-rewind"></i></a>
+								<a id="fast-forward" class="btn-floating waves-effect waves-light orange"><i class="mdi-av-fast-forward"></i></a>
+								<a id="skip-next" class="btn-floating waves-effect waves-light orange"><i class="mdi-av-skip-next"></i></a>
+							</div>
+						</div>
+						<div id="files-form-cont" class="row">
+						</div>
+					</div>
+				</div>
+				<!-- digests -->
+				<div id="digests-view">
+					
+				</div>
+			</div>
+		</main>
+		
+		<a class="waves-effect waves-light btn modal-trigger" style="position:absolute;left:-10000px;" href="#error-modal">Modal</a>
+		<div id="error-modal" class="modal">
+			<h4>Error received</h4>
+			<p id="error-message"></p>
+			<a href="#" class="waves-effect btn-flat modal-close">Close</a>
+		</div>
+		<div id="persons-list-modal" class="modal" style="padding: 2em;">
+			<h4>Search results</h4>
+			<p id="persons-list">
+			</p>
+			<a href="#" class="waves-effect btn-flat modal-close">Close</a>
+		</div>
+		<div id="unions-list-modal" class="modal" style="padding: 2em;">
+			<h4>Search results</h4>
+			<p id="unions-list">
+			</p>
+			<a href="#" class="waves-effect btn-flat modal-close">Close</a>
+		</div>
+		<div id="digests-list-modal" class="modal" style="padding: 2em;">
+			<h4>Digests</h4>
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s6">
+						<label></label>
+						<select id="digests-list" class="browser-default">
+							<option value="">Select digest</option>
+						</select>
+					</div>
+					<div class="input-field col s6">
+						<input id="digest-typelink" type="text" value="" required>
+						<label for="digest-typelink">Type link</label>
+					</div>
+					<div class="input-field col s12">
+						<textarea id="digest-comments" class="materialize-textarea"></textarea>
+						<label>Comments</label>
+					</div>
+				</div>
+			</form>
+			<!--p id="digests-list">
+			</p-->
+			<a href="javascript:void(0);" id="digest-submit" class="waves-effect btn-flat">Submit</a>
+			<a href="javascript:void(0);" class="waves-effect btn-flat modal-close">Close</a>
+		</div>
+		
+		<div id="link-edit-modal" class="modal" style="padding: 2em;">
+			<h4>Link</h4>
+			<div id="link-edit-form"></div>
+			<a href="javascript:void(0);" id="link-delete-submit" class="waves-effect btn-flat">Delete</a>
+			<a href="javascript:void(0);" id="link-patch-submit" class="waves-effect btn-flat">Patch</a>
+			<a href="javascript:void(0);" class="waves-effect btn-flat modal-close">Not now</a>
+		</div>
+		
+		<div id="area-edit-modal" class="modal" style="padding: 2em;">
+			<h4>Area</h4>
+			<div id="area-edit-form"></div>
+			<a href="javascript:void(0);" id="area-delete-submit" class="waves-effect btn-flat">Delete</a>
+			<a href="javascript:void(0);" class="waves-effect btn-flat modal-close">Not now</a>
+		</div>
+		
+		<a style="position:absolute;left:-10000px;" href="javascript: void(0);" id="card-view-trigger">trigger</a>
+
+		<!-- Templates -->
+		<script id="document-form-view" type="text/template">
+			<br/>
+			<form class="col s12">
+				<input type="hidden" id="document-id" value="<%= document.ID %>" />
+				<div class="row">
+					<div class="input-field col s5">
+						<label></label>
+						<select id="document-type" class="browser-default">
+							<option value="" disabled <% if ( !document.type ) { %> selected  <% } %>>Type</option>
+							<option value="1" <% if ( document.type == 1 ) { %> selected  <% } %>>Групповое</option>
+							<option value="2" <% if ( document.type == 2 ) { %> selected  <% } %>>Индивидуальное</option>
+							<option value="3" <% if ( document.type == 3 ) { %> selected  <% } %>>Видовое</option>
+							<option value="4" <% if ( document.type == 4) { %> selected  <% } %>>Документ</option>
+							<option value="5" <% if ( document.type == 5) { %> selected  <% } %>>Статья</option>
+							<option value="6" <% if ( document.type == 6) { %> selected  <% } %>>Альбом</option>
+							<option value="7" <% if ( document.type == 7) { %> selected  <% } %>>Письмо</option>
+							<option value="7" <% if ( document.type == 8) { %> selected  <% } %>>Индивидуальное - прочие</option>
+						</select>
+					</div>
+					<div class="input-field col s2">
+						<input id="document-year" type="text" value="<%= document.year %>" required>
+						<label for="document-year">Year</label>
+					</div>
+					<div class="input-field col s5">
+						<p>
+							<input id="document-published" type="checkbox"  <% if( document.published ) { %>checked="checked"<% } %> />
+							<label for="document-published">Published</label>
+						</p>
+					</div>
+					<div class="range-field col s12">
+						<label for="document-readiness">Readiness</label>
+						<input type="range" id="document-readiness" min="0" max="100" value="<%= document.readiness %>" />
+					</div>
+					<div class="input-field col s12">
+						<textarea id="document-comments" class="materialize-textarea" required><%= document.comments %></textarea>
+						<label>Comments</label>
+					</div>
+					<div class="col s12">
+						<a id="document-submit" class="waves-effect waves-light btn orange">Submit</a>
+					</div>
+				</div>
+			</form>
+		</script>
+
+		<script id="form-form-view" type="text/template">
+			<br/>
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s3">
+						<input id="form-cohort" type="text" value="" required>
+						<label for="form-cohort">Cohort</label>
+					</div>
+					<div class="input-field col s3">
+						<label></label>
+						<select id="form-year" class="browser-default">
+							<option value="">Year</option>
+							<option value="12">12</option>
+							<option value="11">11</option>
+							<option value="10">10</option>
+							<option value="9">9</option>
+							<option value="8">8</option>
+							<option value="7">7</option>
+							<option value="6">6</option>
+							<option value="5">5</option>
+							<option value="4">4</option>
+							<option value="3">3</option>
+							<option value="2">2</option>
+							<option value="1">1</option>
+						</select>
+						<!--input id="form-year" type="text" value="" required>
+						<label for="form-year">Year</label-->
+					</div>
+					<div class="input-field col s3">
+						<select id="form-league" class="browser-default">
+							<option value="">League</option>
+							<option value="А">А</option>
+							<option value="Б">Б</option>
+							<option value="В">В</option>
+							<option value="Г">Г</option>
+							<option value="Д">Д</option>
+							<option value="Е">Е</option>
+							<option value="?">?</option>
+						</select>
+						<!--input id="form-league" type="text" value="" required>
+						<label for="form-year">League</label-->
+					</div>
+					<div class="input-field col s3">
+						<a id="form-submit" class="waves-effect waves-light btn orange">Submit</a>
+					</div>
+					<div class="col s12">
+						<% if ( forms.length != 0 ) { %>
+							<ul class="collection">
+								<% _.each(forms, function(form,index) { %>
+									<li class="collection-item"><%= form.cohort %> год выпуска, класс<%= form.year %><%= form.league %><a href="javascript: void(0);" class="secondary-content link-delete" id="<%= form.Link.ID %>">
+										<i class="mdi-content-remove-circle-outline"></i></a>
+									</li>
+								<% }); %>
+							</ul>
+						<% } %>
+					</div>
+				</div>
+			</form>
+		</script>
+		
+		<script id="staff-form-view" type="text/template">
+			<% if ( staff.length != 0 ) { %>
+				<ul class="collection">
+				<% _.each(staff, function(person,index) { %>
+					<li class="collection-item"><%= person.fullName %><a href="javascript: void(0);" class="secondary-content link-delete" id="<%= person.Link.ID %>">
+						<i class="mdi-content-remove-circle-outline"></i></a>
+					</li>
+				<% }); %>
+				</ul>
+			<% } %>
+		</script>
+		
+		<script id="persons-form-view" type="text/template">
+			<% if ( persons.length != 0 ) { %>
+				<ul class="collection">
+					<% _.each(persons, function(person,index) { %>
+						<li class="collection-item"><%= person.fullName %><a href="javascript: void(0);" class="secondary-content link-delete" id="<%= person.Link.ID %>">
+							<i class="mdi-content-remove-circle-outline"></i></a>
+						</li>
+					<% }); %>
+				</ul>
+			<% } %>
+		</script>
+		
+		<script id="unions-form-view" type="text/template">
+			<% if ( unions.length != 0 ) { %>
+				<ul class="collection">
+					<% _.each(unions, function(union,index) { %>
+						<li class="collection-item"><%= union.name %><a href="javascript: void(0);" class="secondary-content link-delete" id="<%= union.Link.ID %>">
+							<i class="mdi-content-remove-circle-outline"></i></a>
+						</li>
+					<% }); %>
+				</ul>
+			<% } %>
+		</script>
+		
+		<script id="digests-form-view" type="text/template">
+			<% if ( digests.length != 0 ) { %>
+				<ul class="collection">
+					<% _.each(digests, function(digest,index) { %>
+						<li class="collection-item"><%= digest.published %>, группа документов "<%= digest.Link.type %>"
+							<a href="javascript: void(0);" class="secondary-content link-patch" id="<%= digest.Link.ID %>">
+								<i class="mdi-content-save"></i>
+							</a>
+						</li>
+					<% }); %>
+				</ul>
+			<% } %>
+		</script>
+		
+		<script id="files-form-view" type="text/template">
+			<% _.each(document.File, function(file,index) { %>
+				<div class="col s12">
+					<div class="card">
+						<div id="<%= file.Obverse.name %>_card" class="card-image">
+							<img id="<%= file.Obverse.name %>_img" src="../school/images/<%= file.Obverse.Large.src %>" alt="<%= index %>" />
+							<span class="card-title"><%= file.Obverse.Large.src %></span>
+						</div>
+						<div class="card-content">
+							<span class="card-title activator grey-text text-darken-4">
+								<% if ( file.Reverse ) { %>
+									<i class="mdi-navigation-more-vert right"></i>
+								<% } %>
+							</span>
+							<!--p><a href="#">This is a link</a></p-->
+							<input id="file-opened-<%= index %>" class="file-opened" type="checkbox" value="<%= file.face %>" <% if( file.opened == 1 ) { %>checked="checked"<% } %> />
+							<label for="file-opened-<%= index %>">Opened</label>
+							<p>
+								<!--a id="<%= file.Obverse.name %>" href="javascript:void(0);" class="detect-faces">Detect faces</a-->
+								<a href="javascript:void(0);" class="show-detected-faces">Show faces</a>
+								<a href="javascript:void(0);" class="hide-detected-faces">Hide faces</a>
+							</p>
+						</div>
+						<!--div class="card-action">
+							<input id="file-opened-<%= index %>" class="file-opened" type="checkbox" value="<%= file.name %>" <% if( file.opened == 1 ) { %>checked="checked"<% } %> />
+							<label for="file-opened-<%= index %>">Opened</label>
+						</div-->
+						<% if ( file.Reverse ) { %>
+							<div class="card-reveal" style="padding:0;">
+								<span class="card-title grey-text text-darken-4"><i class="mdi-navigation-close right"></i></span>
+								<div class="card-image" style="width:100%;height:auto;margin:2em 0 0 0;">
+									<img src="../school/images/<%= file.Reverse.Large.src %>" />
+								</div>
+							</div>
+						<% } %>
+					</div>
+				</div>
+			<% }); %>
+		</script>
+		
+		<script id="persons-list-view" type="text/template">
+			<div class="col s12 m6">
+				<ul class="collection">
+					<% _.each(persons, function(person,index) { %>
+						<li class="collection-item"><%= person.fullName %>, <%= person.DOB %><a href="javascript: void(0);" class="secondary-content person-add">
+						<i id="<%= person.ID %>" class="mdi-content-add-circle"></i></a></li>
+					<% }); %>
+				</ul>
+			</div>
+		</script>
+		
+		<script id="unions-list-view" type="text/template">
+			<div class="col s12 m6">
+				<ul class="collection">
+					<% _.each(unions, function(union,index) { %>
+						<li class="collection-item"><%= union.name %><a href="javascript: void(0);" class="secondary-content union-add">
+						<i id="<%= union.ID %>" class="mdi-content-add-circle"></i></a></li>
+					<% }); %>
+				</ul>
+			</div>
+		</script>
+		
+		<script id="digests-list-view" type="text/template">
+			<% _.each(digests, function(digest,index) { %>
+				<option value="<%= digest.ID %>"><%= digest.published %></option>
+			<% }); %>
+		</script>
+		
+		<script id="link-edit-view" type="text/template">
+			<form class="col s12">
+				<input id="link-edit-id" type="hidden" value="<%= link.ID %>" required>
+				<div class="row">
+					<div class="input-field col s4">
+						<input id="link-edit-dtstart" type="text" value="<%= link.dtStart %>" required>
+						<label for="link-edit-dtstart">Date start</label>
+					</div>
+					<div class="input-field col s4">
+						<input id="link-edit-dtend" type="text" value="<%= link.dtEnd %>" required>
+						<label for="link-edit-dtend">Date start</label>
+					</div>
+					<div class="input-field col s4">
+						<input id="link-edit-type" type="text" value="<%= link.type %>" required>
+						<label for="link-edit-type">Type link</label>
+					</div>
+					<div class="input-field col s12">
+						<textarea id="link-edit-comments" class="materialize-textarea"><%= link.comments %></textarea>
+						<label>Comments</label>
+					</div>
+				</div>
+			</form>
+		</script>
+		
+		<script id="area-edit-view" type="text/template">
+			<form class="col s12">
+				<input id="area-edit-position" type="hidden" value="<%= args.pos %>" required>
+				<input id="area-edit-document" type="hidden" value="<%= args.document %>" required>
+				<input id="area-edit-file" type="hidden" value="<%= args.file %>" required>
+				<input id="area-edit-side" type="hidden" value="<%= args.side %>" required>
+				<div class="row">
+					<div class="col s12">
+					    <%
+					        var k = Math.min(50,args.area.width*2) / args.area.width*2;
+					        k = 1;
+					    %>
+						<div style="overflow:hidden;position:relative;width:<%= args.area.width*2*k %>px;height:<%= args.area.height*2*k %>px;">
+							<img src="<%= args.src %>" style="position:absolute;left:-<%= k*(args.area.x - (args.area.width * 0.5)) %>px;top:-<%= (args.area.y - ( args.area.height * 0.5)) * k %>px;" />
+						</div>
+						<input id="area-edit-x" type="text" value="<%= args.area.x %>" required>
+						<label for="area-edit-x">X</label>
+						<input id="area-edit-y" type="text" value="<%= args.area.y %>" required>
+						<label for="area-edit-y">Y</label>
+						<input id="area-edit-width" type="text" value="<%= args.area.width %>" required>
+						<label for="area-edit-width">Width</label>
+						<input id="area-edit-height" type="text" value="<%= args.area.height %>" required>
+						<label for="area-edit-height">Height</label>
+					</div>
+					<div class="col s12">
+						<ul class="collection with-header">
+							<li class="collection-header"><h4>Staff</h4></li>
+							<% _.each(args.doc.Staff, function(person,index) { %>
+								<li class="collection-item"><%= person.fullName %><a href="javascript: void(0);" class="secondary-content staff-face-add">
+								<i id="<%= person.ID %>" class="mdi-content-add-circle"></i></a></li>
+							<% }); %>
+							<li class="collection-header"><h4>Pupils</h4></li>
+							<% _.each(args.doc.Persons.Person, function(person,index) { %>
+								<li class="collection-item"><%= person.fullName %><a href="javascript: void(0);" class="secondary-content pupil-face-add">
+								<i id="<%= person.ID %>" class="mdi-content-add-circle"></i></a></li>
+							<% }); %>
+						</ul>
+					</div>
+				</div>
+			</form>
+		</script>
+		
+		<!-- digests templates -->
+		<script id="digests-select-view" type="text/template">
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s5">
+						<label></label>
+						<select id="digest-select-id" class="browser-default">
+							<option value="" disabled selected>Digest</option>
+							<% _.each(digests, function(digest,index) { %>
+								<option value="<%= digest.ID %>"><%= digest.published %></option>
+							<% }); %>
+						</select>
+					</div>
+				</div>
+			</form>
+			<div id="digest-info"></div>
+		</script>
+		<script id="digest-info-view" type="text/template">
+			<div class="col s12">
+				<table class="striped">
+					<tbody>
+						<% _.each(sources.Documents, function(document,index) { %>
+							<tr>
+							<td>
+								<h2><%= document.year %></h2>
+								<p><%= document.comments %></p>
+							</td>
+							<td>
+								<% _.each(document.File, function(file,index) { %>
+									<img class="materialboxed" src="../school/images<%= file.Obverse.Large.src %>" height="100px"/>
+									<% if ( file.Reverse ) { %>
+										<img class="materialboxed" src="../school/images<%= file.Reverse.Large.src %>" height="100px"  />
+									<% } %>
+								<% }); %>
+							</td>
+							</tr>
+						<% }); %>
+					</tbody>
+				</table>
+			</div>
+		</script>
+		
+		
+		<!--  Scripts-->
+		<script src="../../bower_components/jquery/dist/jquery.min.js">;</script>
+		<script src="../../bower_components/jquery.facedetection/dist/jquery.facedetection.min.js"></script> 
+		<script type="text/javascript" src="js/libs/underscore-min.js">;</script>
+		<script type="text/javascript" src="js/libs/backbone-min.js">;</script>
+		<!--script src="../../bower_components/materialize/dist/js/materialize.min.js">;</script-->
+		<script src="js/libs/materialize.min.js">;</script>
+		<script src="../../bower_components/sax.js">;</script>
+		<script src="js/Croppable.js">;</script>
+		<script src="js/Happymeal.js">;</script>
+		<script src="js/School.Port.Adaptor.Data.js">;</script>
+		<script src="js/app2.js">;</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//$(".dropdown-button").dropdown({ hover: false });
+			})
+		</script>
+	</body>
+</html>
