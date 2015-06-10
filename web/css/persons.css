@@ -23,11 +23,16 @@
 #header form > div {
     margin: 2rem 0 0 0;
 }
+#header input {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 #header input[type=text] {
-    width: 100%;
-    border: none;
-    padding: 1rem 0;
+    border: 0;
+    padding: 1rem;
     font-size: 1.5rem;
+    width: 100%;
 }
 #header input[type=submit] {
     border: solid 1px #fff;
