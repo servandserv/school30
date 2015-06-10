@@ -2,7 +2,10 @@
 <xsd:schema elementFormDefault="qualified"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns="urn:ru:battleship:School:Links"
+	xmlns:ns0="urn:ru:battleship:School:Resources"
 	targetNamespace="urn:ru:battleship:School:Links">
+
+<xsd:import schemaLocation="Resources.xsd" namespace="urn:ru:battleship:School:Resources" /> 
 
 <xsd:element name="Link">
 	<xsd:complexType>
@@ -18,6 +21,7 @@
 			<xsd:element name="dtEnd" type="xsd:string" minOccurs="0"/>
 			<xsd:element name="type" type="xsd:string" />
 			<xsd:element name="comments" type="xsd:string" minOccurs="0"/>
+			<xsd:element ref="ns0:Ref" minOccurs="0" maxOccurs="unbounded" />
 		</xsd:sequence>
 	</xsd:complexType>
 </xsd:element>

@@ -44,7 +44,7 @@ small {
 #files .face h6 {
     color: #000;
 }
-@media only screen and (min-width : 1024px) {
+@media only screen and (min-width : 1022px) {
     /*
     #menu { 
         background: url(../system/static/modern_bg.jpg);

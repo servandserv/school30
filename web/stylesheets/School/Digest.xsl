@@ -46,6 +46,7 @@
             <script type="text/javascript">
                 <![CDATA[
                     window.onload = function() {
+                        console.log(window.innerWidth);
                         document.addEventListener("touchstart", function() {},false);
                         window.addEventListener("resize", function() {
                             resize_docs_container(document.getElementById('docs_container'),columns());

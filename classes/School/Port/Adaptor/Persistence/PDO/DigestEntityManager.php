@@ -108,5 +108,4 @@ class DigestEntityManager {
 		$sth1->execute($params);
 		return $digest;
 	}
-	
 }

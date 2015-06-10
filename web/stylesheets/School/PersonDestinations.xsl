@@ -47,12 +47,6 @@
             <script type="text/javascript">
                 <![CDATA[
                     window.onload = function() {
-                        if( typeof document.getElementsByClassName === "function" ) {
-                            var ns = document.getElementsByClassName("html");
-                            for(var i=0;i<ns.length;i++) {
-                                ns[i].innerHTML = ns[i].innerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-                            }
-                        }
                         document.addEventListener("touchstart", function() {},false);
                         window.addEventListener("resize", function() {
                             resize_docs_container(document.getElementById('docs_container'),columns());
@@ -112,7 +106,16 @@
                     <p><small>© 2015, фотоархив ИЕГЛ Школа № 30</small></p>
                 </div>
             </div>
-            <script type="text/javascript" src="{$ROOT}/js/analitics.js" >;</script>
+            <script type="text/javascript">
+                <![CDATA[
+                    if( typeof document.getElementsByClassName === "function" ) {
+                        var ns = document.getElementsByClassName("html");
+                        for(var i=0;i<ns.length;i++) {
+                            ns[i].innerHTML = ns[i].innerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+                        }
+                    }
+                ]]>
+            </script>
         </body>
     </html>
 </xsl:template>

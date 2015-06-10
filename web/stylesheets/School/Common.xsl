@@ -26,8 +26,8 @@
 	doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" />
 
 <xsl:template name="common-header">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta name="keywords" content="архив, фотографии, история, школа 30, Ижевск, Удмуртия, Россия" />
     <meta name="description" content="Фотоархив документов посвященных истории Школы 30 города Ижевска" />
     <link href='{$ROOT}/assets/favicon.png' rel='shortcut icon' type='image/png' />

@@ -7,14 +7,18 @@
 }
 #header > h1 {
     font-weight: 400;
-    margin-top: 2.25rem;
+    margin-top: 2rem;
 }
 #header > h2 {
-    margin-top: .75rem;
+    margin-top: 1rem;
     line-height: 1.25;
 }
 #header > p {
     margin-top: 2rem;
+}
+#header > p > small {
+    line-height: 2rem;
+    margin: 0;
 }
 #header > sub > p,
 #header > small > p {
@@ -25,7 +29,7 @@
     display: none;
 }
 
-@media only screen and (min-width : 1024px) {
+@media only screen and (min-width : 1022px) {
     #header ul.share-buttons {
         right: 3rem;
         margin:0 3rem 1.5rem 0;
@@ -55,7 +59,7 @@
     margin-top: 1rem;
 }
 
-@media only screen and (min-width : 1024px) {
+@media only screen and (min-width : 1022px) {
     #header {
         -webkit-flex: 3 30%;
         flex: 3 30%;
@@ -100,7 +104,7 @@
     }
 }
 
-@media only screen and (min-width : 1280px) {
+@media only screen and (min-width : 1278px) {
     #header {
         -webkit-flex: 25 25%;
         flex: 25 25%;
@@ -126,7 +130,7 @@
         max-width: 15%;
     }
 }
-@media only screen and (min-width : 2048px) {
+@media only screen and (min-width : 2046px) {
     #header {
         -webkit-flex: 15 15%;
         flex: 15 15%;
