@@ -121,6 +121,9 @@ class FindStatisticsUseCase {
 		
 		$stat->setIdentified($ident);
 		$stat->setPublished($publish);
+		
+		$stat->setPI(str_replace($app->API_VERSION.$app->PATH_INFO,"",$_SERVER["SCRIPT_URI"])."/stylesheets/School/Statistics.xsl");
+		
 		return $stat;
 	}
 }

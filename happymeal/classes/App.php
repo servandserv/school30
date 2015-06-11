@@ -241,7 +241,7 @@ class App {
 	//http://habrahabr.ru/post/44906/
 	//http://www.exlab.net/dev/http-caching.html
 	function cacheControl( $lastmod ) {
-		//return;
+		return;
 		$etag = $lastmod;
 		$expr = 60 * 60 * 24 * 7;
 		$gmtime = gmdate( "D, d M Y H:i:s", $lastmod ) . " GMT";

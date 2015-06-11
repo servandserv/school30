@@ -70,9 +70,9 @@
                     <!--h1><xsl:value-of select="doc:Documents/doc:Document/doc:year" /></h1-->
                     <h1><xsl:value-of select="doc:Documents/doc:Document/doc:comments" /></h1>
                     <div class="menu">
-                        <h2><a href="{$ROOT}api/persons">Поиск</a></h2>
-                        <h2>Дайджесты</h2>
-                        <xsl:apply-templates select="$DIGESTS" mode="digests-card-container" />
+                        <xsl:call-template name="menu">
+                            <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/documents/',doc:Documents/doc:Document/doc:ID,'/sources')" />
+                        </xsl:call-template>
                     </div>
                 </div>
                 <div>
@@ -116,9 +116,9 @@
                     </div>
                 </div>
                 <div id="menu" class="menu">
-                    <h2><a href="{$ROOT}api/persons">Поиск</a></h2>
-                    <h2>Дайджесты</h2>
-                    <xsl:apply-templates select="$DIGESTS" mode="digests-card-container" />
+                    <xsl:call-template name="menu">
+                        <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/documents/',doc:Documents/doc:Document/doc:ID,'/sources')" />
+                    </xsl:call-template>
                 </div>
                 <div id="copy">
                     <p><small>© 2015, фотоархив ИЕГЛ Школа № 30</small></p>
@@ -268,29 +268,6 @@
             </xsl:for-each>
         </ul>
     </div>
-</xsl:template>
-
-<xsl:template match="dig:Digests" mode="digests-card-container">
-    <ul id="digests" class="digests-card-container">
-        <xsl:apply-templates select="dig:Digest" mode="digest-card" />
-    </ul>
-    <xsl:call-template name="share-buttons">
-        <xsl:with-param name="href" select="concat('http://www.school-30.com/api/persons/',pers:ID,'/destinations')" />
-    </xsl:call-template>
-</xsl:template>
-
-<xsl:template match="dig:Digest" mode="digest-card">
-    <xsl:variable name="id" select="dig:ID" />
-    <li>
-        <xsl:if test="$SOURCES/dig:Digests/dig:Digest/dig:ID = $id">
-            <xsl:attribute name="id"><xsl:value-of select="dig:ID" /></xsl:attribute>
-        </xsl:if>
-        <div>
-            <p>
-                <a href="{$ROOT}api/digests/{dig:ID}/sources"><xsl:value-of select="dig:title" /></a>
-            </p>
-        </div>
-    </li>
 </xsl:template>
 
 </xsl:stylesheet>

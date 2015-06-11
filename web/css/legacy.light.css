@@ -25,7 +25,7 @@ small {
 #main > .menu { 
     background-color: rgba(0,0,0,.5); 
 }
-#header small, #header p, #header h1, #header h2, #header h3, #header h4, #header h5, #header h6 {
+#header small, #header p, #header h1, #header h2, #header h3, #header h4, #header h5, #header h6, #header strong {
     color: #fff;
 }
 #header + div, #header + div + div:not(.menu) { 

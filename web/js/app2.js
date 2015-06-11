@@ -664,7 +664,8 @@
 		render: function() {
 			var collection = this.collection;
 			var json = collection.toJSON();
-			var persons = json[0] ? json[0].Person : json;
+			console.log(json);
+			var persons = json[0] && json[0].Person ? json[0].Person : json;
 			this.$el.html( this.template({ persons: persons }));
 			$(".person-add").on('click','i', function() {
 				var link = Happymeal.Locator("School.Port.Adaptor.Data.School.Links.Link");

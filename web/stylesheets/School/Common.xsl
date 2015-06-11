@@ -153,6 +153,37 @@
     </ul>
 </xsl:template>
 
+<xsl:template name="menu">
+    <xsl:param name="social-href" select="'http://www.school-30.com/api/digests'" />
+    <h2><a href="{$ROOT}api/persons">Поиск</a></h2>
+    <h2>Дайджесты</h2>
+    <xsl:apply-templates select="$DIGESTS" mode="digests-card-container" />
+    <h2><a href="{$ROOT}api/stat">О проекте</a></h2>
+    <xsl:call-template name="share-buttons">
+        <xsl:with-param name="href" select="$social-href" />
+    </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="dig:Digests" mode="digests-card-container">
+    <ul id="digests" class="digests-card-container">
+        <xsl:apply-templates select="dig:Digest" mode="digest-card" />
+    </ul>
+</xsl:template>
+
+<xsl:template match="dig:Digest" mode="digest-card">
+    <xsl:variable name="id" select="dig:ID" />
+    <li>
+        <xsl:if test="$DIGESTS/dig:Digest/dig:ID = $id">
+            <xsl:attribute name="id"><xsl:value-of select="dig:ID" /></xsl:attribute>
+        </xsl:if>
+        <div>
+            <p>
+                <a href="digests/{dig:ID}/sources"><xsl:value-of select="dig:title" /></a>
+            </p>
+        </div>
+    </li>
+</xsl:template>
+
 <xsl:template match="pers:Person" mode="link">
     <a href="{$ROOT}api/persons/{pers:ID}/destinations"><xsl:value-of select="pers:fullName" /></a>
 </xsl:template>
