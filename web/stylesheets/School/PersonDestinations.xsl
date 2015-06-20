@@ -47,6 +47,7 @@
             <script type="text/javascript">
                 <![CDATA[
                     window.onload = function() {
+                        document.getElementById("loader").style.display = "none";
                         document.addEventListener("touchstart", function() {},false);
                         window.addEventListener("resize", function() {
                             resize_docs_container(document.getElementById('docs_container'),columns());
@@ -61,6 +62,7 @@
             </script>
         </head>
         <body>
+            <xsl:call-template name="loader" />
             <div id="nav">
                 <ul>
                     <li><a href="#digests">Дайджесты</a></li>
@@ -130,7 +132,7 @@
                         <xsl:when test="$file/doc:Reverse/doc:Thumb/doc:src">
                             <xsl:attribute name="class">flipper</xsl:attribute>
                             <xsl:attribute name="style">
-                                background: url(http://www.school-30.com/images<xsl:value-of select="substring-before($file/doc:Reverse/doc:Thumb/doc:src,'.gif')" />.640xl.jpg) no-repeat center center;
+                                background: url(<xsl:value-of select="$CDN" /><xsl:value-of select="$TRANS" /><xsl:value-of select="substring-before($file/doc:Reverse/doc:Thumb/doc:src,'.thumb')" /><xsl:value-of select="$W640XL" />) no-repeat center center;
                                 background-size: cover;
                             </xsl:attribute>
                             <input type="checkbox" name="slider__check-{doc:ID}" class="slider__check" id="slider__check-{doc:ID}-1" checked="checked" />
@@ -140,7 +142,7 @@
                             <xsl:attribute name="style">position:relative</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
-                    <img src="http://www.school-30.com/images{substring-before($file/doc:Obverse/doc:Thumb/doc:src,'.gif')}.640xl.jpg" />
+                    <img src="{$CDN}{$TRANS}{substring-before($file/doc:Obverse/doc:Thumb/doc:src,'.thumb')}{$W640XL}" />
                 </div>
                 <div class="image-control-panel">
                     <ul>
@@ -177,7 +179,7 @@
             <table>
                 <xsl:for-each select="doc:Document[doc:published = '1']">
                     <tr>
-                        <td><img src="http://www.school-30.com/images{doc:File[1]/doc:Obverse/doc:Thumb/doc:src}" /></td>
+                        <td><img src="{$CDN}{doc:File[1]/doc:Obverse/doc:Thumb/doc:src}" /></td>
                         <td>
                             <p>
                                 <xsl:apply-templates select="." mode="link" />

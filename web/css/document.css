@@ -74,13 +74,13 @@
     display: flex;
     flex-flow: row wrap;
 }
-@media only screen and (max-width : 766px) {
+@media only screen and (max-width : 768px) {
     #files .face:hover > div,
     #files .face:active > div {
         width: 100%;
     }
 }
-@media only screen and (min-width : 766px) {
+@media only screen and (min-width : 768px) {
     #files .face  h6 {
         font-size: 2rem;
     }
@@ -97,7 +97,7 @@
     }
 }
 
-@media only screen and (min-width : 1022px) {
+@media only screen and (min-width : 900px) {
     #main {
         height: 100%;
     }
@@ -200,7 +200,7 @@
     
 }
 
-@media only screen and (min-width : 1278px) {
+@media only screen and (min-width : 1200px) {
     #header {
         -webkit-flex: 1 20%;
         flex: 1 20%;

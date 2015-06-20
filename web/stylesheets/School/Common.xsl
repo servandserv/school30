@@ -24,6 +24,15 @@
 	omit-xml-declaration="no"
 	doctype-public="-//W3C//DTD XHTML 1.1//EN"
 	doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" />
+	
+<xsl:variable name="CDN" select="'http://www.school-30.com/images'" />
+<xsl:variable name="TRANS" select="''" />
+<xsl:variable name="LARGE" select="'.large.jpg'" />
+<xsl:variable name="W640XL" select="'.thumb.640xl.jpg'" />
+<!--xsl:variable name="CDN" select="'http://res.cloudinary.com/school-30/image/upload'" />
+<xsl:variable name="TRANS" select="'/w_600,c_limit'" />
+<xsl:variable name="W640XL" select="''" /-->
+
 
 <xsl:template name="common-header">
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
@@ -178,7 +187,7 @@
         </xsl:if>
         <div>
             <p>
-                <a href="digests/{dig:ID}/sources"><xsl:value-of select="dig:title" /></a>
+                <a href="{$ROOT}api/digests/{dig:ID}/sources"><xsl:value-of select="dig:title" /></a>
             </p>
         </div>
     </li>
@@ -211,6 +220,14 @@
         <xsl:when test="substring(.,6,2) = '01'">НОЯБРЯ</xsl:when>
         <xsl:otherwise>ДЕКАБРЯ</xsl:otherwise>
     </xsl:choose>
+</xsl:template>
+
+<xsl:template name="loader">
+    <div id="loader">
+        <div>
+            <i class="fa fa-spinner fa-spin"></i>
+        </div>
+    </div>
 </xsl:template>
 
 </xsl:stylesheet>

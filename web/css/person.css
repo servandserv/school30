@@ -48,7 +48,7 @@
     margin-top: 1rem;
 }
 
-@media only screen and (min-width : 1022px) {
+@media only screen and (min-width : 900px) {
     #main {
         height: 100%;
     
@@ -107,7 +107,7 @@
         margin-left:1%;
     }
 }
-@media only screen and (min-width : 1278px) {
+@media only screen and (min-width : 1200px) {
     #header {
         -webkit-flex: 25 25%;
         flex: 25 25%;
@@ -133,7 +133,7 @@
         max-width: 32%;
     }
 }
-@media only screen and (min-width : 2046px) {
+@media only screen and (min-width : 2000px) {
     #header {
         -webkit-flex: 20 20%;
         flex: 20 20%;

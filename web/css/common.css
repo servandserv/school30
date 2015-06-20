@@ -10,6 +10,9 @@ body {
     height: 100%;
     -webkit-animation: bugfix infinite 1s;
 }
+#loader {
+    display: none;
+}
 /* navigation panel */
 #nav {
     position: fixed;
@@ -53,7 +56,7 @@ body {
     -webkit-flex: 1 100%;
     flex: 1 100%;
 }
-@media only screen and (max-width : 766px) {
+@media only screen and (max-width : 768px) {
     #main > div {
         -webkit-flex: 1 100%;
         flex: 1 100%;
@@ -107,6 +110,9 @@ ul.share-buttons li a[title='Мой Мир@mail.ru'] {
 }
 ul.share-buttons li a[title='Google+'] {
     background-position: -126px 0;
+}
+ul.share-buttons li a {
+    border-bottom: 0;
 }
 
 /*#docs, #files {
@@ -283,4 +289,5 @@ ul.share-buttons li a[title='Google+'] {
 #docs div.image-control-panel a,
 #files div.image-control-panel a {
     text-decoration: none;
+    border: none;
 }

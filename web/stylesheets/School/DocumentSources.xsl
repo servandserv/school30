@@ -153,7 +153,7 @@
                         <xsl:when test="$rev">
                             <xsl:attribute name="class">flipper</xsl:attribute>
                             <xsl:attribute name="style">
-                                background: url(http://www.school-30.com/images<xsl:value-of select="$rev" />) no-repeat center center;
+                                background: url(<xsl:value-of select="$CDN" /><xsl:value-of select="$TRANS" /><xsl:value-of select="$rev" />) no-repeat center center;
                                 background-size: cover;
                                 max-width: <xsl:value-of select="$width" />px;
                             </xsl:attribute>
@@ -164,7 +164,7 @@
                             <xsl:attribute name="style">position:relative</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
-                    <img src="http://www.school-30.com/images{$obv}" />
+                    <img src="{$CDN}{$TRANS}{$obv}" />
                     <xsl:for-each select="doc:Obverse/doc:Large/doc:Area">
                         <xsl:variable name="ref" select="res:Ref/res:href" />
                         <div class="face"
@@ -173,7 +173,7 @@
                                 <xsl:variable name="k" select="160 div doc:width div 1.8" />
                                 <div>
                                 <div style="width:{doc:width * $k * 1.8}px;height:{doc:height * $k * 1.8}px;">
-                                    <img src="http://www.school-30.com/images{$obv}" 
+                                    <img src="{$CDN}{$TRANS}{$obv}" 
                                         style="position:absolute;left:{ doc:width * $k * 0.4 - doc:x * $k}px;top:{doc:height * $k * 0.4 - doc:y * $k }px;width:{$width * $k}px;height:{$height * $k}px;"/>
                                 </div>
                                 <h6>

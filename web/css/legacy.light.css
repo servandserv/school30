@@ -10,7 +10,8 @@ small {
 }
 a {
     font-weight: normal;
-    /*color: rgba(128,0,0,1);*/
+    text-decoration: none;
+    border-bottom: 1px dotted;
 }
 h2, h6, p, small {
     font-weight: normal;
@@ -23,7 +24,7 @@ small {
     background-color: rgba(0,0,0,.75); 
 }
 #main > .menu { 
-    background-color: rgba(0,0,0,.5); 
+    background-color: rgba(0,0,0,.75); 
 }
 #header small, #header p, #header h1, #header h2, #header h3, #header h4, #header h5, #header h6, #header strong {
     color: #fff;
@@ -48,7 +49,7 @@ small {
 #files .face h6 {
     color: #000;
 }
-@media only screen and (min-width : 1022px) {
+@media only screen and (min-width : 900px) {
     /*
     #menu { 
         background: url(../system/static/old_bg.jpg);
