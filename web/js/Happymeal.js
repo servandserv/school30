@@ -288,7 +288,7 @@
 		var render = function(xml) {
 			if(!templates[this.template]) {
 				if(!waits[this.template]) waits[this.template] = [];
-				waits[this.template].push({view:this,data:data});
+				waits[this.template].push({view:this,data:xml});
 			} else {
 				var temp = templates[this.template];
 				var el = document.getElementById(this.elementId);

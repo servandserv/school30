@@ -26,5 +26,5 @@ school/.ruby-version
 school/doc/*
 
 docs/bin/*
-docs/domain/*
-docs/ucpackage/*
+.htaccess
+web/js/libs/*

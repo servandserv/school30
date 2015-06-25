@@ -65,7 +65,7 @@
             <div id="nav">
                 <ul>
                     <li><a href="#digests">Дайджесты</a></li>
-                    <li><a href="#menu"><i class="fa fa-bars fa-2x"></i></a></li>
+                    <li><a href="#menu"><i class="fa fa-bars fa-2x">&#173;</i></a></li>
                 </ul>
             </div>
             <div id="main">
@@ -136,15 +136,15 @@
                 <div class="image-control-panel">
                     <ul>
                         <!--li>
-                            <a href="#"><i class="fa fa-arrow-up fa-2x"></i></a>
+                            <a href="#"><i class="fa fa-arrow-up fa-2x">&#173;</i></a>
                         </li-->
                         <xsl:if test="$file/doc:Reverse/doc:Thumb/doc:src">
                             <li>
-                                <a href="#"><i class="fa fa-refresh fa-2x"></i></a>
+                                <a href="#"><i class="fa fa-refresh fa-2x">&#173;</i></a>
                             </li>
                         </xsl:if>
                         <li>
-                            <a href="{$ROOT}api/documents/{doc:ID}/sources" title="Подробная информация"><i class="fa fa-arrow-right fa-2x"></i></a>
+                            <a href="{$ROOT}api/documents/{doc:ID}/sources" title="Подробная информация"><i class="fa fa-arrow-right fa-2x">&#173;</i></a>
                         </li>
                     </ul>
                 </div>

@@ -168,6 +168,7 @@
     <h2>Дайджесты</h2>
     <xsl:apply-templates select="$DIGESTS" mode="digests-card-container" />
     <h2><a href="{$ROOT}api/stat">О проекте</a></h2>
+    <ul><li><a href="{$ROOT}index.html">Предыдущая версия</a></li></ul>
     <xsl:call-template name="share-buttons">
         <xsl:with-param name="href" select="$social-href" />
     </xsl:call-template>
@@ -225,7 +226,7 @@
 <xsl:template name="loader">
     <div id="loader">
         <div>
-            <i class="fa fa-spinner fa-spin"></i>
+            <i class="fa fa-spinner fa-spin">&#173;</i>
         </div>
     </div>
 </xsl:template>

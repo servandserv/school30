@@ -35,6 +35,7 @@ body {
 }
 #nav > ul > li:last-child a {
     color: #ffffff;
+    border: none;
 }
 
 #main {

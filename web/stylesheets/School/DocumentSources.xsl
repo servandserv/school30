@@ -60,7 +60,7 @@
             <div id="nav">
                 <ul>
                     <li><a href="#digests">Дайджесты</a></li>
-                    <li><a href="#menu"><i class="fa fa-bars fa-2x"></i></a></li>
+                    <li><a href="#menu"><i class="fa fa-bars fa-2x">&#173;</i></a></li>
                 </ul>
             </div>
             <div id="main">
@@ -192,7 +192,7 @@
                     <ul>
                         <xsl:if test="$rev">
                             <li>
-                                <a href="#"><i class="fa fa-refresh fa-2x"></i></a>
+                                <a href="#"><i class="fa fa-refresh fa-2x">&#173;</i></a>
                             </li>
                         </xsl:if>
                     </ul>
