@@ -93,6 +93,7 @@
 		public function setName (  $val ) {
 			$this->Name = $val;
 			$this->_properties["name"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -100,6 +101,7 @@
 		public function setFace (  $val ) {
 			$this->Face = $val;
 			$this->_properties["face"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -107,6 +109,7 @@
 		public function setBack (  $val ) {
 			$this->Back = $val;
 			$this->_properties["back"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Boolean $val
@@ -114,6 +117,7 @@
 		public function setOpened (  $val ) {
 			$this->Opened = $val;
 			$this->_properties["opened"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -121,6 +125,7 @@
 		public function setComments (  $val ) {
 			$this->Comments = $val;
 			$this->_properties["comments"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Documents\File\Obverse $val
@@ -128,6 +133,7 @@
 		public function setObverse ( \School\Port\Adaptor\Data\School\Documents\File\Obverse $val ) {
 			$this->Obverse = $val;
 			$this->_properties["Obverse"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Documents\File\Reverse $val
@@ -135,6 +141,7 @@
 		public function setReverse ( \School\Port\Adaptor\Data\School\Documents\File\Reverse $val ) {
 			$this->Reverse = $val;
 			$this->_properties["Reverse"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @return \String
@@ -167,13 +174,13 @@
 			return $this->Comments;
 		}
 		/**
-		 * @return \AnyComplexType
+		 * @return School\Port\Adaptor\Data\School\Documents\File\Obverse
 		 */
 		public function getObverse() {
 			return $this->Obverse;
 		}
 		/**
-		 * @return \AnyComplexType
+		 * @return School\Port\Adaptor\Data\School\Documents\File\Reverse
 		 */
 		public function getReverse() {
 			return $this->Reverse;
@@ -237,12 +244,12 @@
 				$xw->writeElement( 'comments', $prop );
 			}
 			if( ($prop = $this->getObverse()) !== NULL ) {
-					$xw->startElement( 'Obverse');
+        			$xw->startElement( 'Obverse');
 					$prop->toXmlWriter( $xw, NULL, NULL, \Adaptor_XML::CONTENTS );
 					$xw->endElement();
 			}
 			if( ($prop = $this->getReverse()) !== NULL ) {
-					$xw->startElement( 'Reverse');
+        			$xw->startElement( 'Reverse');
 					$prop->toXmlWriter( $xw, NULL, NULL, \Adaptor_XML::CONTENTS );
 					$xw->endElement();
 			}
@@ -278,11 +285,11 @@
 					$this->setComments( $xr->readString() );
 					break;
 				case "Obverse":
-					$Obverse = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Documents\File\Obverse");
+					$Obverse = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\File\\Obverse");
 					$this->setObverse( $Obverse->fromXmlReader( $xr ) );
 					break;
 				case "Reverse":
-					$Reverse = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Documents\File\Reverse");
+					$Reverse = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\File\\Reverse");
 					$this->setReverse( $Reverse->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -321,12 +328,12 @@
 				$this->setComments($props["comments"]);
 			}
 			if(isset($props["Obverse"])) {
-				$Obverse = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Documents\File\Obverse");
+				$Obverse = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\File\\Obverse");
 				$Obverse->fromJSON($props["Obverse"]);
 				$this->setObverse($Obverse);
 			}
 			if(isset($props["Reverse"])) {
-				$Reverse = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Documents\File\Reverse");
+				$Reverse = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\File\\Reverse");
 				$Reverse->fromJSON($props["Reverse"]);
 				$this->setReverse($Reverse);
 			}

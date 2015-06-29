@@ -8,7 +8,7 @@ use \School\Port\Adaptor\Data\School\Unions;
 class FindFormsUseCase {
 
 	const START=0;
-	const COUNT=100;
+	const COUNT=500;
 
 	public function __construct() {
 	}

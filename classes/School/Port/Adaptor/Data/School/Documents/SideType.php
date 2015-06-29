@@ -53,6 +53,7 @@
 		public function setName (  $val ) {
 			$this->Name = $val;
 			$this->_properties["name"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Documents\SideType\Large $val
@@ -60,6 +61,7 @@
 		public function setLarge ( \School\Port\Adaptor\Data\School\Documents\SideType\Large $val ) {
 			$this->Large = $val;
 			$this->_properties["Large"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Documents\SideType\Thumb $val
@@ -67,6 +69,7 @@
 		public function setThumb ( \School\Port\Adaptor\Data\School\Documents\SideType\Thumb $val ) {
 			$this->Thumb = $val;
 			$this->_properties["Thumb"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @return \String
@@ -75,13 +78,13 @@
 			return $this->Name;
 		}
 		/**
-		 * @return \AnyComplexType
+		 * @return School\Port\Adaptor\Data\School\Documents\SideType\Large
 		 */
 		public function getLarge() {
 			return $this->Large;
 		}
 		/**
-		 * @return \AnyComplexType
+		 * @return School\Port\Adaptor\Data\School\Documents\SideType\Thumb
 		 */
 		public function getThumb() {
 			return $this->Thumb;
@@ -133,12 +136,12 @@
 				$xw->writeElement( 'name', $prop );
 			}
 			if( ($prop = $this->getLarge()) !== NULL ) {
-					$xw->startElement( 'Large');
+        			$xw->startElement( 'Large');
 					$prop->toXmlWriter( $xw, NULL, NULL, \Adaptor_XML::CONTENTS );
 					$xw->endElement();
 			}
 			if( ($prop = $this->getThumb()) !== NULL ) {
-					$xw->startElement( 'Thumb');
+        			$xw->startElement( 'Thumb');
 					$prop->toXmlWriter( $xw, NULL, NULL, \Adaptor_XML::CONTENTS );
 					$xw->endElement();
 			}
@@ -162,11 +165,11 @@
 					$this->setName( $xr->readString() );
 					break;
 				case "Large":
-					$Large = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Documents\SideType\Large");
+					$Large = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\SideType\\Large");
 					$this->setLarge( $Large->fromXmlReader( $xr ) );
 					break;
 				case "Thumb":
-					$Thumb = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Documents\SideType\Thumb");
+					$Thumb = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\SideType\\Thumb");
 					$this->setThumb( $Thumb->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -193,12 +196,12 @@
 				$this->setName($props["name"]);
 			}
 			if(isset($props["Large"])) {
-				$Large = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Documents\SideType\Large");
+				$Large = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\SideType\\Large");
 				$Large->fromJSON($props["Large"]);
 				$this->setLarge($Large);
 			}
 			if(isset($props["Thumb"])) {
-				$Thumb = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Documents\SideType\Thumb");
+				$Thumb = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\SideType\\Thumb");
 				$Thumb->fromJSON($props["Thumb"]);
 				$this->setThumb($Thumb);
 			}

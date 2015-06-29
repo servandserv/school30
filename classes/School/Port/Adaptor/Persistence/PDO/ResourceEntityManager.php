@@ -32,6 +32,10 @@ class ResourceEntityManager {
 					$resource = new \School\Port\Adaptor\Data\School\Unions\Form();
 					$resource->fromXmlStr($row["xmlview"]);
 					break;
+			    case "event":
+					$resource = new \School\Port\Adaptor\Data\School\Events\Event();
+					$resource->fromXmlStr($row["xmlview"]);
+					break;
 				default:
 					$resource = new \School\Port\Adaptor\Data\School\Resources\Resource();
 					$resource->fromXmlStr($row["xmlview"]);

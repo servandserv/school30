@@ -83,6 +83,7 @@
     #forms h2,
     #unions h2,
     #digest-dests h2,
+    #events-dests h2,
     .menu h2 {
         margin: 0 3rem;
     }
@@ -92,7 +93,9 @@
     #forms ul,
     #unions ul,
     #digest-dests ul,
-    .menu ul {
+    #events-dests ul,
+    .menu ul,
+    #header > ul {
         margin:0 3rem;
     }
 

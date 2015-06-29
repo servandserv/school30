@@ -27,6 +27,7 @@
 		public function setUnion ( \School\Port\Adaptor\Data\School\Unions\Union $val ) {
 			$this->Union[] = $val;
 			$this->_properties["Union"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Unions\Union[]
@@ -36,7 +37,7 @@
 			$this->_properties["Union"]["text"] = $vals;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Unions\Union | []
 		 */
 		public function getUnion($index = null) {
 			if( $index !== null ) {
@@ -111,7 +112,7 @@
 		public function elementsFromXmlReader ( \XMLReader &$xr ) {
 			switch ( $xr->localName ) {
 				case "Union":
-					$Union = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Unions\Union");
+					$Union = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Unions\\Union");
 					$this->setUnion( $Union->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -137,14 +138,14 @@
 			if(isset($props["Union"])) {
 				if( is_array($props["Union"]) ) {
 					foreach($props["Union"] as $k=>$v) {
-						$Union = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Unions\Union");
+						$Union = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Unions\\Union");
 						$Union->fromJSON($v);
 						$this->setUnion($Union);
 					}
 				}
 			} elseif(array_keys($props) == array_keys(array_keys($props))) {
 				foreach($props as $v) {
-					$Union = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Unions\Union");
+					$Union = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Unions\\Union");
 					$Union->fromJSON($v);
 					$this->setUnion($Union);
 				}

@@ -9,11 +9,12 @@
 	xmlns:doc="urn:ru:battleship:School:Documents"
 	xmlns:link="urn:ru:battleship:School:Links"
 	xmlns:dig="urn:ru:battleship:School:Digests"
+	xmlns:ev="urn:ru:battleship:School:Events"
 	xmlns:exsl="http://exslt.org/common"
 	xmlns:wadlext="urn:wadlext"
 	xmlns:ns="urn:namespace"
 	extension-element-prefixes="exsl"
-	exclude-result-prefixes="xsl html res pers un doc link dig wadlext ns"
+	exclude-result-prefixes="xsl html res pers un doc link dig ev wadlext ns"
 	version="1.0">
 
 <xsl:output
@@ -67,8 +68,8 @@
                 <div id="header" class="html">
                     <h6>Фотоархив Ижевского ественно-гуманитарного лицея «Школа № 30»</h6>
                     <!--h1>Документ</h1-->
-                    <!--h1><xsl:value-of select="doc:Documents/doc:Document/doc:year" /></h1-->
-                    <h1><xsl:value-of select="doc:Documents/doc:Document/doc:comments" /></h1>
+                    <h1><xsl:value-of select="doc:Documents/doc:Document/doc:year" /></h1>
+                    <h4><xsl:value-of select="doc:Documents/doc:Document/doc:comments" /></h4>
                     <div class="menu">
                         <xsl:call-template name="menu">
                             <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/documents/',doc:Documents/doc:Document/doc:ID,'/sources')" />
@@ -95,6 +96,7 @@
                                     <xsl:apply-templates select="pers:Staff" />
                                     <xsl:apply-templates select="un:Forms" />
                                     <xsl:apply-templates select="un:Unions" />
+                                    <xsl:apply-templates select="$DESTINATIONS/ev:Events" />
                                     <xsl:apply-templates select="$DESTINATIONS/dig:Digests" />
                                 </div>
                                 <xsl:apply-templates select="pers:Persons" />
@@ -104,6 +106,7 @@
                                     <xsl:apply-templates select="pers:Persons" />
                                     <xsl:apply-templates select="un:Forms" />
                                     <xsl:apply-templates select="un:Unions" />
+                                    <xsl:apply-templates select="$DESTINATIONS/ev:Events" />
                                     <xsl:apply-templates select="$DESTINATIONS/dig:Digests" />
                                 </div>
                                 <xsl:apply-templates select="pers:Staff" />
@@ -152,10 +155,14 @@
                     <xsl:choose>
                         <xsl:when test="$rev">
                             <xsl:attribute name="class">flipper</xsl:attribute>
-                            <xsl:attribute name="style">
+                            <!--xsl:attribute name="style">
                                 background: url(<xsl:value-of select="$CDN" /><xsl:value-of select="$TRANS" /><xsl:value-of select="$rev" />) no-repeat center center;
                                 background-size: cover;
                                 max-width: <xsl:value-of select="$width" />px;
+                            </xsl:attribute-->
+                            <xsl:attribute name="style">
+                                background: url(<xsl:value-of select="$CDN" /><xsl:value-of select="$TRANS" /><xsl:value-of select="$rev" />) no-repeat center center;
+                                background-size: cover;
                             </xsl:attribute>
                             <input type="checkbox" name="slider__check-{parent::*/doc:ID}" class="slider__check" id="slider__check-{parent::*/doc:ID}-1" checked="checked" />
                             <label for="slider__check-{parent::*/doc:ID}-1" class="slider__label">1</label>
@@ -258,6 +265,7 @@
 </xsl:template>
 
 <xsl:template match="dig:Digests">
+    <xsl:if test="dig:Digest">
     <div id="digest-dests">
         <h2>Опубликован</h2>
         <ul>
@@ -268,6 +276,22 @@
             </xsl:for-each>
         </ul>
     </div>
+    </xsl:if>
+</xsl:template>
+
+<xsl:template match="ev:Events">
+    <xsl:if test="ev:Event">
+    <div id="events-dests">
+        <h2>Связан с событиями</h2>
+        <ul>
+            <xsl:for-each select="ev:Event">
+                <li>
+                    <p><a href="{$ROOT}api/events/{ev:ID}/sources"><xsl:value-of select="concat(ev:dt,', ',ev:name)" /></a></p>
+                </li>
+            </xsl:for-each>
+        </ul>
+    </div>
+    </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

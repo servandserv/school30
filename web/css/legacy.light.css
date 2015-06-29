@@ -39,7 +39,7 @@ small {
 }
 
 .menu p, .menu h1, .menu h2, .menu h3, .menu h4, .menu h5, .menu h6,  .menu a, .menu small,
-#copy small {
+#copy small, #header a {
     color: #fff;
 }
 #files .face h6 {

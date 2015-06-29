@@ -75,6 +75,7 @@
 		public function setX (  $val ) {
 			$this->X = $val;
 			$this->_properties["x"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Double $val
@@ -82,6 +83,7 @@
 		public function setY (  $val ) {
 			$this->Y = $val;
 			$this->_properties["y"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Double $val
@@ -89,6 +91,7 @@
 		public function setWidth (  $val ) {
 			$this->Width = $val;
 			$this->_properties["width"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Double $val
@@ -96,6 +99,7 @@
 		public function setHeight (  $val ) {
 			$this->Height = $val;
 			$this->_properties["height"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Resources\Ref $val
@@ -103,6 +107,7 @@
 		public function setRef ( \School\Port\Adaptor\Data\School\Resources\Ref $val ) {
 			$this->Ref[] = $val;
 			$this->_properties["Ref"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Resources\Ref[]
@@ -136,7 +141,7 @@
 			return $this->Height;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Resources\Ref | []
 		 */
 		public function getRef($index = null) {
 			if( $index !== null ) {
@@ -235,7 +240,7 @@
 					$this->setHeight( $xr->readString() );
 					break;
 				case "Ref":
-					$Ref = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Resources\Ref");
+					$Ref = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Resources\\Ref");
 					$this->setRef( $Ref->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -273,7 +278,7 @@
 			if(isset($props["Ref"])) {
 				if( is_array($props["Ref"]) ) {
 					foreach($props["Ref"] as $k=>$v) {
-						$Ref = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Resources\Ref");
+						$Ref = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Resources\\Ref");
 						$Ref->fromJSON($v);
 						$this->setRef($Ref);
 					}

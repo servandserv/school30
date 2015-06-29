@@ -38,6 +38,7 @@
 		public function setRef ( \School\Port\Adaptor\Data\School\Resources\Ref $val ) {
 			$this->Ref[] = $val;
 			$this->_properties["Ref"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Resources\Ref[]
@@ -52,6 +53,7 @@
 		public function setPerson ( \School\Port\Adaptor\Data\School\Persons\Person $val ) {
 			$this->Person[] = $val;
 			$this->_properties["Person"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Persons\Person[]
@@ -61,7 +63,7 @@
 			$this->_properties["Person"]["text"] = $vals;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Resources\Ref | []
 		 */
 		public function getRef($index = null) {
 			if( $index !== null ) {
@@ -72,7 +74,7 @@
 			return $res;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Persons\Person | []
 		 */
 		public function getPerson($index = null) {
 			if( $index !== null ) {
@@ -152,11 +154,11 @@
 		public function elementsFromXmlReader ( \XMLReader &$xr ) {
 			switch ( $xr->localName ) {
 				case "Ref":
-					$Ref = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Resources\Ref");
+					$Ref = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Resources\\Ref");
 					$this->setRef( $Ref->fromXmlReader( $xr ) );
 					break;
 				case "Person":
-					$Person = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Persons\Person");
+					$Person = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Persons\\Person");
 					$this->setPerson( $Person->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -182,7 +184,7 @@
 			if(isset($props["Ref"])) {
 				if( is_array($props["Ref"]) ) {
 					foreach($props["Ref"] as $k=>$v) {
-						$Ref = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Resources\Ref");
+						$Ref = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Resources\\Ref");
 						$Ref->fromJSON($v);
 						$this->setRef($Ref);
 					}
@@ -191,7 +193,7 @@
 			if(isset($props["Person"])) {
 				if( is_array($props["Person"]) ) {
 					foreach($props["Person"] as $k=>$v) {
-						$Person = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Persons\Person");
+						$Person = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Persons\\Person");
 						$Person->fromJSON($v);
 						$this->setPerson($Person);
 					}

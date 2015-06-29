@@ -27,6 +27,7 @@
 		public function setForm ( \School\Port\Adaptor\Data\School\Unions\Form $val ) {
 			$this->Form[] = $val;
 			$this->_properties["Form"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Unions\Form[]
@@ -36,7 +37,7 @@
 			$this->_properties["Form"]["text"] = $vals;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Unions\Form | []
 		 */
 		public function getForm($index = null) {
 			if( $index !== null ) {
@@ -111,7 +112,7 @@
 		public function elementsFromXmlReader ( \XMLReader &$xr ) {
 			switch ( $xr->localName ) {
 				case "Form":
-					$Form = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Unions\Form");
+					$Form = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Unions\\Form");
 					$this->setForm( $Form->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -137,14 +138,14 @@
 			if(isset($props["Form"])) {
 				if( is_array($props["Form"]) ) {
 					foreach($props["Form"] as $k=>$v) {
-						$Form = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Unions\Form");
+						$Form = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Unions\\Form");
 						$Form->fromJSON($v);
 						$this->setForm($Form);
 					}
 				}
 			} elseif(array_keys($props) == array_keys(array_keys($props))) {
 				foreach($props as $v) {
-					$Form = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Unions\Form");
+					$Form = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Unions\\Form");
 					$Form->fromJSON($v);
 					$this->setForm($Form);
 				}

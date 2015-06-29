@@ -15,6 +15,7 @@
 			$this->addSimpleValidator( 'Forms', new \School\Port\Adaptor\Data\School\Resources\Total\FormsValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\Integer( $tdo->getForms() ), $handler ) );
 			$this->addSimpleValidator( 'Persons', new \School\Port\Adaptor\Data\School\Resources\Total\PersonsValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\Integer( $tdo->getPersons() ), $handler ) );
 			$this->addSimpleValidator( 'Unions', new \School\Port\Adaptor\Data\School\Resources\Total\UnionsValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\Integer( $tdo->getUnions() ), $handler ) );
+			$this->addSimpleValidator( 'Events', new \School\Port\Adaptor\Data\School\Resources\Total\EventsValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\Integer( $tdo->getEvents() ), $handler ) );
 			$this->addSimpleValidator( 'Staff', new \School\Port\Adaptor\Data\School\Resources\Total\StaffValidator( new \Happymeal\Port\Adaptor\Data\XML\Schema\Integer( $tdo->getStaff() ), $handler ) );
 		}
 				
@@ -30,6 +31,8 @@
 			$this->assertMaxOccurs( 'Persons','1' );
 			$this->assertMinOccurs( 'Unions','1' );
 			$this->assertMaxOccurs( 'Unions','1' );
+			$this->assertMinOccurs( 'Events','0' );
+			$this->assertMaxOccurs( 'Events','1' );
 			$this->assertMinOccurs( 'Staff','1' );
 			$this->assertMaxOccurs( 'Staff','1' );
 		}

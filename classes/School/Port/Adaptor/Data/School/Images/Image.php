@@ -104,6 +104,7 @@
 		public function setAutoid (  $val ) {
 			$this->Autoid = $val;
 			$this->_properties["autoid"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -111,6 +112,7 @@
 		public function setID (  $val ) {
 			$this->ID = $val;
 			$this->_properties["ID"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -118,6 +120,7 @@
 		public function setSrc (  $val ) {
 			$this->Src = $val;
 			$this->_properties["src"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -125,6 +128,7 @@
 		public function setName (  $val ) {
 			$this->Name = $val;
 			$this->_properties["name"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -132,6 +136,7 @@
 		public function setWidth (  $val ) {
 			$this->Width = $val;
 			$this->_properties["width"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -139,6 +144,7 @@
 		public function setHeight (  $val ) {
 			$this->Height = $val;
 			$this->_properties["height"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Images\Area $val
@@ -146,6 +152,7 @@
 		public function setArea ( \School\Port\Adaptor\Data\School\Images\Area $val ) {
 			$this->Area[] = $val;
 			$this->_properties["Area"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Images\Area[]
@@ -160,6 +167,7 @@
 		public function setRef ( \School\Port\Adaptor\Data\School\Resources\Ref $val ) {
 			$this->Ref[] = $val;
 			$this->_properties["Ref"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Resources\Ref[]
@@ -205,7 +213,7 @@
 			return $this->Height;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Images\Area | []
 		 */
 		public function getArea($index = null) {
 			if( $index !== null ) {
@@ -216,7 +224,7 @@
 			return $res;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Resources\Ref | []
 		 */
 		public function getRef($index = null) {
 			if( $index !== null ) {
@@ -332,11 +340,11 @@
 					$this->setHeight( $xr->readString() );
 					break;
 				case "Area":
-					$Area = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Images\Area");
+					$Area = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Images\\Area");
 					$this->setArea( $Area->fromXmlReader( $xr ) );
 					break;
 				case "Ref":
-					$Ref = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Resources\Ref");
+					$Ref = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Resources\\Ref");
 					$this->setRef( $Ref->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -380,7 +388,7 @@
 			if(isset($props["Area"])) {
 				if( is_array($props["Area"]) ) {
 					foreach($props["Area"] as $k=>$v) {
-						$Area = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Images\Area");
+						$Area = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Images\\Area");
 						$Area->fromJSON($v);
 						$this->setArea($Area);
 					}
@@ -389,7 +397,7 @@
 			if(isset($props["Ref"])) {
 				if( is_array($props["Ref"]) ) {
 					foreach($props["Ref"] as $k=>$v) {
-						$Ref = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Resources\Ref");
+						$Ref = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Resources\\Ref");
 						$Ref->fromJSON($v);
 						$this->setRef($Ref);
 					}

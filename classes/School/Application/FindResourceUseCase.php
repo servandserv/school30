@@ -38,6 +38,10 @@ class FindResourceUseCase {
 					$resource = new \School\Port\Adaptor\Data\School\Unions\Union();
 					$resource->fromXmlStr($row["xmlview"]);
 					break;
+				case "event":
+					$resource = new \School\Port\Adaptor\Data\School\Events\Event();
+					$resource->fromXmlStr($row["xmlview"]);
+					break;
 			}
 		}
 		if(!isset($resource)) throw new \Exception("Resource `".$row['type']."` ID:$id not found", 404);

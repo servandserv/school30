@@ -172,6 +172,14 @@
 		}
 	});
 	
+	app.Model.Event = Backbone.Model.extend({});
+	app.Collection.Events = Backbone.Collection.extend({
+		model: app.Model.Event,
+		url: function() {
+			return this.prepareURL();
+		}
+	});
+	
 	app.Model.Digest = Backbone.Model.extend({});
 	app.Collection.Digests = Backbone.Collection.extend({
 		model: app.Model.Digest,
@@ -231,6 +239,7 @@
 		render: function () {
 			var self = this;
 			this.$el.html( this.template( { document: this.collection.toJSON()[0] || {} } ) );
+			$("#document-id-cont").html(this.collection.toJSON()[0].ID);
 			materialize('#document-form-cont');
 			//console.log(this.collection.toJSON()[0]);
 			
@@ -611,6 +620,39 @@
 		}
 	});
 	
+	app.View.EventsForm = Backbone.View.extend({
+		el: '#events-form-cont',
+		template: _.template($('#events-form-view').html()),
+		initialize: function() {
+			this.listenTo(this.model,'sync', this.render); // new bind technique, to change event on the View's model
+		},
+		render: function () {
+			var self = this;
+			this.$el.html( this.template( { events: this.model.toJSON().Events || [] } ) );
+			$("#events-counter-cont").html(this.model.toJSON().Events.length);
+			materialize('#events-form-cont');
+			/**
+			 * Управление списком
+			 */
+			document.getElementById("search-event-submit").onclick = function() {
+				var collection = new app.Collection.Events({});
+				collection.prepareURL = function() {
+					return "../school30/api/events";
+				}
+				var view = new app.View.Events({
+					collection: collection
+				});
+			};
+			$('#events-form-cont .link-delete').on('click',function(args) {
+				var link = Happymeal.Locator("School.Port.Adaptor.Data.School.Links.Link");
+				link.setID(args.currentTarget.id);
+				//LinkXmlAdaptor.fetch(link);
+				LinkXmlAdaptor.destroy(link);
+			});
+			return this;
+		}
+	});
+	
 	app.View.DigestsForm = Backbone.View.extend({
 		el: '#digests-form-cont',
 		template: _.template($('#digests-form-view').html()),
@@ -629,7 +671,7 @@
 			var self = this;
 			this.$el.html( this.template( { digests: this.model.toJSON().Digests || [] } ) );
 			$("#digests-counter-cont").html(this.model.toJSON().Digests.length);
-			materialize('#unions-form-cont');
+			materialize('#digests-form-cont');
 			/**
 			 * Управление списком
 			 */
@@ -703,6 +745,31 @@
 				$("#unions-list-modal").closeModal();
 			});
 			$("#unions-list-modal").openModal();
+		}
+	});
+	
+	app.View.Events = Backbone.View.extend({
+		el: '#events-list',
+		template: _.template($('#events-list-view').html()),
+		initialize: function() {
+			this.listenTo(this.collection,'sync', this.render); // new bind technique, to change event on the View's model
+			this.listenTo(this.collection,'ready', this.render); // new bind technique, to change event on the View's model
+			this.collection.fetch(); // fetching the model data from /my/url
+		},
+		render: function() {
+			var collection = this.collection;
+			this.$el.html( this.template({ events: collection.toJSON() }));
+			$(".event-add").on('click','i', function() {
+				var link = Happymeal.Locator("School.Port.Adaptor.Data.School.Links.Link");
+				link.setSource(document.getElementById("document-id").value);
+				link.setDestination(this.getAttribute("id"));
+				link.setType('event');
+				link.setDtStart(document.getElementById("document-year").value);
+				link.setDtEnd(document.getElementById("document-year").value);
+				LinkXmlAdaptor.bindResources(link);
+				$("#events-list-modal").closeModal();
+			});
+			$("#events-list-modal").openModal();
 		}
 	});
 	
@@ -1052,6 +1119,7 @@
 			var personsForm = new app.View.PersonsForm({ model: doc }); 
 			var unionsForm = new app.View.UnionsForm({ model: doc }); 
 			dest = new app.Model.ResourceD({});
+			var eventsForm = new app.View.EventsForm({ model: dest }); 
 			var digestsForm = new app.View.DigestsForm({ model: dest }); 
 			docs.fetch();
 		},

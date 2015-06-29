@@ -71,6 +71,7 @@
 		public function setX (  $val ) {
 			$this->X = $val;
 			$this->_properties["x"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Double $val
@@ -78,6 +79,7 @@
 		public function setY (  $val ) {
 			$this->Y = $val;
 			$this->_properties["y"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Double $val
@@ -85,6 +87,7 @@
 		public function setWidth (  $val ) {
 			$this->Width = $val;
 			$this->_properties["width"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Double $val
@@ -92,6 +95,7 @@
 		public function setHeight (  $val ) {
 			$this->Height = $val;
 			$this->_properties["height"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Double $val
@@ -99,6 +103,7 @@
 		public function setSize (  $val ) {
 			$this->Size = $val;
 			$this->_properties["size"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @return \Double

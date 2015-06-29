@@ -27,6 +27,7 @@
 		public function setPerson ( \School\Port\Adaptor\Data\School\Persons\Person $val ) {
 			$this->Person[] = $val;
 			$this->_properties["Person"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Persons\Person[]
@@ -36,7 +37,7 @@
 			$this->_properties["Person"]["text"] = $vals;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Persons\Person | []
 		 */
 		public function getPerson($index = null) {
 			if( $index !== null ) {
@@ -111,7 +112,7 @@
 		public function elementsFromXmlReader ( \XMLReader &$xr ) {
 			switch ( $xr->localName ) {
 				case "Person":
-					$Person = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Persons\Person");
+					$Person = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Persons\\Person");
 					$this->setPerson( $Person->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -137,14 +138,14 @@
 			if(isset($props["Person"])) {
 				if( is_array($props["Person"]) ) {
 					foreach($props["Person"] as $k=>$v) {
-						$Person = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Persons\Person");
+						$Person = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Persons\\Person");
 						$Person->fromJSON($v);
 						$this->setPerson($Person);
 					}
 				}
 			} elseif(array_keys($props) == array_keys(array_keys($props))) {
 				foreach($props as $v) {
-					$Person = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Persons\Person");
+					$Person = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Persons\\Person");
 					$Person->fromJSON($v);
 					$this->setPerson($Person);
 				}

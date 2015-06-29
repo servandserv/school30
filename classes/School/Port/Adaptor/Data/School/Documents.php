@@ -27,6 +27,7 @@
 		public function setDocument ( \School\Port\Adaptor\Data\School\Documents\Document $val ) {
 			$this->Document[] = $val;
 			$this->_properties["Document"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Documents\Document[]
@@ -36,7 +37,7 @@
 			$this->_properties["Document"]["text"] = $vals;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Documents\Document | []
 		 */
 		public function getDocument($index = null) {
 			if( $index !== null ) {
@@ -111,7 +112,7 @@
 		public function elementsFromXmlReader ( \XMLReader &$xr ) {
 			switch ( $xr->localName ) {
 				case "Document":
-					$Document = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Documents\Document");
+					$Document = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\Document");
 					$this->setDocument( $Document->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -137,14 +138,14 @@
 			if(isset($props["Document"])) {
 				if( is_array($props["Document"]) ) {
 					foreach($props["Document"] as $k=>$v) {
-						$Document = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Documents\Document");
+						$Document = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\Document");
 						$Document->fromJSON($v);
 						$this->setDocument($Document);
 					}
 				}
 			} elseif(array_keys($props) == array_keys(array_keys($props))) {
 				foreach($props as $v) {
-					$Document = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Documents\Document");
+					$Document = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\Document");
 					$Document->fromJSON($v);
 					$this->setDocument($Document);
 				}

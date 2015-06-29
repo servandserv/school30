@@ -41,6 +41,16 @@ $app->CONTROLLER = function() use ($app) {
         },
         function() use ($app) {
             try {
+                if(!isset( $app->QUERY["start"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["start"] = "0";
+                    $app->QUERY = $query;
+                }
+                if(!isset( $app->QUERY["count"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["count"] = "500";
+                    $app->QUERY = $query;
+                }
                 $app->request( null );
                 $usecase = $app->USECASES."\\FindStaffUseCase";
                 $usecase = new $usecase();
@@ -81,6 +91,16 @@ $app->CONTROLLER = function() use ($app) {
         },
         function() use ($app) {
             try {
+                if(!isset( $app->QUERY["start"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["start"] = "0";
+                    $app->QUERY = $query;
+                }
+                if(!isset( $app->QUERY["count"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["count"] = "100";
+                    $app->QUERY = $query;
+                }
                 $app->request( null );
                 $usecase = $app->USECASES."\\FindPersonsUseCase";
                 $usecase = new $usecase();
@@ -238,6 +258,16 @@ $app->CONTROLLER = function() use ($app) {
         },
         function() use ($app) {
             try {
+                if(!isset( $app->QUERY["start"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["start"] = "0";
+                    $app->QUERY = $query;
+                }
+                if(!isset( $app->QUERY["count"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["count"] = "200";
+                    $app->QUERY = $query;
+                }
                 $app->request( null );
                 $usecase = $app->USECASES."\\FindDocumentsUseCase";
                 $usecase = new $usecase();
@@ -278,6 +308,16 @@ $app->CONTROLLER = function() use ($app) {
         },
         function() use ($app) {
             try {
+                if(!isset( $app->QUERY["start"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["start"] = "0";
+                    $app->QUERY = $query;
+                }
+                if(!isset( $app->QUERY["count"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["count"] = "200";
+                    $app->QUERY = $query;
+                }
                 $app->request( null );
                 $usecase = $app->USECASES."\\FindPublishedUseCase";
                 $usecase = new $usecase();
@@ -518,6 +558,16 @@ $app->CONTROLLER = function() use ($app) {
         },
         function() use ($app) {
             try {
+                if(!isset( $app->QUERY["start"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["start"] = "0";
+                    $app->QUERY = $query;
+                }
+                if(!isset( $app->QUERY["count"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["count"] = "200";
+                    $app->QUERY = $query;
+                }
                 $app->request( null );
                 $usecase = $app->USECASES."\\FindLinksUseCase";
                 $usecase = new $usecase();
@@ -646,6 +696,16 @@ $app->CONTROLLER = function() use ($app) {
         },
         function() use ($app) {
             try {
+                if(!isset( $app->QUERY["start"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["start"] = "0";
+                    $app->QUERY = $query;
+                }
+                if(!isset( $app->QUERY["count"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["count"] = "500";
+                    $app->QUERY = $query;
+                }
                 $app->request( null );
                 $usecase = $app->USECASES."\\FindFormsUseCase";
                 $usecase = new $usecase();
@@ -778,6 +838,16 @@ $app->CONTROLLER = function() use ($app) {
         },
         function() use ($app) {
             try {
+                if(!isset( $app->QUERY["start"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["start"] = "0";
+                    $app->QUERY = $query;
+                }
+                if(!isset( $app->QUERY["count"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["count"] = "100";
+                    $app->QUERY = $query;
+                }
                 $app->request( null );
                 $usecase = $app->USECASES."\\FindUnionsUseCase";
                 $usecase = new $usecase();
@@ -821,6 +891,16 @@ $app->CONTROLLER = function() use ($app) {
         },
         function() use ($app) {
             try {
+                if(!isset( $app->QUERY["start"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["start"] = "0";
+                    $app->QUERY = $query;
+                }
+                if(!isset( $app->QUERY["count"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["count"] = "100";
+                    $app->QUERY = $query;
+                }
                 $app->request( null );
                 $usecase = $app->USECASES."\\FindDigestsUseCase";
                 $usecase = new $usecase();
@@ -939,6 +1019,324 @@ $app->CONTROLLER = function() use ($app) {
                     case 404:
                         $app->throwError($e);
                         break;
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/events",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Events");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                if(!isset( $app->QUERY["start"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["start"] = "0";
+                    $app->QUERY = $query;
+                }
+                if(!isset( $app->QUERY["count"] ) ) { 
+                    $query = $app->QUERY;
+                    $query["count"] = "1000";
+                    $app->QUERY = $query;
+                }
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindEventsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->post("/events",
+        function() use ($app) {
+            try {
+                $app->request( \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Events\Event") );
+                $usecase = $app->USECASES."\\CreateEventUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/events/:id",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Events\Event");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindEventUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    case 404:
+                        $app->throwError($e);
+                        break;
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->put("/events/:id",
+        function() use ($app) {
+            try {
+                $app->request( \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Events\Event") );
+                $usecase = $app->USECASES."\\UpdateEventUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    case 404:
+                        $app->throwError($e);
+                        break;
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->delete("/events/:id",
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\DeleteEventUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    case 404:
+                        $app->throwError($e);
+                        break;
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/events/:id/sources",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Resources");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindEventSourcesUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    case 404:
+                        $app->throwError($e);
+                        break;
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Unions\Cohorts");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Unions\Cohort");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/persons",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Persons");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortPersonsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/documents",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Documents");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortDocumentsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/leagues",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Unions\Leagues");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortLeaguesUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/leagues/:let",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Unions\League");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortLeagueUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/leagues/:let/persons",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Persons");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortLeaguePersonsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/leagues/:let/documents",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Documents");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortLeagueDocumentsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
                     default:
                         $app->throwError(new \Exception("System error",550));
                         break;

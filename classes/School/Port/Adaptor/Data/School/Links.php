@@ -27,6 +27,7 @@
 		public function setLink ( \School\Port\Adaptor\Data\School\Links\Link $val ) {
 			$this->Link[] = $val;
 			$this->_properties["Link"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Links\Link[]
@@ -36,7 +37,7 @@
 			$this->_properties["Link"]["text"] = $vals;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Links\Link | []
 		 */
 		public function getLink($index = null) {
 			if( $index !== null ) {
@@ -111,7 +112,7 @@
 		public function elementsFromXmlReader ( \XMLReader &$xr ) {
 			switch ( $xr->localName ) {
 				case "Link":
-					$Link = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Links\Link");
+					$Link = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Links\\Link");
 					$this->setLink( $Link->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -137,14 +138,14 @@
 			if(isset($props["Link"])) {
 				if( is_array($props["Link"]) ) {
 					foreach($props["Link"] as $k=>$v) {
-						$Link = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Links\Link");
+						$Link = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Links\\Link");
 						$Link->fromJSON($v);
 						$this->setLink($Link);
 					}
 				}
 			} elseif(array_keys($props) == array_keys(array_keys($props))) {
 				foreach($props as $v) {
-					$Link = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Links\Link");
+					$Link = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Links\\Link");
 					$Link->fromJSON($v);
 					$this->setLink($Link);
 				}

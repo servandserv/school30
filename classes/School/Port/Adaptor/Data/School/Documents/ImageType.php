@@ -75,6 +75,7 @@
 		public function setSrc (  $val ) {
 			$this->Src = $val;
 			$this->_properties["src"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -82,6 +83,7 @@
 		public function setWidth (  $val ) {
 			$this->Width = $val;
 			$this->_properties["width"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -89,6 +91,7 @@
 		public function setHeight (  $val ) {
 			$this->Height = $val;
 			$this->_properties["height"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Double $val
@@ -96,6 +99,7 @@
 		public function setSize (  $val ) {
 			$this->Size = $val;
 			$this->_properties["size"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Documents\Area $val
@@ -103,6 +107,7 @@
 		public function setArea ( \School\Port\Adaptor\Data\School\Documents\Area $val ) {
 			$this->Area[] = $val;
 			$this->_properties["Area"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Documents\Area[]
@@ -136,7 +141,7 @@
 			return $this->Size;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Documents\Area | []
 		 */
 		public function getArea($index = null) {
 			if( $index !== null ) {
@@ -235,7 +240,7 @@
 					$this->setSize( $xr->readString() );
 					break;
 				case "Area":
-					$Area = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Documents\Area");
+					$Area = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\Area");
 					$this->setArea( $Area->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -273,7 +278,7 @@
 			if(isset($props["Area"])) {
 				if( is_array($props["Area"]) ) {
 					foreach($props["Area"] as $k=>$v) {
-						$Area = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Documents\Area");
+						$Area = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\Area");
 						$Area->fromJSON($v);
 						$this->setArea($Area);
 					}

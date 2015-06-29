@@ -46,6 +46,11 @@
 		 * @var \String
 		 */
 		protected $Comments = null;
+		/**
+		 * @maxOccurs unbounded 
+		 * @var School\Port\Adaptor\Data\School\Resources\Ref[]
+		 */
+		protected $Ref = [];
 		public function __construct() {
 			parent::__construct();
 			
@@ -97,6 +102,12 @@
 				"minOccurs"=>0,
 				"text"=>$this->Comments
 			);
+			$this->_properties["Ref"] = array(
+				"prop"=>"Ref",
+				"ns"=>"",
+				"minOccurs"=>0,
+				"text"=>$this->Ref
+			);
 		}
 		/**
 		 * @param \Integer $val
@@ -104,6 +115,7 @@
 		public function setAutouid (  $val ) {
 			$this->Autouid = $val;
 			$this->_properties["autouid"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -111,6 +123,7 @@
 		public function setID (  $val ) {
 			$this->ID = $val;
 			$this->_properties["ID"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -118,6 +131,7 @@
 		public function setSource (  $val ) {
 			$this->Source = $val;
 			$this->_properties["source"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -125,6 +139,7 @@
 		public function setDestination (  $val ) {
 			$this->Destination = $val;
 			$this->_properties["destination"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -132,6 +147,7 @@
 		public function setDtStart (  $val ) {
 			$this->DtStart = $val;
 			$this->_properties["dtStart"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -139,6 +155,7 @@
 		public function setDtEnd (  $val ) {
 			$this->DtEnd = $val;
 			$this->_properties["dtEnd"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -146,6 +163,7 @@
 		public function setType (  $val ) {
 			$this->Type = $val;
 			$this->_properties["type"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -153,6 +171,22 @@
 		public function setComments (  $val ) {
 			$this->Comments = $val;
 			$this->_properties["comments"]["text"] = $val;
+			return $this;
+		}
+		/**
+		 * @param School\Port\Adaptor\Data\School\Resources\Ref $val
+		 */
+		public function setRef ( \School\Port\Adaptor\Data\School\Resources\Ref $val ) {
+			$this->Ref[] = $val;
+			$this->_properties["Ref"]["text"][] = $val;
+			return $this;
+		}
+		/**
+		 * @param School\Port\Adaptor\Data\School\Resources\Ref[]
+		 */
+		public function setRefArray ( array $vals ) {
+			$this->Ref = $vals;
+			$this->_properties["Ref"]["text"] = $vals;
 		}
 		/**
 		 * @return \Integer
@@ -201,6 +235,17 @@
 		 */
 		public function getComments() {
 			return $this->Comments;
+		}
+		/**
+		 * @return School\Port\Adaptor\Data\School\Resources\Ref | []
+		 */
+		public function getRef($index = null) {
+			if( $index !== null ) {
+				$res = isset($this->Ref[$index]) ? $this->Ref[$index] : null;
+			} else {
+				$res = $this->Ref;
+			}
+			return $res;
 		}
 		
 		public function validateType( \Happymeal\Port\Adaptor\Data\ValidationHandler $handler ) {
@@ -269,6 +314,11 @@
 			if( ($prop = $this->getComments()) !== NULL ) {
 				$xw->writeElement( 'comments', $prop );
 			}
+			if( $props = $this->getRef() ) {
+				foreach( $props as $prop ) {
+					$prop->toXmlWriter( $xw );
+				}
+			}
 		}
 
 		/**
@@ -308,6 +358,10 @@
 					break;
 				case "comments":
 					$this->setComments( $xr->readString() );
+					break;
+				case "Ref":
+					$Ref = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Resources\\Ref");
+					$this->setRef( $Ref->fromXmlReader( $xr ) );
 					break;
 				default:
 					parent::elementsFromXmlReader( $xr );
@@ -352,6 +406,15 @@
 			}
 			if(isset($props["comments"])) {
 				$this->setComments($props["comments"]);
+			}
+			if(isset($props["Ref"])) {
+				if( is_array($props["Ref"]) ) {
+					foreach($props["Ref"] as $k=>$v) {
+						$Ref = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Resources\\Ref");
+						$Ref->fromJSON($v);
+						$this->setRef($Ref);
+					}
+				}
 			}
 		}
 		

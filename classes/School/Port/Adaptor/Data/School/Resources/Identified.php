@@ -71,6 +71,7 @@
 		public function setPhotos (  $val ) {
 			$this->Photos = $val;
 			$this->_properties["photos"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -78,6 +79,7 @@
 		public function setDocs (  $val ) {
 			$this->Docs = $val;
 			$this->_properties["docs"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -85,6 +87,7 @@
 		public function setArticles (  $val ) {
 			$this->Articles = $val;
 			$this->_properties["articles"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -92,6 +95,7 @@
 		public function setAlbums (  $val ) {
 			$this->Albums = $val;
 			$this->_properties["albums"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -99,6 +103,7 @@
 		public function setLetters (  $val ) {
 			$this->Letters = $val;
 			$this->_properties["letters"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @return \Integer

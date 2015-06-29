@@ -32,6 +32,33 @@
 	</xsd:complexType>
 </xsd:element>
 
+<xsd:element name="Cohorts">
+    <xsd:complexType>
+        <xsd:element ref="Cohort" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Cohort">
+    <xsd:complexType>
+        <xsd:element name="year" type="formYearType" />
+        <xsd:element name="league" type="formLeagueType" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Leagues">
+    <xsd:complexType>
+        <xsd:element name="league" type="formLeagueType" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="League">
+    <xsd:complexType>
+        <xsd:element name="ID" type="formLeagueType" />
+        <xsd:element name="cohort" type="formCohortType" />
+        <xsd:element name="year" type="formYearType" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:complexType>
+</xsd:element>
+
 <xsd:element name="Union">
 	<xsd:complexType>
 	<xsd:annotation>

@@ -63,7 +63,7 @@
 							<h4>Тэги</h4>
 							<ul class="collapsible" data-collapsible="expandable">
 								<li>
-									<div class="collapsible-header"><i class="mdi-action-info-outline"></i>Общая информация о документе</div>
+									<div class="collapsible-header"><i class="mdi-action-info-outline"></i>Общая информация о документе<span id="document-id-cont" class="badge"></span></div>
 									<div id="document-form-cont" class="collapsible-body">
 									</div>
 								</li>
@@ -132,6 +132,22 @@
 								</li>
 								<li>
 									<div class="collapsible-header">
+										<i class="mdi-action-theaters"></i>События<span id="events-counter-cont" class="badge"></span>
+									</div>
+									<div class="collapsible-body">
+										<form class="col s12">
+											<div class="row">
+												<div class="input-field col s3">
+													<a id="search-event-submit" class="waves-effect waves-light btn orange">Search event</a>
+												</div>
+											</div>
+										</form>
+										<div id="events-form-cont" class="col s12">
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="collapsible-header">
 										<i class="mdi-social-public"></i>Дайджесты<span id="digests-counter-cont" class="badge"></span>
 									</div>
 									<div class="collapsible-body">
@@ -188,6 +204,12 @@
 		<div id="unions-list-modal" class="modal" style="padding: 2em;">
 			<h4>Search results</h4>
 			<p id="unions-list">
+			</p>
+			<a href="#" class="waves-effect btn-flat modal-close">Close</a>
+		</div>
+		<div id="events-list-modal" class="modal" style="padding: 2em;">
+			<h4>Search results</h4>
+			<p id="events-list">
 			</p>
 			<a href="#" class="waves-effect btn-flat modal-close">Close</a>
 		</div>
@@ -375,6 +397,18 @@
 			<% } %>
 		</script>
 		
+		<script id="events-form-view" type="text/template">
+			<% if ( events.length != 0 ) { %>
+				<ul class="collection">
+					<% _.each(events, function(event,index) { %>
+						<li class="collection-item"><%= event.dt %>, <%= event.name %><a href="javascript: void(0);" class="secondary-content link-delete" id="<%= event.Link.ID %>">
+							<i class="mdi-content-remove-circle-outline"></i></a>
+						</li>
+					<% }); %>
+				</ul>
+			<% } %>
+		</script>
+		
 		<script id="digests-form-view" type="text/template">
 			<% if ( digests.length != 0 ) { %>
 				<ul class="collection">
@@ -446,6 +480,17 @@
 					<% _.each(unions, function(union,index) { %>
 						<li class="collection-item"><%= union.name %><a href="javascript: void(0);" class="secondary-content union-add">
 						<i id="<%= union.ID %>" class="mdi-content-add-circle"></i></a></li>
+					<% }); %>
+				</ul>
+			</div>
+		</script>
+		
+		<script id="events-list-view" type="text/template">
+			<div class="col s12 m6">
+				<ul class="collection">
+					<% _.each(events, function(event,index) { %>
+						<li class="collection-item"><%= event.dt %>, <%= event.name %><a href="javascript: void(0);" class="secondary-content event-add">
+						<i id="<%= event.ID %>" class="mdi-content-add-circle"></i></a></li>
 					<% }); %>
 				</ul>
 			</div>

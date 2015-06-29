@@ -71,6 +71,7 @@
 		public function setID (  $val ) {
 			$this->ID = $val;
 			$this->_properties["ID"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Date $val
@@ -78,6 +79,7 @@
 		public function setPublished (  $val ) {
 			$this->Published = $val;
 			$this->_properties["published"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -85,6 +87,7 @@
 		public function setTitle (  $val ) {
 			$this->Title = $val;
 			$this->_properties["title"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -92,6 +95,7 @@
 		public function setComments (  $val ) {
 			$this->Comments = $val;
 			$this->_properties["comments"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Links\Link $val
@@ -99,6 +103,7 @@
 		public function setLink ( \School\Port\Adaptor\Data\School\Links\Link $val ) {
 			$this->Link = $val;
 			$this->_properties["Link"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @return \String
@@ -125,7 +130,7 @@
 			return $this->Comments;
 		}
 		/**
-		 * @return \AnyComplexType
+		 * @return School\Port\Adaptor\Data\School\Links\Link
 		 */
 		public function getLink() {
 			return $this->Link;
@@ -217,7 +222,7 @@
 					$this->setComments( $xr->readString() );
 					break;
 				case "Link":
-					$Link = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Links\Link");
+					$Link = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Links\\Link");
 					$this->setLink( $Link->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -253,7 +258,7 @@
 				$this->setComments($props["comments"]);
 			}
 			if(isset($props["Link"])) {
-				$Link = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Links\Link");
+				$Link = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Links\\Link");
 				$Link->fromJSON($props["Link"]);
 				$this->setLink($Link);
 			}

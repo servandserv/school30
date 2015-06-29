@@ -14,6 +14,7 @@
 	xmlns:ns3="urn:ru:battleship:School:Digests"
 	xmlns:ns4="urn:ru:battleship:School:Documents"
 	xmlns:ns5="urn:ru:battleship:School:Links"
+	xmlns:ns6="urn:ru:battleship:School:Events"
 	>
 	 
 	<doc title="School30 API">
@@ -35,6 +36,7 @@
 		<include href="schemas/School/Digests.xsd" />
 		<include href="schemas/School/Documents.xsd" />
 		<include href="schemas/School/Links.xsd" />
+		<include href="schemas/School/Events.xsd" />
 	</grammars>
 	
 	<resources base="http://www.school-30.com/api/v0.1/">
@@ -93,9 +95,9 @@
 						<doc>Параметр для фильтрации списка персон по году рождения. Фильтрация производится по подстроке указанной в параметре.</doc>
 					</param>
 					<param name="start" style="query" type="xsd:integer" default="0">
-						<doc>Номер страницы списка. Если список больше 100 записей, то он разбивается на страницы.</doc>
+						<doc>Номер страницы списка. Если список больше 500 записей, то он разбивается на страницы.</doc>
 					</param>
-					<param name="count" style="query" type="xsd:integer" default="100">
+					<param name="count" style="query" type="xsd:integer" default="500">
 						<doc>максимальное количество записей в списке на одной странице.</doc>
 					</param>
 				</request>
@@ -456,9 +458,9 @@
 						<doc>Правила сортировки списка документов.  autoid==desc,year</doc>
 					</param>
 					<param name="start" style="query" type="xsd:integer" default="0">
-						<doc>Номер страницы коллекции. Если коллекция содержит более 100 записей, то она разбивается на страницы.</doc>
+						<doc>Номер страницы коллекции. Если коллекция содержит более 200 записей, то она разбивается на страницы.</doc>
 					</param>
-					<param name="count" style="query" type="xsd:integer" default="100">
+					<param name="count" style="query" type="xsd:integer" default="200">
 						<doc>Максимальное количество записей в коллекции, отображаемых на одной странице.</doc>
 					</param>
 				</request>
@@ -531,9 +533,9 @@
 							<doc>Время timestamp публикации. Выбираются документы опубликованные позже указанного времени</doc>
 						</param>
 						<param name="start" style="query" type="xsd:integer" default="0">
-							<doc>Номер коллекции списка. Если коллекция содержит более 100 записей, то она разбивается на страницы.</doc>
+							<doc>Номер коллекции списка. Если коллекция содержит более 200 записей, то она разбивается на страницы.</doc>
 						</param>
-						<param name="count" style="query" type="xsd:integer" default="100">
+						<param name="count" style="query" type="xsd:integer" default="200">
 							<doc>Максимальное количество записей в коллекции, отображаемых на одной странице.</doc>
 						</param>
 					</request>
@@ -1009,9 +1011,9 @@
 						<doc>application/json</doc>
 					</param>
 					<param name="start" style="query" type="xsd:integer" default="0">
-						<doc>Номер страницы списка. Если список больше 100 записей, то он разбивается на страницы.</doc>
+						<doc>Номер страницы списка. Если список больше 200 записей, то он разбивается на страницы.</doc>
 					</param>
-					<param name="count" style="query" type="xsd:integer" default="100">
+					<param name="count" style="query" type="xsd:integer" default="200">
 						<doc>максимальное количество записей в списке на одной странице.</doc>
 					</param>
 				</request>
@@ -1247,11 +1249,8 @@
 					<param name="start" style="query" type="xsd:integer" default="0">
 						<doc>Номер страницы коллекции. Если коллекция больше 100 записей, то он разбивается на страницы.</doc>
 					</param>
-					<param name="count" style="query" type="xsd:integer" default="100">
+					<param name="count" style="query" type="xsd:integer" default="500">
 						<doc>Максимальное количество записей в коллекции на одной странице.</doc>
-					</param>
-					<param name="order" style="query" type="xsd:string" default="100">
-						<doc>Порядок сортировки коллекции.</doc>
 					</param>
 				</request>
 				<response status="200">
@@ -1821,6 +1820,525 @@
 					</method>
 				</resource>
 			</resource>
+		</resource>
+		<resource id="events" path="events">
+			<doc title="Список событий связаных с историе школы">
+			</doc>
+			<method name="GET" id="FindEventsUseCase">
+				<doc title="Запрос на получение списка событий">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<param name="dt" style="query" type="xsd:string">
+						<doc>Параметр для фильтрации списка событий по году. Фильтрация производится по подстроке указанной в параметре.</doc>
+					</param>
+					<param name="start" style="query" type="xsd:integer" default="0">
+						<doc>Номер страницы списка. Если список больше 1000 записей, то он разбивается на страницы.</doc>
+					</param>
+					<param name="count" style="query" type="xsd:integer" default="1000">
+						<doc>максимальное количество записей в списке на одной странице.</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="ns6:Events">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<method name="POST" id="CreateEventUseCase">
+				<doc title="Запрос на создание нового события">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="ns6:Event"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="ns6:Event"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="ns6:Event">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="events:id" path="{id}">
+				<doc title="Учетная карточка конкретного события">
+				</doc>
+				<method name="GET" id="FindEventUseCase">
+					<doc title="Запрос на получение учетной карточки конкретного события">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор события</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="ns6:Event">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Событие с данным идентификатором не найдено
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdateEventUseCase">
+					<doc title="Запрос на изменение данных события">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор события</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="ns6:Event"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="ns6:Event"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns6:Event">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Событие с указанным идентификатором не найдено
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeleteEventUseCase">
+					<doc title="Запрос на удаление события">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор события</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns6:Event">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Событие с указаным идентификатором не найдено
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<resource id="events:id:sources" path="sources">
+					<doc title="Коллекция ресурсов проекта имеющих непосредственное отношение к конкретному событию">
+					</doc>
+					<method name="GET" id="FindEventSourcesUseCase">
+						<doc title="Запрос на получение списка ресурсов">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Идентификатор события</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="ns2:Resources">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Событие с указанным идентификатором не найдено
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+			</resource>
+		</resource>
+		<resource id="cohorts" path="cohorts">
+			<doc title="Список поколений выпусков">
+			</doc>
+			<method name="GET" id="FindCohortsUseCase">
+				<doc title="Запрос на получение списка поколений выпусков">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="ns1:Cohorts">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+            </method>
+            <resource id="cohorts:id" path="{id}">
+                <doc title="Персональная карточка поколения">
+                </doc>
+                <method name="GET" id="FindCohortUseCase">
+                    <doc title="Запрос на получение персональной карточки поколения">
+                    </doc>
+                    <request>
+                        <param name="Accept" style="header">
+                            <doc>application/xml</doc>
+                        </param>
+                        <param name="Accept" style="header">
+                            <doc>application/json</doc>
+                        </param>
+                    </request>
+                    <response status="200">
+                        <param name="Etag" style="header" />
+                        <representation mediaType="application/xml; charset=UTF-8" element="ns1:Cohort">
+                            <doc title="OK" >Accept header application/xml</doc>
+                        </representation>
+                        <representation mediaType="application/json; charset=UTF-8">
+                            <doc title="OK">Accept header application/json</doc>
+                        </representation>
+                    </response>
+                    <response status="304">
+                        <param name="Etag" style="header" />
+                    </response>
+                    <response status="550">
+                        <representation mediaType="text/plain">
+                            <doc title="Internal server error">
+                                Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+                            </doc>
+                        </representation>
+                    </response>
+                </method>
+                <resource id="cohorts:id:persons" path="persons">
+                    <doc title="Список персон принадлежащих поколению">
+                    </doc>
+                    <method name="GET" id="FindCohortPersonsUseCase">
+                        <doc title="Запрос на получение списка персон принадлежащих поколению">
+                        </doc>
+                        <request>
+                            <param name="Accept" style="header">
+                                <doc>application/xml</doc>
+                            </param>
+                            <param name="Accept" style="header">
+                                <doc>application/json</doc>
+                            </param>
+                        </request>
+                        <response status="200">
+                            <param name="Etag" style="header" />
+                            <representation mediaType="application/xml; charset=UTF-8" element="ns0:Persons">
+                                <doc title="OK" >Accept header application/xml</doc>
+                            </representation>
+                            <representation mediaType="application/json; charset=UTF-8">
+                                <doc title="OK">Accept header application/json</doc>
+                            </representation>
+                        </response>
+                        <response status="304">
+                            <param name="Etag" style="header" />
+                        </response>
+                        <response status="550">
+                            <representation mediaType="text/plain">
+                                <doc title="Internal server error">
+                                    Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+                                </doc>
+                            </representation>
+                        </response>
+                    </method>
+                </resource>
+                <resource id="cohorts:id:documents" path="documents">
+                    <doc title="Список документов принадлежащих поколению">
+                    </doc>
+                    <method name="GET" id="FindCohortDocumentsUseCase">
+                        <doc title="Запрос на получение списка документов принадлежащих поколению">
+                        </doc>
+                        <request>
+                            <param name="Accept" style="header">
+                                <doc>application/xml</doc>
+                            </param>
+                            <param name="Accept" style="header">
+                                <doc>application/json</doc>
+                            </param>
+                        </request>
+                        <response status="200">
+                            <param name="Etag" style="header" />
+                            <representation mediaType="application/xml; charset=UTF-8" element="ns4:Documents">
+                                <doc title="OK" >Accept header application/xml</doc>
+                            </representation>
+                            <representation mediaType="application/json; charset=UTF-8">
+                                <doc title="OK">Accept header application/json</doc>
+                            </representation>
+                        </response>
+                        <response status="304">
+                            <param name="Etag" style="header" />
+                        </response>
+                        <response status="550">
+                            <representation mediaType="text/plain">
+                                <doc title="Internal server error">
+                                    Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+                                </doc>
+                            </representation>
+                        </response>
+                    </method>
+                </resource>
+                <resource id="cohorts:id:leagues" path="leagues">
+                    <doc title="Список лиг принадлежащих поколению">
+                    </doc>
+                    <method name="GET" id="FindCohortLeaguesUseCase">
+                        <doc title="Запрос на получение списка лиг принадлежащих поколению">
+                        </doc>
+                        <request>
+                            <param name="Accept" style="header">
+                                <doc>application/xml</doc>
+                            </param>
+                            <param name="Accept" style="header">
+                                <doc>application/json</doc>
+                            </param>
+                        </request>
+                        <response status="200">
+                            <param name="Etag" style="header" />
+                            <representation mediaType="application/xml; charset=UTF-8" element="ns1:Leagues">
+                                <doc title="OK" >Accept header application/xml</doc>
+                            </representation>
+                            <representation mediaType="application/json; charset=UTF-8">
+                                <doc title="OK">Accept header application/json</doc>
+                            </representation>
+                        </response>
+                        <response status="304">
+                            <param name="Etag" style="header" />
+                        </response>
+                        <response status="550">
+                            <representation mediaType="text/plain">
+                                <doc title="Internal server error">
+                                    Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+                                </doc>
+                            </representation>
+                        </response>
+                    </method>
+                    <resource id="cohorts:id:leagues:let" path="{let}">
+                        <doc title="Учетная карточка лиги принадлежащей конкретному поколению">
+                        </doc>
+                        <method name="GET" id="FindCohortLeagueUseCase">
+                            <doc title="Запрос на получение учетной карточки лиги принадлежащей конкретному поколению">
+                            </doc>
+                            <request>
+                                <param name="Accept" style="header">
+                                    <doc>application/xml</doc>
+                                </param>
+                                <param name="Accept" style="header">
+                                    <doc>application/json</doc>
+                                </param>
+                            </request>
+                            <response status="200">
+                                <param name="Etag" style="header" />
+                                <representation mediaType="application/xml; charset=UTF-8" element="ns1:League">
+                                    <doc title="OK" >Accept header application/xml</doc>
+                                </representation>
+                                <representation mediaType="application/json; charset=UTF-8">
+                                    <doc title="OK">Accept header application/json</doc>
+                                </representation>
+                            </response>
+                            <response status="304">
+                                <param name="Etag" style="header" />
+                            </response>
+                            <response status="550">
+                                <representation mediaType="text/plain">
+                                    <doc title="Internal server error">
+                                        Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+                                    </doc>
+                                </representation>
+                            </response>
+                        </method>
+                        <resource id="cohorts:id:leagues:let:persons" path="persons">
+                            <doc title="Список персон принадлежащих лиге конкретного поколения">
+                            </doc>
+                            <method name="GET" id="FindCohortLeaguePersonsUseCase">
+                                <doc title="Запрос на получение списка персон принадлежащих лиге конкретного поколения">
+                                </doc>
+                                <request>
+                                    <param name="Accept" style="header">
+                                        <doc>application/xml</doc>
+                                    </param>
+                                    <param name="Accept" style="header">
+                                        <doc>application/json</doc>
+                                    </param>
+                                </request>
+                                <response status="200">
+                                    <param name="Etag" style="header" />
+                                    <representation mediaType="application/xml; charset=UTF-8" element="ns0:Persons">
+                                        <doc title="OK" >Accept header application/xml</doc>
+                                    </representation>
+                                    <representation mediaType="application/json; charset=UTF-8">
+                                        <doc title="OK">Accept header application/json</doc>
+                                    </representation>
+                                </response>
+                                <response status="304">
+                                    <param name="Etag" style="header" />
+                                </response>
+                                <response status="550">
+                                    <representation mediaType="text/plain">
+                                        <doc title="Internal server error">
+                                            Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+                                        </doc>
+                                    </representation>
+                                </response>
+                            </method>
+                        </resource>
+                        <resource id="cohorts:id:leagues:let:documents" path="documents">
+                            <doc title="Список документов принадлежащих лиге конкретного поколения">
+                            </doc>
+                            <method name="GET" id="FindCohortLeagueDocumentsUseCase">
+                                <doc title="Запрос на получение списка документов принадлежащих лиге конкретного поколения">
+                                </doc>
+                                <request>
+                                    <param name="Accept" style="header">
+                                        <doc>application/xml</doc>
+                                    </param>
+                                    <param name="Accept" style="header">
+                                        <doc>application/json</doc>
+                                    </param>
+                                </request>
+                                <response status="200">
+                                    <param name="Etag" style="header" />
+                                    <representation mediaType="application/xml; charset=UTF-8" element="ns4:Documents">
+                                        <doc title="OK" >Accept header application/xml</doc>
+                                    </representation>
+                                    <representation mediaType="application/json; charset=UTF-8">
+                                        <doc title="OK">Accept header application/json</doc>
+                                    </representation>
+                                </response>
+                                <response status="304">
+                                    <param name="Etag" style="header" />
+                                </response>
+                                <response status="550">
+                                    <representation mediaType="text/plain">
+                                        <doc title="Internal server error">
+                                            Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+                                        </doc>
+                                    </representation>
+                                </response>
+                            </method>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
 		</resource>
 	</resources>
 </application>

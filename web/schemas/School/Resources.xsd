@@ -7,12 +7,14 @@
 	xmlns:ns1="urn:ru:battleship:School:Unions"
 	xmlns:ns2="urn:ru:battleship:School:Documents"
 	xmlns:ns3="urn:ru:battleship:School:Digests"
+	xmlns:ns4="urn:ru:battleship:School:Events"
 	targetNamespace="urn:ru:battleship:School:Resources">
 
 <xsd:import schemaLocation="Persons.xsd" namespace="urn:ru:battleship:School:Persons" /> 
 <xsd:import schemaLocation="Unions.xsd" namespace="urn:ru:battleship:School:Unions" /> 
 <xsd:import schemaLocation="Documents.xsd" namespace="urn:ru:battleship:School:Documents" /> 
 <xsd:import schemaLocation="Digests.xsd" namespace="urn:ru:battleship:School:Digests" /> 
+<xsd:import schemaLocation="Events.xsd" namespace="urn:ru:battleship:School:Events" /> 
 
 <xsd:element name="Resources">
 	<xsd:complexType>
@@ -24,6 +26,7 @@
 			<xsd:element ref="ns1:Unions" minOccurs="0" />
 			<xsd:element ref="ns2:Documents" minOccurs="0" />
 			<xsd:element ref="ns3:Digests" minOccurs="0" />
+			<xsd:element ref="ns4:Events" minOccurs="0" />
 		</xsd:sequence>
 	</xsd:complexType>
 </xsd:element>
@@ -76,6 +79,7 @@
 			<xsd:element name="forms" type="xsd:integer" minOccurs="1" />
 			<xsd:element name="persons" type="xsd:integer" minOccurs="1" />
 			<xsd:element name="unions" type="xsd:integer" minOccurs="1" />
+			<xsd:element name="events" type="xsd:integer" minOccurs="0" />
 			<xsd:element name="staff" type="xsd:integer" minOccurs="1" />
 		</xsd:sequence>
 	</xsd:complexType>

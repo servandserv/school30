@@ -27,6 +27,7 @@
 		public function setDigest ( \School\Port\Adaptor\Data\School\Digests\Digest $val ) {
 			$this->Digest[] = $val;
 			$this->_properties["Digest"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Digests\Digest[]
@@ -36,7 +37,7 @@
 			$this->_properties["Digest"]["text"] = $vals;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Digests\Digest | []
 		 */
 		public function getDigest($index = null) {
 			if( $index !== null ) {
@@ -111,7 +112,7 @@
 		public function elementsFromXmlReader ( \XMLReader &$xr ) {
 			switch ( $xr->localName ) {
 				case "Digest":
-					$Digest = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Digests\Digest");
+					$Digest = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Digests\\Digest");
 					$this->setDigest( $Digest->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -137,14 +138,14 @@
 			if(isset($props["Digest"])) {
 				if( is_array($props["Digest"]) ) {
 					foreach($props["Digest"] as $k=>$v) {
-						$Digest = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Digests\Digest");
+						$Digest = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Digests\\Digest");
 						$Digest->fromJSON($v);
 						$this->setDigest($Digest);
 					}
 				}
 			} elseif(array_keys($props) == array_keys(array_keys($props))) {
 				foreach($props as $v) {
-					$Digest = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Digests\Digest");
+					$Digest = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Digests\\Digest");
 					$Digest->fromJSON($v);
 					$this->setDigest($Digest);
 				}

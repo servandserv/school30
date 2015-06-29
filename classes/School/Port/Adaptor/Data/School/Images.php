@@ -27,6 +27,7 @@
 		public function setImage ( \School\Port\Adaptor\Data\School\Images\Image $val ) {
 			$this->Image[] = $val;
 			$this->_properties["Image"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Images\Image[]
@@ -36,7 +37,7 @@
 			$this->_properties["Image"]["text"] = $vals;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Images\Image | []
 		 */
 		public function getImage($index = null) {
 			if( $index !== null ) {
@@ -111,7 +112,7 @@
 		public function elementsFromXmlReader ( \XMLReader &$xr ) {
 			switch ( $xr->localName ) {
 				case "Image":
-					$Image = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Images\Image");
+					$Image = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Images\\Image");
 					$this->setImage( $Image->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -137,14 +138,14 @@
 			if(isset($props["Image"])) {
 				if( is_array($props["Image"]) ) {
 					foreach($props["Image"] as $k=>$v) {
-						$Image = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Images\Image");
+						$Image = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Images\\Image");
 						$Image->fromJSON($v);
 						$this->setImage($Image);
 					}
 				}
 			} elseif(array_keys($props) == array_keys(array_keys($props))) {
 				foreach($props as $v) {
-					$Image = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Images\Image");
+					$Image = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Images\\Image");
 					$Image->fromJSON($v);
 					$this->setImage($Image);
 				}

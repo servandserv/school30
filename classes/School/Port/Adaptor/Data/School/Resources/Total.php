@@ -35,6 +35,11 @@
 		 * @maxOccurs 1 
 		 * @var \Integer
 		 */
+		protected $Events = null;
+		/**
+		 * @maxOccurs 1 
+		 * @var \Integer
+		 */
 		protected $Staff = null;
 		public function __construct() {
 			parent::__construct();
@@ -69,6 +74,12 @@
 				"minOccurs"=>1,
 				"text"=>$this->Unions
 			);
+			$this->_properties["events"] = array(
+				"prop"=>"Events",
+				"ns"=>"",
+				"minOccurs"=>0,
+				"text"=>$this->Events
+			);
 			$this->_properties["staff"] = array(
 				"prop"=>"Staff",
 				"ns"=>"",
@@ -82,6 +93,7 @@
 		public function setDocuments (  $val ) {
 			$this->Documents = $val;
 			$this->_properties["documents"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -89,6 +101,7 @@
 		public function setFiles (  $val ) {
 			$this->Files = $val;
 			$this->_properties["files"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -96,6 +109,7 @@
 		public function setForms (  $val ) {
 			$this->Forms = $val;
 			$this->_properties["forms"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -103,6 +117,7 @@
 		public function setPersons (  $val ) {
 			$this->Persons = $val;
 			$this->_properties["persons"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -110,6 +125,15 @@
 		public function setUnions (  $val ) {
 			$this->Unions = $val;
 			$this->_properties["unions"]["text"] = $val;
+			return $this;
+		}
+		/**
+		 * @param \Integer $val
+		 */
+		public function setEvents (  $val ) {
+			$this->Events = $val;
+			$this->_properties["events"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -117,6 +141,7 @@
 		public function setStaff (  $val ) {
 			$this->Staff = $val;
 			$this->_properties["staff"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @return \Integer
@@ -147,6 +172,12 @@
 		 */
 		public function getUnions() {
 			return $this->Unions;
+		}
+		/**
+		 * @return \Integer
+		 */
+		public function getEvents() {
+			return $this->Events;
 		}
 		/**
 		 * @return \Integer
@@ -212,6 +243,9 @@
 			if( ($prop = $this->getUnions()) !== NULL ) {
 				$xw->writeElement( 'unions', $prop );
 			}
+			if( ($prop = $this->getEvents()) !== NULL ) {
+				$xw->writeElement( 'events', $prop );
+			}
 			if( ($prop = $this->getStaff()) !== NULL ) {
 				$xw->writeElement( 'staff', $prop );
 			}
@@ -245,6 +279,9 @@
 					break;
 				case "unions":
 					$this->setUnions( $xr->readString() );
+					break;
+				case "events":
+					$this->setEvents( $xr->readString() );
 					break;
 				case "staff":
 					$this->setStaff( $xr->readString() );
@@ -283,6 +320,9 @@
 			}
 			if(isset($props["unions"])) {
 				$this->setUnions($props["unions"]);
+			}
+			if(isset($props["events"])) {
+				$this->setEvents($props["events"]);
 			}
 			if(isset($props["staff"])) {
 				$this->setStaff($props["staff"]);

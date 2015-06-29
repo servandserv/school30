@@ -1,6 +1,10 @@
 <?php
 	namespace School\Port\Adaptor\Data\School\Resources;
 		
+	/**
+	 * Любая сущность предметной области. Отличается от других сущностей уникальным идентификатором и набором ключей.
+	 * 
+	 */
 	class Resource extends \Happymeal\Port\Adaptor\Data\XML\Schema\AnyComplexType {
 			
 		const NS = "urn:ru:battleship:School:Resources";
@@ -82,6 +86,7 @@
 		public function setID (  $val ) {
 			$this->ID = $val;
 			$this->_properties["ID"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -89,6 +94,7 @@
 		public function setType (  $val ) {
 			$this->Type = $val;
 			$this->_properties["type"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -96,6 +102,7 @@
 		public function setKey1 (  $val ) {
 			$this->Key1 = $val;
 			$this->_properties["key1"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -103,6 +110,7 @@
 		public function setKey2 (  $val ) {
 			$this->Key2 = $val;
 			$this->_properties["key2"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -110,6 +118,7 @@
 		public function setKey3 (  $val ) {
 			$this->Key3 = $val;
 			$this->_properties["key3"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -117,6 +126,7 @@
 		public function setKey4 (  $val ) {
 			$this->Key4 = $val;
 			$this->_properties["key4"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @return \String

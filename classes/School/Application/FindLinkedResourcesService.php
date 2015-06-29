@@ -18,6 +18,7 @@ class FindLinkedResourcesService {
 		$docs = new \School\Port\Adaptor\Data\School\Documents();
 		$unions = new \School\Port\Adaptor\Data\School\Unions();
 		$digests = new \School\Port\Adaptor\Data\School\Digests();
+		$events = new \School\Port\Adaptor\Data\School\Events();
 		$conn = $app->DB_CONNECT;
 		$params = array($id);
 		$query = "SELECT * FROM `resources` WHERE id=?;";
@@ -47,6 +48,11 @@ class FindLinkedResourcesService {
 					$union = new \School\Port\Adaptor\Data\School\Unions\Union();
 					$union->fromXmlStr($row["xmlview"]);
 					$unions->setDocument($union);
+					break;
+				case "event":
+					$event = new \School\Port\Adaptor\Data\School\Events\Event();
+					$event->fromXmlStr($row["xmlview"]);
+					$events->setEvent($event);
 					break;
 				case "digest":
 					$digest = new \School\Port\Adaptor\Data\School\Digests\Digest();
@@ -125,6 +131,12 @@ class FindLinkedResourcesService {
 					$union->setLink($link);
 					$unions->setUnion($union);
 					break;
+				case 'event':
+					$event = new \School\Port\Adaptor\Data\School\Events\Event();
+					$event->fromXmlStr($row["xmlview"]);
+					$event->setLink($link);
+					$events->setEvent($event);
+					break;
 				case 'digest':
 					$digest = new \School\Port\Adaptor\Data\School\Digests\Digest();
 					$digest->fromXmlStr($row["xmlview"]);
@@ -138,6 +150,7 @@ class FindLinkedResourcesService {
 		$resources->setForms($forms);
 		$resources->setDocuments($docs);
 		$resources->setUnions($unions);
+		$resources->setEvents($events);
 		$resources->setDigests($digests);
 		return $resources;
 	}

@@ -165,6 +165,8 @@
 <xsl:template name="menu">
     <xsl:param name="social-href" select="'http://www.school-30.com/api/digests'" />
     <h2><a href="{$ROOT}api/persons">Поиск</a></h2>
+    <h2><a href="{$ROOT}api/cohorts">Поколения</a></h2>
+    <h2><a href="{$ROOT}api/events">События</a></h2>
     <h2>Дайджесты</h2>
     <xsl:apply-templates select="$DIGESTS" mode="digests-card-container" />
     <h2><a href="{$ROOT}api/stat">О проекте</a></h2>

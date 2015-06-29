@@ -38,6 +38,7 @@
 		public function setRel (  $val ) {
 			$this->Rel = $val;
 			$this->_properties["rel"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -45,6 +46,7 @@
 		public function setHref (  $val ) {
 			$this->Href = $val;
 			$this->_properties["href"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @return \String

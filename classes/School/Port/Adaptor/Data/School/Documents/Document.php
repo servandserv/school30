@@ -126,6 +126,7 @@
 		public function setAutouid (  $val ) {
 			$this->Autouid = $val;
 			$this->_properties["autouid"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -133,6 +134,7 @@
 		public function setID (  $val ) {
 			$this->ID = $val;
 			$this->_properties["ID"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Int $val
@@ -140,6 +142,7 @@
 		public function setType (  $val ) {
 			$this->Type = $val;
 			$this->_properties["type"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -147,6 +150,7 @@
 		public function setYear (  $val ) {
 			$this->Year = $val;
 			$this->_properties["year"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -154,6 +158,7 @@
 		public function setPath (  $val ) {
 			$this->Path = $val;
 			$this->_properties["path"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Integer $val
@@ -161,6 +166,7 @@
 		public function setPublished (  $val ) {
 			$this->Published = $val;
 			$this->_properties["published"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \Int $val
@@ -168,6 +174,7 @@
 		public function setReadiness (  $val ) {
 			$this->Readiness = $val;
 			$this->_properties["readiness"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -175,6 +182,7 @@
 		public function setComments (  $val ) {
 			$this->Comments = $val;
 			$this->_properties["comments"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Documents\File $val
@@ -182,6 +190,7 @@
 		public function setFile ( \School\Port\Adaptor\Data\School\Documents\File $val ) {
 			$this->File[] = $val;
 			$this->_properties["File"]["text"][] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Documents\File[]
@@ -196,6 +205,7 @@
 		public function setLink ( \School\Port\Adaptor\Data\School\Links\Link $val ) {
 			$this->Link = $val;
 			$this->_properties["Link"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @return \String
@@ -246,7 +256,7 @@
 			return $this->Comments;
 		}
 		/**
-		 * @return \AnyComplexType | []
+		 * @return School\Port\Adaptor\Data\School\Documents\File | []
 		 */
 		public function getFile($index = null) {
 			if( $index !== null ) {
@@ -257,7 +267,7 @@
 			return $res;
 		}
 		/**
-		 * @return \AnyComplexType
+		 * @return School\Port\Adaptor\Data\School\Links\Link
 		 */
 		public function getLink() {
 			return $this->Link;
@@ -378,11 +388,11 @@
 					$this->setComments( $xr->readString() );
 					break;
 				case "File":
-					$File = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Documents\File");
+					$File = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\File");
 					$this->setFile( $File->fromXmlReader( $xr ) );
 					break;
 				case "Link":
-					$Link = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Links\Link");
+					$Link = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Links\\Link");
 					$this->setLink( $Link->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -432,14 +442,14 @@
 			if(isset($props["File"])) {
 				if( is_array($props["File"]) ) {
 					foreach($props["File"] as $k=>$v) {
-						$File = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Documents\File");
+						$File = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Documents\\File");
 						$File->fromJSON($v);
 						$this->setFile($File);
 					}
 				}
 			}
 			if(isset($props["Link"])) {
-				$Link = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Links\Link");
+				$Link = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Links\\Link");
 				$Link->fromJSON($props["Link"]);
 				$this->setLink($Link);
 			}

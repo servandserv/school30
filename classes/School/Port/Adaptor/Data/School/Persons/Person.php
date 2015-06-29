@@ -137,6 +137,7 @@
 		public function setAutouid (  $val ) {
 			$this->Autouid = $val;
 			$this->_properties["autouid"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -144,6 +145,7 @@
 		public function setID (  $val ) {
 			$this->ID = $val;
 			$this->_properties["ID"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -151,6 +153,7 @@
 		public function setFullName (  $val ) {
 			$this->FullName = $val;
 			$this->_properties["fullName"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -158,6 +161,7 @@
 		public function setFirstName (  $val ) {
 			$this->FirstName = $val;
 			$this->_properties["firstName"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -165,6 +169,7 @@
 		public function setLastName (  $val ) {
 			$this->LastName = $val;
 			$this->_properties["lastName"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -172,6 +177,7 @@
 		public function setNewName (  $val ) {
 			$this->NewName = $val;
 			$this->_properties["newName"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -179,6 +185,7 @@
 		public function setMiddleName (  $val ) {
 			$this->MiddleName = $val;
 			$this->_properties["middleName"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -186,6 +193,7 @@
 		public function setEnFullName (  $val ) {
 			$this->EnFullName = $val;
 			$this->_properties["enFullName"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -193,6 +201,7 @@
 		public function setDOB (  $val ) {
 			$this->DOB = $val;
 			$this->_properties["DOB"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param \String $val
@@ -200,6 +209,7 @@
 		public function setComments (  $val ) {
 			$this->Comments = $val;
 			$this->_properties["comments"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @param School\Port\Adaptor\Data\School\Links\Link $val
@@ -207,6 +217,7 @@
 		public function setLink ( \School\Port\Adaptor\Data\School\Links\Link $val ) {
 			$this->Link = $val;
 			$this->_properties["Link"]["text"] = $val;
+			return $this;
 		}
 		/**
 		 * @return \Integer
@@ -269,7 +280,7 @@
 			return $this->Comments;
 		}
 		/**
-		 * @return \AnyComplexType
+		 * @return School\Port\Adaptor\Data\School\Links\Link
 		 */
 		public function getLink() {
 			return $this->Link;
@@ -397,7 +408,7 @@
 					$this->setComments( $xr->readString() );
 					break;
 				case "Link":
-					$Link = \Adaptor_Bindings::create( "\\"."School\Port\Adaptor\Data\School\Links\Link");
+					$Link = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Links\\Link");
 					$this->setLink( $Link->fromXmlReader( $xr ) );
 					break;
 				default:
@@ -451,7 +462,7 @@
 				$this->setComments($props["comments"]);
 			}
 			if(isset($props["Link"])) {
-				$Link = \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Links\Link");
+				$Link = \Adaptor_Bindings::create("\\School\\Port\\Adaptor\\Data\\School\\Links\\Link");
 				$Link->fromJSON($props["Link"]);
 				$this->setLink($Link);
 			}
