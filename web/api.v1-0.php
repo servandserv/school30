@@ -678,6 +678,160 @@ $app->CONTROLLER = function() use ($app) {
             }
         }
     );
+    $app->get("/cohorts/:id",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Unions\Cohort");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/persons",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Persons");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortPersonsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/documents",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Documents");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortDocumentsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/leagues",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Unions\Leagues");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortLeaguesUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/leagues/:let",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Unions\League");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortLeagueUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/leagues/:let/persons",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Persons");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortLeaguePersonsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/cohorts/:id/leagues/:let/documents",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Documents");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindCohortLeagueDocumentsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->response($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
     $app->throwError(new Exception("Not found",404));
 };
 $app->locate("CONTROLLER");
