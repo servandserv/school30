@@ -10,6 +10,7 @@ $app->CONTROLLER = function() use ($app) {
         $app->cacheControl(filemtime($file));
         header("Content-Type: application/xml; charset=utf-8");
         echo(file_get_contents($file));
+        exit();
     });
         
     $app->get("/stat",
