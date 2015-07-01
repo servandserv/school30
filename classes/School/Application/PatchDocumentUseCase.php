@@ -14,6 +14,6 @@ class PatchDocumentUseCase {
 			$app->REQUEST->setID( $id );
 			$doc = $em->patch( $app->REQUEST, $doc );
 			return $doc;
-		} else throw new \Exception( "Document $id not found", 404 );
+		} else $app->throwError( new \Exception( "Document $id not found", 404 ) );
 	}
 }

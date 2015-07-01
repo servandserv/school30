@@ -11,7 +11,7 @@ class FindCohortLeagueDocumentsUseCase {
 		$app = \App::getInstance();
 		$conn = $app->DB_CONNECT;
 		$docs = new \School\Port\Adaptor\Data\School\Documents();
-		$params = array($year,$league);
+		$params = array($year, str_replace( $app->LATIN_LEAGUE, $app->RUS_LEAGUE, strtoupper( $league ) ) );
         $query = "SELECT d.* FROM `resources` AS `d`
             JOIN `links` AS `l` ON `l`.`destination`=`d`.`id`
             JOIN `resources` AS `f` ON `f`.`id` = `l`.`source`

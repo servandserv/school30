@@ -22,8 +22,8 @@ class FindCohortLeagueUseCase {
             $l->setYear($row["key2"]);
             $l->setID($row["key3"]);
 		}
-		$l->setPI(str_replace($app->API_VERSION.$app->PATH_INFO,"",$_SERVER["SCRIPT_URI"])."/stylesheets/School/CohortLeague.xsl");
-        if(!$l) throw new \Exception( "League $league not found", 404 );
+        if(!$l) $app->throwError( new \Exception( "League $league not found", 404 ) );
+        $l->setPI(str_replace($app->API_VERSION.$app->PATH_INFO,"",$_SERVER["SCRIPT_URI"])."/stylesheets/School/CohortLeague.xsl");
         return $l;
 	}
 }

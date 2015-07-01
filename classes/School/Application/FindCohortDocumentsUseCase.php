@@ -18,8 +18,6 @@ class FindCohortDocumentsUseCase {
             WHERE `d`.`type`='document' AND `f`.`type`='form' AND `f`.`key1`=?;";
 		$sth = $conn->prepare($query);
 		$sth->execute($params);
-		$counter = 0;
-		$cs = array();
         while($row = $sth->fetch()) {
             $d = new \School\Port\Adaptor\Data\School\Documents\Document();
             $d->fromXmlStr($row["xmlview"]);

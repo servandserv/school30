@@ -14,6 +14,6 @@ class UpdateDocumentUseCase {
 			$app->REQUEST->setID( $id );
 			$doc = $em->update( $app->REQUEST );
 			return $doc;
-		} else throw new \Exception( "Document $id not found", 404 );
+		} else $app->throwError( new \Exception( "Document $id not found", 404 ) );
 	}
 }

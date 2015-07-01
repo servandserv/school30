@@ -13,6 +13,6 @@ class PatchFilesUseCase {
 		if( $doc = $em->findById( $id ) ) {
 			$files = $em->patchFiles( $app->REQUEST, $doc );
 			return $files;
-		} else throw new \Exception( "Document $id not found", 404 );
+		} else $app->throwError( new \Exception( "Document $id not found", 404 ) );
 	}
 }

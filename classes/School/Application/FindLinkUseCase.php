@@ -12,6 +12,6 @@ class FindLinkUseCase {
 		$em = new \School\Port\Adaptor\Persistence\PDO\LinkEntityManager();
 		if( $link = $em->findById( $id ) )
 			return $link;
-		else throw new \Exception( "Link $id not found", 404 );
+		else $app->throwError( new \Exception( "Link $id not found", 404 ) );
 	}
 }

@@ -12,7 +12,7 @@ class FindDigestUseCase {
 		$em = new \School\Port\Adaptor\Persistence\PDO\DigestEntityManager();
 		if( $digest = $em->findById( $id ) ) {
 			return $digest;
-		} else throw new \Exception( "Digest $id not found", 404 );
+		} else $app->throwError( new \Exception( "Digest $id not found", 404 ) );
 	}
 	
 }

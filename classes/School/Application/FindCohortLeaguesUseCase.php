@@ -23,7 +23,7 @@ class FindCohortLeaguesUseCase {
             }
             $leagues->setLeague($row["key3"]);
         }
-        if(!$cohort) throw new \Exception( "Cohort $year not found", 404 );
+        if(!$cohort) $app->throwError( new \Exception( "Cohort $year not found", 404 ) );
 		return $leagues;
 	}
 }

@@ -12,7 +12,7 @@ class FindPersonUseCase {
 		$em = new \School\Port\Adaptor\Persistence\PDO\PersonEntityManager();
 		if( $person = $em->findById( $id ) ) {
 			return $person;
-		} else throw new \Exception( "Person $id not found", 404 );
+		} else $app->throwError( new \Exception( "Person $id not found", 404 ) );
 	}
 	
 }

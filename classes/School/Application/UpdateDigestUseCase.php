@@ -14,6 +14,6 @@ class UpdateDigestUseCase {
 			$app->REQUEST->setID( $id );
 			$digest = $em->update( $app->REQUEST );
 			return $digest;
-		} else throw new Exception( "Digest $id not found", 404 );
+		} else $app->throwError( new Exception( "Digest $id not found", 404 ) );
 	}
 }

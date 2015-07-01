@@ -12,6 +12,6 @@ class FindPathPositionUseCase {
 		$em = new \School\Port\Adaptor\Persistence\PDO\DocumentEntityManager();
 		if( $pos = $em->findPosition( $id ) ) {
 			return $pos;
-		} else throw new \Exception( "Document $id not found", 404 );
+		} else $app->throwError( new \Exception( "Document $id not found", 404 ) );
 	}
 }

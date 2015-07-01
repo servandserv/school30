@@ -14,6 +14,6 @@ class UpdatePersonUseCase {
 			$app->REQUEST->setID( $id );
 			$person = $em->update( $app->REQUEST );
 			return $person;
-		} else throw new Exception( "Person $id not found", 404 );
+		} else $app->throwError( new Exception( "Person $id not found", 404 ) );
 	}
 }

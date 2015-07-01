@@ -239,7 +239,7 @@
 		render: function () {
 			var self = this;
 			this.$el.html( this.template( { document: this.collection.toJSON()[0] || {} } ) );
-			$("#document-id-cont").html(this.collection.toJSON()[0].ID);
+			$("#document-id-cont").html("ID: "+this.collection.toJSON()[0].ID);
 			materialize('#document-form-cont');
 			//console.log(this.collection.toJSON()[0]);
 			

@@ -77,8 +77,18 @@
                     <!--h1>Документ</h1-->
                     <!--h1><xsl:value-of select="doc:Documents/doc:Document/doc:year" /></h1-->
                     <h1>
-                        Поколение <xsl:value-of select="un:year" /> года выпуска
+                        Выпуск <xsl:value-of select="un:year" /> года
+                        <xsl:variable name="c" select="un:year" />
                     </h1>
+                    <!--h4>Классы</h4-->
+                    <h4>
+                        <xsl:for-each select="un:league[not(. = '' or .='?')]">
+                            <xsl:variable name="league" select="translate(.,'АБВГДЕ','abcdef')" />
+                            <a href="../../api/cohorts/{$COHORT/un:year}/leagues/{$league}">
+                                <xsl:value-of select="." />
+                            </a>&#160;&#160;&#160;
+                        </xsl:for-each>
+                    </h4>
                     <h4 class="persons_list">Список выпускников</h4>
                     <ul class="persons_list">
                         <xsl:for-each select="$PERSONS/pers:Person">

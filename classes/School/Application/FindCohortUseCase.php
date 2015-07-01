@@ -22,7 +22,7 @@ class FindCohortUseCase {
             }
             $cohort->setLeague($row["key3"]);
         }
-        if(!$cohort) throw new \Exception( "Cohort $year not found", 404 );
+        if(!$cohort) $app->throwError( new \Exception( "Cohort $year not found", 404 ) );
         $cohort->setPI(str_replace($app->API_VERSION.$app->PATH_INFO,"",$_SERVER["SCRIPT_URI"])."/stylesheets/School/Cohort.xsl");
 		return $cohort;
 	}

@@ -13,6 +13,6 @@ class PatchLinkUseCase {
 		if( $link = $em->findById( $id ) ) {
 			$link = $em->patch( $app->REQUEST, $link );
 			return $link;
-		} else throw new \Exception( "Link $id not found", 404 );
+		} else $app->throwError( new \Exception( "Link $id not found", 404 ) );
 	}
 }

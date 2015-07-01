@@ -13,6 +13,6 @@ class UpdateFormUseCase {
 		if( $form = $em->findByKeys( $cohort, $year, $league ) ) {
 			$form = $em->update( $app->REQUEST, $form );
 			return $form;
-		} else throw new \Exception( "Form $cohort/$year/$league not found", 404 );
+		} else $app->throwError( new \Exception( "Form $cohort/$year/$league not found", 404 ) );
 	}
 }

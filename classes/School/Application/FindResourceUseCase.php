@@ -44,7 +44,7 @@ class FindResourceUseCase {
 					break;
 			}
 		}
-		if(!isset($resource)) throw new \Exception("Resource `".$row['type']."` ID:$id not found", 404);
+		if(!isset($resource)) $app->throwError( new \Exception("Resource `".$row['type']."` ID:$id not found", 404) );
 		return $resource;
 	}
 

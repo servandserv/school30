@@ -87,7 +87,7 @@
                                     <xsl:for-each select="un:league[not(.='?' or .='')]">
                                         <li>
                                             <p>
-                                                <a href="{$ROOT}api/cohorts/{$year}/leagues/{.}"><xsl:value-of select="." /> класс</a>
+                                                <a href="{$ROOT}api/cohorts/{$year}/leagues/{translate(.,'АБВГДЕ','abcdef')}"><xsl:value-of select="." /> класс</a>
                                             </p>
                                         </li>
                                     </xsl:for-each>

@@ -208,6 +208,7 @@ ul.share-buttons li a {
     padding: 0;
     margin:0 1.5rem;
 }
+#header ul.share-buttons,
 .menu ul.share-buttons {
     margin-top: 3rem;
 }

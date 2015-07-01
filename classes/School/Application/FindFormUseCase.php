@@ -31,7 +31,7 @@ class FindFormUseCase {
 			$form = new Unions\Form();
 			$form->fromXmlStr($row["xmlview"]);
 		}
-		if(!isset($form)) throw new \Exception("Form not found", 404);
+		if(!isset($form)) $app->throwError( new \Exception("Form not found", 404) );
 		return $form;
 	}
 }

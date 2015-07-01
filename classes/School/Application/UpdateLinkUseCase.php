@@ -14,6 +14,6 @@ class UpdateLinkUseCase {
 			$app->REQUEST->setID( $id );
 			$link = $em->update( $app->REQUEST );
 			return $link;
-		} else throw new \Exception( "Link $id not found", 404 );
+		} else $app->throwError( new \Exception( "Link $id not found", 404 ) );
 	}
 }

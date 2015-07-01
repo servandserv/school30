@@ -31,8 +31,8 @@
 <xsl:include href="Common.xsl" xml:base="." />
 
 <xsl:variable name="LEAGUE" select="un:League" />
-<xsl:variable name="PERSONS" select="document(concat('../../api/cohorts/',$LEAGUE/un:cohort,'/leagues/',$LEAGUE/un:ID,'/persons'))/pers:Persons" />
-<xsl:variable name="DOCS" select="document(concat('../../api/cohorts/',$LEAGUE/un:cohort,'/leagues/',$LEAGUE/un:ID,'/documents'))/doc:Documents" />
+<xsl:variable name="PERSONS" select="document(concat('../../api/cohorts/',$LEAGUE/un:cohort,'/leagues/',translate($LEAGUE/un:ID,'АБВГДЕ','abcdef'),'/persons'))/pers:Persons" />
+<xsl:variable name="DOCS" select="document(concat('../../api/cohorts/',$LEAGUE/un:cohort,'/leagues/',translate($LEAGUE/un:ID,'АБВГДЕ','abcdef'),'/documents'))/doc:Documents" />
 <xsl:variable name="DIGESTS" select="document('../../api/digests')/dig:Digests" />
 <xsl:variable name="ROOT" select="'../../../../'" />
 
@@ -77,9 +77,10 @@
                     <!--h1>Документ</h1-->
                     <!--h1><xsl:value-of select="doc:Documents/doc:Document/doc:year" /></h1-->
                     <h1>
-                        Выпуск <xsl:value-of select="un:cohort" /> года <xsl:value-of select="un:ID" /> класс 
+                        <a href="{$ROOT}api/cohorts/{un:cohort}">Выпуск <xsl:value-of select="un:cohort" /> года</a>
                     </h1>
-                    <h4 class="persons_list">Список выпускников</h4>
+                    <h4>"<xsl:value-of select="un:ID" />" класс</h4>
+                    <!--h4 class="persons_list">Список выпускников</h4-->
                     <ul class="persons_list">
                         <xsl:for-each select="$PERSONS/pers:Person">
                             <xsl:sort select="pers:fullName" />
