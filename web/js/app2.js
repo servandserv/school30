@@ -241,7 +241,7 @@
 			this.$el.html( this.template( { document: this.collection.toJSON()[0] || {} } ) );
 			$("#document-id-cont").html("ID: "+this.collection.toJSON()[0].ID);
 			materialize('#document-form-cont');
-			//console.log(this.collection.toJSON()[0]);
+			//console.log(this.collection.toJSON());
 			
 			document.getElementById("document-submit").onclick = function() {
 				var model = new app.Model.Document({});

@@ -86,7 +86,7 @@
                         </xsl:choose>
                     </xsl:attribute>
                     <div id="files">
-                        <xsl:apply-templates select="doc:Documents/doc:Document" mode="tape" />
+                        <xsl:apply-templates select="doc:Documents/doc:Document" mode="view"/>
                     </div>
                     <div id="links">
                         <!--h4>К документу имеют отношение:</h4-->
@@ -141,7 +141,7 @@
     </html>
 </xsl:template>
 
-<xsl:template match="doc:Document" mode="tape">
+<xsl:template match="doc:Document" mode="view">
     <div>
         <xsl:for-each select="doc:File">
             <xsl:sort select="concat(link:Link/link:type,link:Link/link:dtStart)" />

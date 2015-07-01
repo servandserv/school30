@@ -19,8 +19,11 @@ class FindLinksUseCase {
 			->from()->t("links","d")
 			->where()
 				->c("type")->eq()->val(isset($app->QUERY["type"])?$app->QUERY["type"]:null,$qb::NOT_NULL)
+				->andTrue()->c("source")->eq()->val(isset($app->QUERY["source"])?$app->QUERY["source"]:null,$qb::NOT_NULL)
+				->andTrue()->c("destination")->eq()->val(isset($app->QUERY["destination"])?$app->QUERY["destination"]:null,$qb::NOT_NULL)
 			->limit(isset($app->QUERY["start"])?(int)$app->QUERY["start"]:0,isset($app->QUERY["count"])?(int)$app->QUERY["count"]:100)
 			->fi();
+	    error_log($query);
 		$sth = $conn->prepare($query);
 		$sth->execute($params);
 		while($row = $sth->fetch()) {

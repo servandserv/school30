@@ -24,6 +24,7 @@
 	<xsd:complexType>
 		<xsd:sequence>
 			<xsd:element ref="Document" minOccurs="0" maxOccurs="unbounded" />
+			<!--xsd:element ref="ns1:Ref" minOccurs="0" maxOccurs="unbounded" /-->
 		</xsd:sequence>
 	</xsd:complexType>
 </xsd:element>

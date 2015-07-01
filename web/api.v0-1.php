@@ -5,7 +5,6 @@ require_once __DIR__.'/../conf/conf.php';
 
 $app = \App::getInstance();
 $app->CONTROLLER = function() use ($app) {
-
     $app->get('/',function() use ($app) {
         $file = dirname(__FILE__)."/schemas/School/School.v0-1.wadl";
         $app->cacheControl(filemtime($file));

@@ -208,6 +208,61 @@
     <a href="{$ROOT}api/digests/{dig:ID}/sources"><xsl:value-of select="dig:title" /></a>
 </xsl:template>
 
+
+<xsl:template match="doc:Documents" mode="tape">
+    <div id="docs_container">
+        <xsl:apply-templates select="doc:Document" mode="tape">
+             <xsl:sort select="concat(link:Link/link:type,link:Link/link:dtStart,doc:year)" />
+        </xsl:apply-templates>
+    </div>
+</xsl:template>
+
+<xsl:template match="doc:Document" mode="tape">
+    <xsl:variable name="file" select="doc:File[1]" />
+    <xsl:variable name="width" select="$file/doc:Obverse/doc:Thumb/doc:width" />
+    <xsl:variable name="height" select="$file/doc:Obverse/doc:Thumb/doc:height" />
+    <div id="doc_{doc:ID}">
+        <div>
+            <xsl:choose>
+                <xsl:when test="$file/doc:Reverse/doc:Thumb/doc:src">
+                    <xsl:attribute name="class">flipper</xsl:attribute>
+                    <xsl:attribute name="style">
+                        background: url(<xsl:value-of select="$CDN" /><xsl:value-of select="$TRANS" /><xsl:value-of select="substring-before($file/doc:Reverse/doc:Thumb/doc:src,'.thumb')" /><xsl:value-of select="$W640XL" />) no-repeat center center;
+                        background-size: cover;
+                    </xsl:attribute>
+                    <input type="checkbox" name="slider__check-{doc:ID}" class="slider__check" id="slider__check-{doc:ID}-1" checked="checked" />
+                    <label for="slider__check-{doc:ID}-1" class="slider__label" title="Посмотреть оборотную сторону">1</label>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="style">position:relative</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
+            <img src="{$CDN}{$TRANS}{substring-before($file/doc:Obverse/doc:Thumb/doc:src,'.thumb')}{$W640XL}" />
+        </div>
+        <div class="image-control-panel">
+            <ul>
+                <xsl:if test="$file/doc:Reverse/doc:Thumb/doc:src">
+                    <li>
+                        <a href="#"><i class="fa fa-refresh fa-2x">&#173;</i></a>
+                    </li>
+                </xsl:if>
+                <li>
+                    <a href="{$ROOT}api/documents/{doc:ID}/sources" title="Подробная информация"><i class="fa fa-arrow-right fa-2x">&#173;</i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="slider">
+            <p><small><xsl:value-of select="doc:year" /></small></p>
+            <h3><xsl:value-of select="doc:comments" /></h3>
+            <xsl:if test="string-length(link:Link/link:comments) &gt; 3 ">
+                <p class="html">
+                    <xsl:value-of select="link:Link/link:comments" disable-output-escaping="yes" />
+                </p>
+            </xsl:if>
+        </div>
+    </div>
+</xsl:template>
+
 <xsl:template match="*" mode="calendar-month">
     <xsl:choose>
         <xsl:when test="substring(.,6,2) = '01'">ЯНВАРЯ</xsl:when>
