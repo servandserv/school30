@@ -49,11 +49,12 @@
             <script type="text/javascript">
                 <![CDATA[
                     window.onload = function() {
-                        document.getElementById("loader").style.display = "none";
+                        //document.getElementById("loader").style.display = "none";
                         document.addEventListener("touchstart", function() {},false);
                         window.addEventListener("resize", function() {
                             resize_docs_container(document.getElementById('docs_container'),columns());
                         });
+                        //console.log(columns());
                         resize_docs_container(document.getElementById('docs_container'),columns());
                         try{
                             var pageTracker = _gat._getTracker("UA-60861342-1");
@@ -64,7 +65,7 @@
             </script>
         </head>
         <body>
-            <xsl:call-template name="loader" />
+            <!--xsl:call-template name="loader" /-->
             <div id="nav">
                 <ul>
                     <li><a href="#digests">Дайджесты</a></li>
@@ -109,9 +110,9 @@
                     </div>
                 </div>
                 <div id="docs">
-                     <div id="docs_container">
-                        <xsl:apply-templates select="$DOCS" mode="tape">
-                            <xsl:sort select="concat($DOCS/doc:type,$DOCS/doc:year)" />
+                    <div id="docs_container">
+                        <xsl:apply-templates select="$DOCS/doc:Document" mode="tape">
+                            <xsl:sort select="doc:year" />
                         </xsl:apply-templates>
                     </div>
                 </div>

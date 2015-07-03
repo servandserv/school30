@@ -132,7 +132,7 @@
                         <img src="{$CDN}/school/0100017/img100{$W640XL}" style="float:left;margin-right:3rem;" />
                         <!--img src="http://res.cloudinary.com/school-30/image/upload/0100017/img100.jpg" style="float:left;margin-right:3rem;" /-->
                         Отдельные слова благодарности выражаем создателю и руководителю школьного музея, 
-                        заслуженному учителю Удмуртской Республики <a href="{$ROOT}/api/persons/eZiDt8sF/destinations" title="Персональная страница">
+                        заслуженному учителю Удмуртской Республики <a href="{$ROOT}api/persons/eZiDt8sF/destinations" title="Персональная страница">
                         Лилии Федоровне Богатыревой</a>. 
                         Более 50 лет Лилия Федоровна, в недавнем прошлом школьный учитель биологии, 
                         вкладывает душу и сердце в создание школьного музея, собирает и бережно хранит многочисленные 

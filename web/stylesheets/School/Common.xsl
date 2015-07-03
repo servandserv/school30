@@ -28,7 +28,8 @@
 <xsl:variable name="CDN" select="'http://www.school-30.com/images'" />
 <xsl:variable name="TRANS" select="''" />
 <xsl:variable name="LARGE" select="'.large.jpg'" />
-<xsl:variable name="W640XL" select="'.thumb.640xl.jpg'" />
+<xsl:variable name="W640XL" select="'.thumb.640x.jpg'" />
+<xsl:variable name="TMP_IMG" select="concat($ROOT,'tmp.image.php')" />
 <!--xsl:variable name="CDN" select="'http://res.cloudinary.com/school-30/image/upload'" />
 <xsl:variable name="TRANS" select="'/w_600,c_limit'" />
 <xsl:variable name="W640XL" select="''" /-->
@@ -219,17 +220,35 @@
 
 <xsl:template match="doc:Document" mode="tape">
     <xsl:variable name="file" select="doc:File[1]" />
-    <xsl:variable name="width" select="$file/doc:Obverse/doc:Thumb/doc:width" />
-    <xsl:variable name="height" select="$file/doc:Obverse/doc:Thumb/doc:height" />
+    <xsl:variable name="width" select="$file/doc:Obverse/doc:Large/doc:width" />
+    <xsl:variable name="height" select="$file/doc:Obverse/doc:Large/doc:height" />
     <div id="doc_{doc:ID}">
-        <div>
+        
+        <div id="rev_{doc:ID}">
             <xsl:choose>
                 <xsl:when test="$file/doc:Reverse/doc:Thumb/doc:src">
+                    <xsl:variable name="rev_style">
+                        <xsl:text>background: url(</xsl:text>
+                        <xsl:value-of select="$CDN" />
+                        <xsl:value-of select="$TRANS" />
+                        <xsl:value-of select="substring-before($file/doc:Reverse/doc:Thumb/doc:src,'.thumb')" />
+                        <xsl:value-of select="$W640XL" />
+                        <xsl:text>) no-repeat center center;background-size: cover;</xsl:text>
+                    </xsl:variable>
                     <xsl:attribute name="class">flipper</xsl:attribute>
-                    <xsl:attribute name="style">
+                    <!--xsl:attribute name="style">
                         background: url(<xsl:value-of select="$CDN" /><xsl:value-of select="$TRANS" /><xsl:value-of select="substring-before($file/doc:Reverse/doc:Thumb/doc:src,'.thumb')" /><xsl:value-of select="$W640XL" />) no-repeat center center;
                         background-size: cover;
-                    </xsl:attribute>
+                    </xsl:attribute-->
+                    <!--xsl:attribute name="style">
+                        background: url(<xsl:value-of select="$TMP_IMG"/>?width=<xsl:value-of select="$width"/>&amp;height=<xsl:value-of select="$height"/>&amp;max-width=640) no-repeat center center;
+                        background-size: cover;
+                    </xsl:attribute-->
+                    <script type="text/javascript">
+                        window.addEventListener('load', function() {
+                            document.getElementById('rev_<xsl:value-of select="doc:ID" />').setAttribute('style','<xsl:value-of select="$rev_style" />');
+                        });
+                    </script>
                     <input type="checkbox" name="slider__check-{doc:ID}" class="slider__check" id="slider__check-{doc:ID}-1" checked="checked" />
                     <label for="slider__check-{doc:ID}-1" class="slider__label" title="Посмотреть оборотную сторону">1</label>
                 </xsl:when>
@@ -237,7 +256,20 @@
                     <xsl:attribute name="style">position:relative</xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
-            <img src="{$CDN}{$TRANS}{substring-before($file/doc:Obverse/doc:Thumb/doc:src,'.thumb')}{$W640XL}" />
+            <xsl:variable name="obv_src">
+                <xsl:value-of select="$CDN" />
+                <xsl:value-of select="$TRANS" />
+                <xsl:value-of select="substring-before($file/doc:Obverse/doc:Thumb/doc:src,'.thumb')" />
+                <xsl:value-of select="$W640XL" />
+            </xsl:variable>
+            <!--img src="{$CDN}{$TRANS}{substring-before($file/doc:Obverse/doc:Thumb/doc:src,'.thumb')}{$W640XL}" /-->
+            <img id="obv_{doc:ID}" src="{$TMP_IMG}?width={$width}&amp;height={$height}&amp;max-width=640" />
+            <script type="text/javascript">
+                window.addEventListener('load', function() {
+                    document.getElementById('obv_<xsl:value-of select="doc:ID" />').setAttribute('src','<xsl:value-of select="$obv_src" />');
+                    //document.getElementById('loader_<xsl:value-of select="doc:ID" />').setAttribute('style','display:none');
+                });
+            </script>
         </div>
         <div class="image-control-panel">
             <ul>

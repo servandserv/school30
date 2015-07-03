@@ -81,7 +81,7 @@
                     <ul>
                         <xsl:for-each select="un:Cohort[not(un:year = '')]">
                             <li>
-                                <h4><a href="{$ROOT}api/cohorts/{un:year}"><xsl:value-of select="un:year" /></a> год выпуска</h4>
+                                <h4><a href="{$ROOT}api/cohorts/{un:year}"><xsl:value-of select="un:year" /> год выпуска</a></h4>
                                 <xsl:variable name="year" select="un:year" />
                                 <ul>
                                     <xsl:for-each select="un:league[not(.='?' or .='')]">

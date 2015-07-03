@@ -16,7 +16,7 @@ small {
     line-height: 1;
 }
 #header, #copy, #nav, #main > .menu, #main {
-    background-color: rgba(0,0,0,.75); 
+    background-color: rgba(0,0,0,.3335); 
 }
 #header small, #header p, #header h1, #header h2, #header h3, #header h4, #header h5, #header h6, #header strong {
     color: #fff;

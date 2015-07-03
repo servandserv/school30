@@ -46,7 +46,7 @@
             <script type="text/javascript">
                 <![CDATA[
                     window.onload = function() {
-                        document.getElementById("loader").style.display = "none";
+                        //document.getElementById("loader").style.display = "none";
                         document.addEventListener("touchstart", function() {},false);
                         window.addEventListener("resize", function() {
                             resize_docs_container(document.getElementById('docs_container'),columns());
@@ -61,7 +61,7 @@
             </script>
         </head>
         <body>
-            <xsl:call-template name="loader" />
+            <!--xsl:call-template name="loader" /-->
             <div id="nav">
                 <ul>
                     <li><a href="#digests">Дайджесты</a></li>
@@ -82,7 +82,11 @@
                     </div>
                 </div>
                 <div id="docs">
-                    <xsl:apply-templates select="doc:Documents" mode="tape" />
+                    <div id="docs_container">
+                        <xsl:apply-templates select="doc:Documents/doc:Document" mode="tape">
+                            <xsl:sort select="concat(link:Link/link:dtStart,doc:year)" />
+                        </xsl:apply-templates>
+                    </div>
                 </div>
                 <div id="menu" class="menu">
                     <xsl:call-template name="menu">
