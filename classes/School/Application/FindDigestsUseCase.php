@@ -25,11 +25,16 @@ class FindDigestsUseCase {
 		$sth->execute($params);
 		$counter = 0;
 		while($row = $sth->fetch()) {
-		    if( $counter !== 0 || in_array( $app->REMOTE_USER, array( "kolpakov", "kolpakova" ) ) ) {
+		    $digest = new \School\Port\Adaptor\Data\School\Digests\Digest();
+            $digest->fromXmlStr($row["xmlview"]);
+            if( $digest->getPublished() || in_array( $app->REMOTE_USER, array( "kolpakov", "kolpakova" ) ) ) {
+                $digests->setDigest($digest);
+            }
+		    /*if( $counter !== 0 || in_array( $app->REMOTE_USER, array( "kolpakov", "kolpakova" ) ) ) {
                 $digest = new \School\Port\Adaptor\Data\School\Digests\Digest();
                 $digest->fromXmlStr($row["xmlview"]);
                 $digests->setDigest($digest);
-		    }
+		    }*/
 		    $counter++;
 		}
 		$digests->setPI(str_replace($app->API_VERSION.$app->PATH_INFO,"",$_SERVER["SCRIPT_URI"])."/stylesheets/School/Digests.xsl");

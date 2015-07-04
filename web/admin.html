@@ -413,7 +413,7 @@
 			<% if ( digests.length != 0 ) { %>
 				<ul class="collection">
 					<% _.each(digests, function(digest,index) { %>
-						<li class="collection-item"><%= digest.published %>, группа документов "<%= digest.Link.type %>"
+						<li class="collection-item"><%= digest.ID %> [<%= digest.published %>], группа документов "<%= digest.Link.type %>"
 							<a href="javascript: void(0);" class="secondary-content link-patch" id="<%= digest.Link.ID %>">
 								<i class="mdi-content-save"></i>
 							</a>
@@ -498,7 +498,7 @@
 		
 		<script id="digests-list-view" type="text/template">
 			<% _.each(digests, function(digest,index) { %>
-				<option value="<%= digest.ID %>"><%= digest.published %></option>
+				<option value="<%= digest.ID %>"><%= digest.ID %> [<%= digest.published %>]</option>
 			<% }); %>
 		</script>
 		
@@ -577,7 +577,7 @@
 						<select id="digest-select-id" class="browser-default">
 							<option value="" disabled selected>Digest</option>
 							<% _.each(digests, function(digest,index) { %>
-								<option value="<%= digest.ID %>"><%= digest.published %></option>
+								<option value="<%= digest.ID %>"><%= digest.ID %>[<%= digest.published %>]</option>
 							<% }); %>
 						</select>
 					</div>

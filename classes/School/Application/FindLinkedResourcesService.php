@@ -59,7 +59,7 @@ class FindLinkedResourcesService {
 					$digest->fromXmlStr($row["xmlview"]);
 					$digests->setDigest($digest);
 					//позиционируем
-					$query = "SELECT * FROM `resources` WHERE `type`='digest' and `key1` < '".$digest->getPublished()."' order by key1 desc limit 0,1;";
+					$query = "SELECT * FROM `resources` WHERE `type`='digest' and `key1` != '' and `key1` < '".$digest->getPublished()."' order by key1 desc limit 0,1;";
 					$sth1 = $conn->prepare($query);
 					$sth1->execute(array());
 					while($row1 = $sth1->fetch()) {
@@ -69,19 +69,19 @@ class FindLinkedResourcesService {
 						$resources->setRef($ref);
 						
 					}
-					$query = "SELECT * FROM `resources` WHERE type='digest' and `key1` > '".$digest->getPublished()."' order by key1 limit 0,2;";
+					$query = "SELECT * FROM `resources` WHERE type='digest' and `key1` != '' and `key1` > '".$digest->getPublished()."' order by key1 limit 0,1;";
 					$sth1 = $conn->prepare($query);
 					$sth1->execute(array());
-					$count = $sth1->rowCount();
+					//$count = $sth1->rowCount();
 					//error_log($app->REMOTE_USER);
-					if($count == 2 || ($count < 2 && in_array($app->REMOTE_USER,array("kolpakov","kolpakova")))) {
+					//if($count == 2 || ($count < 2 && in_array($app->REMOTE_USER,array("kolpakov","kolpakova")))) {
         		        if($row1 = $sth1->fetch()) {
         	    			$ref = new \School\Port\Adaptor\Data\School\Resources\Ref();
     	        			$ref->setRel("next");
         	    	        $ref->setHref($app->API_VERSION.str_replace($id,$row1["id"],$app->PATH_INFO));
     		    	    	$resources->setRef($ref);
     		    	    }
-    				}
+    				//}
 					break;
 			}
 			
