@@ -1,5 +1,8 @@
 function resize_docs_container(docs, cols) {
-    if( screen.availWidth < 1024 || window.innerWidth < 1024 ) return;
+    if( screen.availWidth < 900 || window.innerWidth < 900 ) {
+        docs.style.height = null;
+        return;
+    }
     var h = summator = 0;
     var cols = cols || 3;
     var files = []

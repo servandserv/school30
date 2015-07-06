@@ -174,23 +174,25 @@
                     <img src="{$CDN}{$TRANS}{$obv}" />
                     <xsl:for-each select="doc:Obverse/doc:Large/doc:Area">
                         <xsl:variable name="ref" select="res:Ref/res:href" />
+                        <div class="face_sign"
+                            style="position:absolute;top:{doc:y div $height * 100}%;left:{doc:x div $width * 100}%;width:{doc:width div $width *100}%;height:{doc:height div $height * 100}%;background:rgba(255,255,255,.35);">
+                        </div>
                         <div class="face"
                             style="position:absolute;top:{doc:y div $height * 100}%;left:{doc:x div $width * 100}%;width:{doc:width div $width *100}%;height:{doc:height div $height * 100}%;">
                             <div>
                                 <xsl:variable name="k" select="160 div doc:width div 1.8" />
                                 <div>
-                                <div style="width:{doc:width * $k * 1.8}px;height:{doc:height * $k * 1.8}px;">
-                                    <img src="{$CDN}{$TRANS}{$obv}" 
-                                        style="position:absolute;left:{ doc:width * $k * 0.4 - doc:x * $k}px;top:{doc:height * $k * 0.4 - doc:y * $k }px;width:{$width * $k}px;height:{$height * $k}px;"/>
+                                    <div style="width:{doc:width * $k * 1.8}px;height:{doc:height * $k * 1.8}px;">
+                                        <img src="{$CDN}{$TRANS}{$obv}" 
+                                            style="position:absolute;left:{ doc:width * $k * 0.4 - doc:x * $k}px;top:{doc:height * $k * 0.4 - doc:y * $k }px;width:{$width * $k}px;height:{$height * $k}px;"/>
+                                    </div>
+                                    
                                 </div>
                                 <h6>
-                                    <span>
-                                        <xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:lastName" /><br/>
-                                        <xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:firstName" /><br/>
-                                        <xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:middleName" />
-                                    </span>
-                                </h6>
-                                </div>
+                                        <span><xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:lastName" />&#160;</span>
+                                        <span><xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:firstName" />&#160;</span>
+                                        <span><xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:middleName" /></span>
+                                    </h6>
                             </div>
                         </div>
                     </xsl:for-each>
