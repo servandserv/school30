@@ -83,15 +83,17 @@
                             <li>
                                 <h4><a href="{$ROOT}api/cohorts/{un:year}"><xsl:value-of select="un:year" /> год выпуска</a></h4>
                                 <xsl:variable name="year" select="un:year" />
-                                <ul>
-                                    <xsl:for-each select="un:league[not(.='?' or .='')]">
-                                        <li>
-                                            <p>
-                                                <a href="{$ROOT}api/cohorts/{$year}/leagues/{translate(.,'АБВГДЕ','abcdef')}"><xsl:value-of select="." /> класс</a>
-                                            </p>
-                                        </li>
-                                    </xsl:for-each>
-                                </ul>
+                                <xsl:if test="un:league[not(.='?' or .='')]">
+                                    <ul>
+                                        <xsl:for-each select="un:league[not(.='?' or .='')]">
+                                            <li>
+                                                <p>
+                                                    <a href="{$ROOT}api/cohorts/{$year}/leagues/{translate(.,'АБВГДЕ','abcdef')}"><xsl:value-of select="." /> класс</a>
+                                                </p>
+                                            </li>
+                                        </xsl:for-each>
+                                    </ul>
+                                </xsl:if>
                             </li>
                         </xsl:for-each>
                     </ul>
@@ -105,7 +107,7 @@
                     <p><small>© 2015, фотоархив ИЕГЛ Школа № 30</small></p>
                 </div>
             </div>
-            <script type="text/javascript">
+            <!--script type="text/javascript">
                 <![CDATA[
                     if( typeof document.getElementsByClassName === "function" ) {
                         var ns = document.getElementsByClassName("html");
@@ -114,7 +116,7 @@
                         }
                     }
                 ]]>
-            </script>
+            </script-->
         </body>
     </html>
 </xsl:template>

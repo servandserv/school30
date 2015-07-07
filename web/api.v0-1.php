@@ -24,7 +24,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindStatisticsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -56,7 +56,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindStaffUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -74,7 +74,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\CreateStaffPersonUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -106,7 +106,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindPersonsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -124,7 +124,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\CreatePersonUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -146,7 +146,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindPersonUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -167,7 +167,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\UpdatePersonUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -188,7 +188,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\DeletePersonUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -213,7 +213,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindPersonDestinationsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -238,7 +238,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindPersonSourcesUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -273,7 +273,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindDocumentsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -291,7 +291,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\CreateDocumentUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -323,7 +323,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindPublishedUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -341,7 +341,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindDocumentUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -362,7 +362,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\UpdateDocumentUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -383,7 +383,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\PatchDocumentUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -404,7 +404,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\DeleteDocumentUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -425,7 +425,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\PatchFilesUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -450,7 +450,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindDocumentDestinationsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -475,7 +475,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindDocumentSourcesUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -496,7 +496,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\CreateDocumentFormUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -517,7 +517,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\CreateDocumentFileAreaUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -538,7 +538,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\DeleteDocumentFileAreaUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -573,7 +573,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindLinksUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -591,7 +591,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\CreateLinkUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -613,7 +613,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindLinkUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -634,7 +634,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\UpdateLinkUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -655,7 +655,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\PatchLinkUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -676,7 +676,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\DeleteLinkUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -711,7 +711,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindFormsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -729,7 +729,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\CreateFormUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -751,7 +751,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindFormUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -772,7 +772,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\UpdateFormUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -793,7 +793,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\DeleteFormUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -818,7 +818,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindFormPupilsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -853,7 +853,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindUnionsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -871,7 +871,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindPathPositionUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -906,7 +906,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindDigestsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -924,7 +924,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\CreateDigestUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -946,7 +946,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindDigestUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -967,7 +967,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\UpdateDigestUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -988,7 +988,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\DeleteDigestUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1013,7 +1013,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindDigestSourcesUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1048,7 +1048,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindEventsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1066,7 +1066,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\CreateEventUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1088,7 +1088,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindEventUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1109,7 +1109,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\UpdateEventUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1130,7 +1130,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\DeleteEventUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1155,7 +1155,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindEventSourcesUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1180,7 +1180,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindCohortsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1202,7 +1202,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindCohortUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1224,7 +1224,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindCohortPersonsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1246,7 +1246,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindCohortDocumentsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1268,7 +1268,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindCohortLeaguesUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1290,7 +1290,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindCohortLeagueUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1312,7 +1312,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindCohortLeaguePersonsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
@@ -1334,7 +1334,7 @@ $app->CONTROLLER = function() use ($app) {
                 $usecase = $app->USECASES."\\FindCohortLeagueDocumentsUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
-                $app->response($result);
+                $app->responseHtml($result);
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {

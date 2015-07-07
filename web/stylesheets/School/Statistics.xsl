@@ -57,7 +57,7 @@
             <div id="nav">
                 <ul>
                     <li><a href="#digests">Дайджесты</a></li>
-                    <li><a href="#menu"><i class="fa fa-bars fa-2x"></i></a></li>
+                    <li><a href="#menu"><i class="fa fa-bars fa-2x">&#173;</i></a></li>
                 </ul>
             </div>
             <div id="main">
@@ -156,7 +156,7 @@
                     <p><small>© 2015, фотоархив ИЕГЛ Школа № 30</small></p>
                 </div>
             </div>
-            <script type="text/javascript">
+            <!--script type="text/javascript">
                 <![CDATA[
                     if( typeof document.getElementsByClassName === "function" ) {
                         var ns = document.getElementsByClassName("html");
@@ -165,7 +165,7 @@
                         }
                     }
                 ]]>
-            </script>
+            </script-->
         </body>
     </html>
 </xsl:template>

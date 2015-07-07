@@ -128,7 +128,7 @@
                     <p><small>© 2015, фотоархив ИЕГЛ Школа № 30</small></p>
                 </div>
             </div>
-            <script type="text/javascript">
+            <!--script type="text/javascript">
                 <![CDATA[
                     if( typeof document.getElementsByClassName === "function" ) {
                         var ns = document.getElementsByClassName("html");
@@ -137,7 +137,7 @@
                         }
                     }
                 ]]>
-            </script>
+            </script-->
         </body>
     </html>
 </xsl:template>

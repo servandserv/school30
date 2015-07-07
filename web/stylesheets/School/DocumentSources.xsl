@@ -127,7 +127,7 @@
                     <p><small>© 2015, фотоархив ИЕГЛ Школа № 30</small></p>
                 </div>
             </div>
-            <script type="text/javascript">
+            <!--script type="text/javascript">
                 <![CDATA[
                     if( typeof document.getElementsByClassName === "function" ) {
                         var ns = document.getElementsByClassName("html");
@@ -136,7 +136,7 @@
                         }
                     }
                 ]]>
-            </script>
+            </script-->
         </body>
     </html>
 </xsl:template>
@@ -161,8 +161,9 @@
                                 max-width: <xsl:value-of select="$width" />px;
                             </xsl:attribute-->
                             <xsl:attribute name="style">
-                                background: url(<xsl:value-of select="$CDN" /><xsl:value-of select="$TRANS" /><xsl:value-of select="$rev" />) no-repeat center center;
-                                background-size: cover;
+                                <xsl:text>background: url(</xsl:text>
+                                <xsl:value-of select="$CDN" /><xsl:value-of select="$TRANS" /><xsl:value-of select="$rev" />
+                                <xsl:text>) no-repeat center center;background-size: cover;</xsl:text>
                             </xsl:attribute>
                             <input type="checkbox" name="slider__check-{parent::*/doc:ID}" class="slider__check" id="slider__check-{parent::*/doc:ID}-1" checked="checked" />
                             <label for="slider__check-{parent::*/doc:ID}-1" class="slider__label">1</label>
@@ -176,6 +177,7 @@
                         <xsl:variable name="ref" select="res:Ref/res:href" />
                         <div class="face_sign"
                             style="position:absolute;top:{doc:y div $height * 100}%;left:{doc:x div $width * 100}%;width:{doc:width div $width *100}%;height:{doc:height div $height * 100}%;background:rgba(255,255,255,.35);">
+                            &#173;
                         </div>
                         <div class="face"
                             style="position:absolute;top:{doc:y div $height * 100}%;left:{doc:x div $width * 100}%;width:{doc:width div $width *100}%;height:{doc:height div $height * 100}%;">
