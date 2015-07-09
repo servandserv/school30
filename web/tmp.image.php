@@ -1,4 +1,11 @@
 <?php
+
+    require_once __DIR__.'/../conf/bootstrap.php';
+    require_once __DIR__.'/../conf/conf.php';
+
+    $app = \App::getInstance();
+    $app->cacheControl(filemtime(__FILE__),60 * 60 * 24 * 365);
+
     header("Content-Type: image/png");
     $width = isset($_GET["width"]) ? (int)$_GET["width"] : 640;
     $height = isset($_GET["height"]) ? (int)$_GET["height"] : 480;

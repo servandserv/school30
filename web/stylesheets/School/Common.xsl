@@ -38,19 +38,39 @@
 <xsl:template name="common-header">
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta name="keywords" content="архив, фотографии, история, школа 30, Ижевск, Удмуртия, Россия" />
-    <meta name="description" content="Фотоархив документов посвященных истории Школы 30 города Ижевска" />
+    <meta name="keywords" content="Ижевский естественно гуманитарный лицей Школа 30, МБОУ, ИЕГЛ, Школа-30, лицей, архив, фотографии, история, Школа № 30, школы, тридцатка, Ижевск, Удмуртия, Россия" />
+    <meta name="description" content="Фотоархив документов посвященных истории Школы №30 города Ижевска" />
+    
     <link href='{$ROOT}/assets/favicon.png' rel='shortcut icon' type='image/png' />
     <link href="../{$ROOT}/bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="{$ROOT}components/semanticss/dist/css/semanticss.css" rel="stylesheet" type="text/css" />
-    <link href="{$ROOT}css/common.css" rel="stylesheet" type="text/css" />
-    <link href="{$ROOT}css/common.medium.css" rel="stylesheet" type="text/css" />
-    <link href="{$ROOT}css/common.large.css" rel="stylesheet" type="text/css" />
-    <link href="{$ROOT}css/common.xlarge.css" rel="stylesheet" type="text/css" />
-    <!--link rel="stylesheet" href="http://basehold.it/20/255/0/0/0.5" media="(max-width: 639px)" />
-    <link rel="stylesheet" href="http://basehold.it/25/255/0/0/0.5" media="(min-width: 640px)" />
-    <link rel="stylesheet" href="http://basehold.it/20/255/0/0/0.5" media="(min-width: 1024px)" /-->
-    <script type="text/javascript" src="{$ROOT}/js/school30.js" >;</script>
+    <link href="{$ROOT}components/semanticss/dist/css/semanticss.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$ROOT}css/common.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$ROOT}css/print.min.css" rel="stylesheet" type="text/css" media="print" />
+    <style type="text/css">
+        @media only screen and (min-width : 640px) {
+            html {
+                font-size: 78.125%;
+            }
+        }
+    </style>
+    <!--link href="{$ROOT}css/common.medium.css" rel="stylesheet" type="text/css" /-->
+    <link href="{$ROOT}css/common.large.min.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        @media only screen and (min-width : 1200px) {
+            #nav {
+                display: none;
+            }
+    
+            #main {
+                width: 100%;
+            }
+        }
+    </style>
+    <!--link href="{$ROOT}css/common.xlarge.css" rel="stylesheet" type="text/css" /-->
+    <!--link rel="stylesheet" href="http://basehold.it/20/255/0/0/0.5" media="(max-width: 639px)" /-->
+    <!--link rel="stylesheet" href="http://basehold.it/25/255/0/0/0.5" media="(min-width: 640px)" /-->
+    <!--link rel="stylesheet" href="http://basehold.it/20/255/0/0/0.5" media="(min-width: 1024px)" /-->
+    <script type="text/javascript" src="{$ROOT}/js/school30.min.js" >;</script>
 </xsl:template>
 
 
@@ -76,11 +96,11 @@
 </xsl:template>
 
 <xsl:template name="modern-theme">
-    <link href="{$ROOT}css/modern.light.css" rel="stylesheet" type="text/css" />
+    <link href="{$ROOT}css/modern.light.min.css" rel="stylesheet" type="text/css" />
 </xsl:template>
 
 <xsl:template name="legacy-theme">
-    <link href="{$ROOT}css/legacy.light.css" rel="stylesheet" type="text/css" />
+    <link href="{$ROOT}css/legacy.light.min.css" rel="stylesheet" type="text/css" />
 </xsl:template>
 
 <xsl:template name="body-background-img">
@@ -143,19 +163,19 @@
     <xsl:param name="href" select="'http://www.school-30.com'" />
     <ul class="share-buttons">
         <li>
-            <a href="https://www.facebook.com/sharer/sharer.php?u={$href}" target="_blank" title="Facebook"><span>Facebook</span></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={$href}" title="Facebook"><span>Facebook</span></a>
         </li>
         <li>
-            <a href="https://twitter.com/home?status={$href}" target="_blank" title="Twitter"><span>Twitter</span></a>
+            <a href="https://twitter.com/home?status={$href}" title="Twitter"><span>Twitter</span></a>
         </li>
         <li>
-            <a href="http://vkontakte.ru/share.php?url={$href}" target="_blank" title="ВКонтакте"><span>ВКонтакте</span></a>
+            <a href="http://vkontakte.ru/share.php?url={$href}" title="ВКонтакте"><span>ВКонтакте</span></a>
         </li>
         <li>
-            <a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&amp;st.s=1&amp;url={$href}" target="_blank" title="Одноклассники"><span>Одноклассники</span></a>
+            <a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&amp;st.s=1&amp;url={$href}" title="Одноклассники"><span>Одноклассники</span></a>
         </li>
         <li>
-            <a href="https://plus.google.com/share?url={$href}" target="_blank" title="Google+"><span>Google+</span></a>
+            <a href="https://plus.google.com/share?url={$href}" title="Google+"><span>Google+</span></a>
         </li>
         <!--li>
             <a href="http://connect.mail.ru/share?status={$href}" target="_blank" title="Мой Мир@mail.ru"><span>Мой Мир</span></a>
@@ -178,7 +198,7 @@
 </xsl:template>
 
 <xsl:template match="dig:Digests" mode="digests-card-container">
-    <ul id="digests" class="digests-card-container">
+    <ul class="digests-card-container">
         <xsl:apply-templates select="dig:Digest" mode="digest-card" />
     </ul>
 </xsl:template>
@@ -187,7 +207,7 @@
     <xsl:variable name="id" select="dig:ID" />
     <li>
         <xsl:if test="$DIGESTS/dig:Digest/dig:ID = $id">
-            <xsl:attribute name="id"><xsl:value-of select="dig:ID" /></xsl:attribute>
+            <xsl:attribute name="class">selected</xsl:attribute>
         </xsl:if>
         <div>
             <p>
@@ -223,7 +243,6 @@
     <xsl:variable name="width" select="$file/doc:Obverse/doc:Large/doc:width" />
     <xsl:variable name="height" select="$file/doc:Obverse/doc:Large/doc:height" />
     <div id="doc_{doc:ID}">
-        
         <div id="rev_{doc:ID}">
             <xsl:choose>
                 <xsl:when test="$file/doc:Reverse/doc:Thumb/doc:src">
@@ -263,7 +282,8 @@
                 <xsl:value-of select="$W640XL" />
             </xsl:variable>
             <!--img src="{$CDN}{$TRANS}{substring-before($file/doc:Obverse/doc:Thumb/doc:src,'.thumb')}{$W640XL}" /-->
-            <img id="obv_{doc:ID}" src="{$TMP_IMG}?width={$width}&amp;height={$height}&amp;max-width=640" />
+            <!--img id="obv_{doc:ID}" src="{$TMP_IMG}?width={$width}&amp;height={$height}&amp;max-width=640" alt="фотография" /-->
+            <img id="obv_{doc:ID}" src="{$ROOT}tmpimg/{$width}/{$height}/640" alt="фотография" />
             <script type="text/javascript">
                 window.addEventListener('load', function() {
                     document.getElementById('obv_<xsl:value-of select="doc:ID" />').setAttribute('src','<xsl:value-of select="$obv_src" />');
@@ -318,6 +338,55 @@
             <i class="fa fa-spinner fa-spin">&#173;</i>
         </div>
     </div>
+</xsl:template>
+
+<xsl:template name="counters">
+    <!-- Вставьте счётчики здесь -->
+	<script type="text/javascript">
+	    <xsl:text disable-output-escaping="yes">
+        <![CDATA[
+		    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		    ga('create', 'UA-60861342-1', 'auto');
+		    ga('send', 'pageview');
+		]]>
+		</xsl:text>
+	</script>
+	<!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+    <xsl:text disable-output-escaping="yes">
+    <![CDATA[
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter29098730 = new Ya.Metrika({
+                    id:29098730,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true,
+                    trackHash:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+    ]]>
+    </xsl:text>
+    </script>
+    <!-- /Yandex.Metrika counter -->
 </xsl:template>
 
 </xsl:stylesheet>

@@ -1,0 +1,17 @@
+@media only screen and (min-width : 1200px) {
+    
+    #nav {
+        display: none;
+    }
+    
+    #main {
+        width: 100%;
+    }
+    
+    /*#header {
+        position: relative;
+        -webkit-flex: 1 auto;
+        flex: 1 auto;
+    }
+    */
+}

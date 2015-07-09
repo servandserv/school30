@@ -39,11 +39,11 @@
         <head>
             <title>Поиск | Школа 30 | Ижевск</title>
             <xsl:call-template name="common-header" />
-            <link href="{$ROOT}css/persons.css" rel="stylesheet" type="text/css" />
+            <link href="{$ROOT}css/persons.min.css" rel="stylesheet" type="text/css" />
             <xsl:call-template name="theme">
                 <xsl:with-param name="ref" select="." />
             </xsl:call-template>
-            <script src='http://www.google-analytics.com/ga.js' type='text/javascript'>;</script>
+            <!--script src='http://www.google-analytics.com/ga.js' type='text/javascript'>;</script>
             <script type="text/javascript">
                 <![CDATA[
                     window.onload = function() {
@@ -53,7 +53,7 @@
                         } catch(err) {}
                     }
                  ]]>
-            </script>
+            </script-->
         </head>
         <body>
             <div id="nav">
@@ -102,16 +102,7 @@
                     <p><small>© 2015, фотоархив ИЕГЛ Школа № 30</small></p>
                 </div>
             </div>
-            <!--script type="text/javascript">
-                <![CDATA[
-                    if( typeof document.getElementsByClassName === "function" ) {
-                        var ns = document.getElementsByClassName("html");
-                        for(var i=0;i<ns.length;i++) {
-                            ns[i].innerHTML = ns[i].innerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-                        }
-                    }
-                ]]>
-            </script-->
+            <xsl:call-template name="counters" />
         </body>
     </html>
 </xsl:template>

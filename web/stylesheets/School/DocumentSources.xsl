@@ -40,19 +40,21 @@
         <head>
             <title><xsl:value-of select="doc:Documents/doc:Document/doc:comments" /> | Школа 30 | Ижевск</title>
             <xsl:call-template name="common-header" />
-            <link href="{$ROOT}css/document.css" rel="stylesheet" type="text/css" />
+            <link href="{$ROOT}css/document.min.css" rel="stylesheet" type="text/css" />
             <xsl:call-template name="theme">
                 <xsl:with-param name="ref" select="$DESTINATIONS/dig:Digests/dig:Digest" />
             </xsl:call-template>
-            <script src='http://www.google-analytics.com/ga.js' type='text/javascript'>;</script>
+            <!--script src='http://www.google-analytics.com/ga.js' type='text/javascript'>;</script-->
             <script type="text/javascript">
                 <![CDATA[
                     window.onload = function() {
                         document.addEventListener("touchstart", function() {},false);
+                        /*
                         try{
                             var pageTracker = _gat._getTracker("UA-60861342-1");
                             pageTracker._trackPageview();
                         } catch(err) {}
+                        */
                     }
                 ]]>
             </script>
@@ -127,16 +129,7 @@
                     <p><small>© 2015, фотоархив ИЕГЛ Школа № 30</small></p>
                 </div>
             </div>
-            <!--script type="text/javascript">
-                <![CDATA[
-                    if( typeof document.getElementsByClassName === "function" ) {
-                        var ns = document.getElementsByClassName("html");
-                        for(var i=0;i<ns.length;i++) {
-                            ns[i].innerHTML = ns[i].innerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-                        }
-                    }
-                ]]>
-            </script-->
+            <xsl:call-template name="counters" />
         </body>
     </html>
 </xsl:template>
@@ -191,10 +184,10 @@
                                     
                                 </div>
                                 <h6>
-                                        <span><xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:lastName" />&#160;</span>
-                                        <span><xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:firstName" />&#160;</span>
-                                        <span><xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:middleName" /></span>
-                                    </h6>
+                                    <xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:lastName" /><br/>
+                                    <xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:firstName" /><br/>
+                                    <xsl:value-of select="$SOURCES//pers:Person[pers:ID = $ref]/pers:middleName" />
+                                </h6>
                             </div>
                         </div>
                     </xsl:for-each>

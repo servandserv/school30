@@ -37,11 +37,11 @@
         <head>
             <title>О проекте | Школа 30 | Ижевск</title>
             <xsl:call-template name="common-header" />
-            <link href="{$ROOT}css/statistics.css" rel="stylesheet" type="text/css" />
+            <link href="{$ROOT}css/statistics.min.css" rel="stylesheet" type="text/css" />
             <xsl:call-template name="theme">
                 <xsl:with-param name="ref" select="." />
             </xsl:call-template>
-            <script src='http://www.google-analytics.com/ga.js' type='text/javascript'>;</script>
+            <!--script src='http://www.google-analytics.com/ga.js' type='text/javascript'>;</script>
             <script type="text/javascript">
                 <![CDATA[
                     window.onload = function() {
@@ -51,7 +51,7 @@
                         } catch(err) {}
                     }
                  ]]>
-            </script>
+            </script-->
         </head>
         <body>
             <div id="nav">
@@ -113,14 +113,14 @@
                         и заинтересованность в реализации этой идеи всех вовлеченных людей.
                     </p>
                     <p>
-                        <img src="{$CDN}/school/0100015/img100{$W640XL}" style="float:left;margin-right:3rem;" />
+                        <img src="{$CDN}/school/0100015/img100{$W640XL}" style="float:left;margin-right:3rem;" alt="Рудольская Марина Ивановна" />
                         <!--img src="http://res.cloudinary.com/school-30/image/upload/0100015/img100.jpg" style="float:left;margin-right:3rem;" /-->
                         Выражаем особую благодарность Директору ИЕГЛ "Школа №30", почетному работнику общего образования РФ, заслуженному
                         работнику народного образования республики <a href="{$ROOT}api/persons/vyw74w4z/destinations" title="Персональная страница">
                         Марине Ивановне Рудольской</a> за предоставленную возможность осуществления проекта.
                     </p>
                     <p>
-                        <img src="{$CDN}/school/0100016/img100{$W640XL}" style="float:right;margin-left:3rem;" />
+                        <img src="{$CDN}/school/0100016/img100{$W640XL}" style="float:right;margin-left:3rem;" alt="Крысова марина Федоровна"/>
                         <!--img src="http://res.cloudinary.com/school-30/image/upload/0100016/img100.jpg" style="float:right;margin-left: 3rem;" /-->
                         Проведенная работа была бы не возможной без активного участия <a href="{$ROOT}api/persons/mEi69VYr/destinations" title="Персональная страница">
                         Марины Федоровны Крысовой</a>. 
@@ -129,7 +129,7 @@
                         оперативного доступа к архивным материалам школы и музея.
                     </p>
                     <p>
-                        <img src="{$CDN}/school/0100017/img100{$W640XL}" style="float:left;margin-right:3rem;" />
+                        <img src="{$CDN}/school/0100017/img100{$W640XL}" style="float:left;margin-right:3rem;" alt="Богатырева Лилия Федоровна" />
                         <!--img src="http://res.cloudinary.com/school-30/image/upload/0100017/img100.jpg" style="float:left;margin-right:3rem;" /-->
                         Отдельные слова благодарности выражаем создателю и руководителю школьного музея, 
                         заслуженному учителю Удмуртской Республики <a href="{$ROOT}api/persons/eZiDt8sF/destinations" title="Персональная страница">
@@ -156,16 +156,7 @@
                     <p><small>© 2015, фотоархив ИЕГЛ Школа № 30</small></p>
                 </div>
             </div>
-            <!--script type="text/javascript">
-                <![CDATA[
-                    if( typeof document.getElementsByClassName === "function" ) {
-                        var ns = document.getElementsByClassName("html");
-                        for(var i=0;i<ns.length;i++) {
-                            ns[i].innerHTML = ns[i].innerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-                        }
-                    }
-                ]]>
-            </script-->
+            <xsl:call-template name="counters" />
         </body>
     </html>
 </xsl:template>

@@ -1,0 +1,13 @@
+/* Remove unwanted elements */
+* {
+    background-image: none;
+}
+#nav, .menu, .image-control-panel {
+    display: none;
+}
+
+a[href^=http]:after { 
+    content:" <" attr(href) ">";
+}
+
+* { -webkit-print-color-adjust: exact; }

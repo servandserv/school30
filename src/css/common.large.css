@@ -1,0 +1,115 @@
+@media only screen and (min-width : 900px) {
+    html {
+        font-size: 62.5%;
+    }
+    
+    #loader {
+        display:block;
+        position:fixed;
+        background: rgba(0,0,0,.75);
+        width:100%;
+        height:100%;
+        z-index: 20000;
+    }
+    #loader div {
+        margin: auto;
+        position: absolute;
+        left:0;
+        right:0;
+        top:0;
+        bottom:0;
+        width:1px;
+        height:1px;
+    }
+    #loader div i {
+        font-size: 5rem;
+        color: #fff;
+    }
+    
+    #nav {
+        display: none;
+    }
+    
+    #main {
+        max-width:100%;
+    }
+    
+    #header > p,
+    #header > h1,
+    #header > h2,
+    #header > h3,
+    #header > h4,
+    #header > h5,
+    #header > h6,
+    #header > small > p
+    #header > sub > p {
+        margin: 0 3rem;
+    }
+    
+    #docs, #files {
+        padding-top: 2.25rem;
+    }
+    
+    #docs > ul > li div:first-child + div  > ul > li:first-child {
+        padding: 0 .5rem 0 .5rem;
+    }
+    #files > ul > li div:first-child + div  > ul > li:first-child {
+        padding: 0 .5rem 0 3rem;
+    }
+    
+    #links {
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+       
+        display: -webkit-flex;
+        -webkit-flex-flow: row wrap;
+        -webkit-justify-content: flex-start;
+    }
+    
+    #links > div {
+        -webkit-flex: 1;
+        flex: 1;
+    }
+    
+    #links ul.share-buttons {
+        margin: 1.5rem 3rem;
+    }
+    
+    #staff h2,
+    #persons h2,
+    #documents h2,
+    #forms h2,
+    #unions h2,
+    #digest-dests h2,
+    #events-dests h2,
+    .menu h2 {
+        margin: 0 3rem;
+    }
+    #staff ul,
+    #persons ul,
+    #documents ul,
+    #forms ul,
+    #unions ul,
+    #digest-dests ul,
+    #events-dests ul,
+    .menu ul,
+    #header ul {
+        margin:0 3rem;
+    }
+
+    #copy p {
+        margin-left: 3rem;
+    }
+    
+    #docs .image-control-panel + div h3,
+    #files .image-control-panel + div h3 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    #docs .image-control-panel + div > p,
+    #files .image-control-panel + div > p {
+        padding-top: 1rem;
+    }
+}

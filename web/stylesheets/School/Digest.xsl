@@ -37,11 +37,11 @@
         <head>
             <title>Дайджест | Школа 30 | Ижевск</title>
             <xsl:call-template name="common-header" />
-            <link href="{$ROOT}css/digests.css" rel="stylesheet" type="text/css" />
+            <link href="{$ROOT}css/digests.min.css" rel="stylesheet" type="text/css" />
             <xsl:call-template name="theme">
                 <xsl:with-param name="ref" select="$SOURCES/dig:Digests/dig:Digest" />
             </xsl:call-template>
-            <script src='http://www.google-analytics.com/ga.js' type='text/javascript'>;</script>
+            <!--script src='http://www.google-analytics.com/ga.js' type='text/javascript'>;</script-->
             <!--script src="https://mc.yandex.ru/metrika/watch.js" type="text/javascript">;</script-->
             <script type="text/javascript">
                 <![CDATA[
@@ -52,10 +52,12 @@
                             resize_docs_container(document.getElementById('docs_container'),columns());
                         });
                         resize_docs_container(document.getElementById('docs_container'),columns());
+                        /*
                         try{
                             var pageTracker = _gat._getTracker("UA-60861342-1");
                             pageTracker._trackPageview();
                         } catch(err) {}
+                        */
                     }
                  ]]>
             </script>
@@ -97,16 +99,7 @@
                     <p><small>© 2015, фотоархив ИЕГЛ Школа № 30</small></p>
                 </div>
             </div>
-            <!--script type="text/javascript">
-                <![CDATA[
-                    if( typeof document.getElementsByClassName === "function" ) {
-                        var ns = document.getElementsByClassName("html");
-                        for(var i=0;i<ns.length;i++) {
-                            ns[i].innerHTML = ns[i].innerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-                        }
-                    }
-                ]]>
-            </script-->
+            <xsl:call-template name="counters" />
         </body>
     </html>
 </xsl:template>
