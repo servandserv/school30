@@ -113,6 +113,7 @@
                 </div>
                 <div id="docs">
                     <div id="docs_container">
+                        <xsl:if test="not($DOCS/doc:Document)"><h4>Нет документов</h4></xsl:if>
                         <xsl:apply-templates select="$DOCS/doc:Document" mode="tape">
                             <xsl:sort select="doc:year" />
                         </xsl:apply-templates>

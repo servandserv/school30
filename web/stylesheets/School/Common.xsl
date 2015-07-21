@@ -305,7 +305,9 @@
         </div>
         <div class="slider">
             <p><small><xsl:value-of select="doc:year" /></small></p>
-            <h3><xsl:value-of select="doc:comments" /></h3>
+            <xsl:if test="not(doc:comments='')">
+                <h3><xsl:value-of select="doc:comments" /></h3>
+            </xsl:if>
             <xsl:if test="string-length(link:Link/link:comments) &gt; 3 ">
                 <p class="html">
                     <xsl:value-of select="link:Link/link:comments" disable-output-escaping="yes" />

@@ -1,0 +1,29 @@
+#!/bin/sh
+read -n 1 -p "Скрипт формирует новый код и его исполнение может привести к потере старых данных. Ты уверен, что хочешь запустить это (y/[a]): " AMSURE 
+[ "$AMSURE" = "y" ] || exit
+echo "" 1>&2
+
+projectRoot=$(dirname $(dirname $(dirname $(realpath $0))))
+
+cd $(realpath $projectRoot/../vendor/happymeal)
+
+#build php, js classes & tests
+./happymeal xsd2code -s "${projectRoot}/web/schemas" -o "${projectRoot}" -vjm "School\\Port\\Adaptor\\Data" School
+
+#build controller code
+./happymeal wadl2code -s "${projectRoot}/web/schemas" -o "${projectRoot}" -m "School\\Port\\Adaptor\\Data" School
+
+cd $(realpath $projectRoot)
+#minify && uglify
+java -jar ~/yuicompressor/yuicompressor-2.4.8.jar --type js ${projectRoot}/src/js/school30.js > ${projectRoot}/web/js/school30.min.js
+chmod 755 ${projectRoot}/web/js/school30.min.js
+echo "minify js ...                   OK!"
+
+find ${projectRoot}/src/css -type f -name *.css | while read f; do
+    fl=$(basename "$f")
+    fn="${fl%.*}"
+    java -jar ~/yuicompressor/yuicompressor-2.4.8.jar --type css -o ${projectRoot}/web/css/"$fn".min.css $f
+    #cp -f $f ../../web/css/"$fn".css
+done
+chmod 755 -R ${projectRoot}/web/css
+echo "minify css ...                   OK!"

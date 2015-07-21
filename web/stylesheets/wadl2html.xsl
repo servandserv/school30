@@ -23,6 +23,8 @@
 	doctype-public="-//W3C//DTD XHTML 1.1//EN"
 	doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" />
 
+<!--xsl:include href="xml2html.xsl" /-->
+
 <xsl:variable name="PROJECT-BASE">
 	<xsl:text>../school</xsl:text>
 	<xsl:call-template name="get-base">
@@ -68,6 +70,7 @@
 				h1 { font: 170% sans-serif }
 				h2 { font: 140% sans-serif }
 				h3 { font: 120% sans-serif }
+				h3 + p > a { position: absolute; right:2rem;margin-top:.5rem; font-size: .8rem; }
 				h4 { font: bold 100% sans-serif }
 				h5 { font: italic 100% sans-serif }
 				h6 { font: small-caps 100% sans-serif }
@@ -124,13 +127,14 @@
 				#toc li { list-style:none; }
 				h3+p { padding-left:10px; }
 				h4 { font-size: 1em; margin: 0.5em 0em 0.25em 0em; background:#EEEEEE; padding: 6px 6px; }
-				h4[title='POST'],h4[title='GET'],h4[title='PUT'],h4[title='DELETE']{color:DarkCyan;}
-				h4[title~='2xx']{color:green;}
-				h4[title~='3xx']{color:darkblue;}
-				h4[title~='4xx']{color:red;}
+				h5[title='POST'],h4[title='GET'],h4[title='PUT'],h4[title='DELETE']{ color:DarkCyan; }
+				h5[title~='2xx']{color:green;}
+				h5[title~='3xx']{color:darkblue;}
+				h5[title~='4xx']{color:red;}
+				h5[title~='5xx']{color:red;}
 				h4 > span {padding-left:10px;font-size:.75em;color:black;}
-				h4 + p > p{padding-left:40px;}
-				h5{ font-size: 1em; margin: 0.5em 0em 0.5em 0em; }
+				h4 + p > p {padding-left:40px;}
+				h5 { font-size: 1em; margin: 0.5em 0em 0.5em 0em; }
 				table[title=params] { border:0px;font-size:0.85em;padding:0; border-collapse:collapse;border-spacing:0; }
 				table[title=params] td{border-right:solid 1px #DEDEDE;padding:10px 6px;vertical-align:top;}
 				table[title=params] td p {margin: 0px;}
@@ -141,6 +145,20 @@
 				dd p:first-child {font-size:80%;}
 				dd p:last-child {font-style:italic;}
 				.term{ font-weight:bold; color:#DB3706; font-family:monospace; }
+				
+				.xml2html * { color:#000000; font-family:sans-serif; }
+				.xml2html { font-family:monospace;background:none; }
+				.xml2html div.xml2html { margin-left:0.5em;margin-bottom:0mm;margin-top:0mm; }
+				.xml2html .elementcontent { color:#999999; }
+                .xml2html div.comment { white-space:pre; color:#cc9999; }
+				.xml2html span.xml2html.starttag, .xml2html span.xml2html.endtag { color:maroon; }
+				.xml2html span.xml2html.starttag a, .xml2html span.xml2html.endtag a { color:inherit;text-decoration:none;border:none; }
+				.xml2html span.xml2html.starttag a:hover, .xml2html span.xml2html.endtag a:hover {color:white;background:maroon;font-weight:bold;text-decoration:none; }
+				.xml2html span.xml2html.attributename {font-weight:normal;color:black;}
+				.xml2html span.xml2html.attributevalue {font-weight:normal;font-style:italic;color:#999999;}
+				.xml2html a, .xml2html a {color:maroon;text-decoration:underline;}
+				.xml2html a:hover, .xml2html a:hover {color: white;background:maroon;font-weight:bold;text-decoration:none;}
+				.xml2html .copyright {font-size:80%;}
 			</style>
 			<script type="text/javascript">
 				function init() {
@@ -221,23 +239,30 @@
 		<xsl:for-each select="$definition/descendant::*[@name]">
 			<xsl:variable name="localname" select="@name" />
 			<!-- representations's mediaTypes -->
-			<xsl:if test="$representations[substring-after(@element,':') = $localname]">
+			<!--xsl:if test="$representations[substring-after(@element,':') = $localname]">
 				<p>
 					<em><xsl:value-of select="$localname" /></em><br/>
 					<code>
 						<xsl:apply-templates select="descendant::xsd:documentation[1]" />
 					</code>
+					<pre>
+					    <xsl:copy-of select="." />
+					</pre>
 				</p>
-			</xsl:if>
+				<p>
+				    <xsl:apply-templates select="." mode="xml2html" />
+				</p>
+			</xsl:if-->
 			<!-- param's types -->
-			<xsl:if test="$types[substring-after(@type,':') = $localname]">
+			<!--xsl:if test="$types[substring-after(@type,':') = $localname]">
 				<p>
 					<em><xsl:value-of select="$localname" /></em><br/>
 					<code>
 						<xsl:apply-templates select="descendant::xsd:documentation[1]" />
 					</code>
+					<xsl:apply-templates select="." mode="xml2html" />
 				</p>
-			</xsl:if>
+			</xsl:if-->
 		</xsl:for-each>
 	</li>
 </xsl:template>
@@ -320,6 +345,7 @@
 <xsl:template match="wadl:method">
 	<xsl:param name="url" />
 	<xsl:variable name="id"><xsl:call-template name="get-id"/></xsl:variable>
+	<a href="#summary">Содержание</a>
 	<h4 id="{$id}" title="{@name}">
 		<xsl:value-of select="@name"/>
 		<xsl:text>&#160;</xsl:text>
@@ -390,13 +416,13 @@
 </xsl:template>
 
 <xsl:template match="wadl:response">
-	<h4 title="{substring(@status,1,1)}xx {@status}">
+	<h5 title="{substring(@status,1,1)}xx {@status}">
 		<!-- Подставляем общие статусы, тк под одним кодом может идти несколько вариантов сообщений об ошибках -->
 		<xsl:value-of select="@status" />
 		<xsl:call-template name="status-name">
 			<xsl:with-param name="status" select="@status" />
 		</xsl:call-template>
-	</h4>
+	</h5>
 
 	<xsl:choose>
 		<xsl:when test="wadl:param">
@@ -697,6 +723,7 @@
 			<xsl:when test="$status = 202"> Accepted</xsl:when>
 			<xsl:when test="$status = 302"> Moved Temporarily</xsl:when>
 			<xsl:when test="$status = 304"> Not Modified</xsl:when>
+			<xsl:when test="$status = 404"> Not found</xsl:when>
 			<xsl:when test="$status = 450"> Bad Request</xsl:when>
 			<xsl:when test="$status = 451"> Unauthorized</xsl:when>
 			<xsl:when test="$status = 453"> Forbidden</xsl:when>

@@ -100,6 +100,7 @@
                                     <xsl:apply-templates select="un:Unions" />
                                     <xsl:apply-templates select="$DESTINATIONS/ev:Events" />
                                     <xsl:apply-templates select="$DESTINATIONS/dig:Digests" />
+                                    &#160;
                                 </div>
                                 <xsl:apply-templates select="pers:Persons" />
                             </xsl:when>
@@ -110,6 +111,7 @@
                                     <xsl:apply-templates select="un:Unions" />
                                     <xsl:apply-templates select="$DESTINATIONS/ev:Events" />
                                     <xsl:apply-templates select="$DESTINATIONS/dig:Digests" />
+                                    &#160;
                                 </div>
                                 <xsl:apply-templates select="pers:Staff" />
                                 <!--xsl:call-template name="share-buttons">
@@ -117,7 +119,6 @@
                                 </xsl:call-template-->
                             </xsl:otherwise>
                         </xsl:choose>
-                        
                     </div>
                 </div>
                 <div id="menu" class="menu">

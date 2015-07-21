@@ -51,6 +51,9 @@
 #docs > ul > li > ul > li {
     display: block;
 }
+#docs_container > h4 {
+    margin: 0 1.5rem;
+}
 
 @media only screen and (min-width : 900px) {
     #main {

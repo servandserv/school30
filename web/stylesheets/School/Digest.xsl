@@ -74,7 +74,7 @@
                 <div id="header" class="html">
                     <h6>Фотоархив Ижевского ественно-гуманитарного лицея «Школа № 30»</h6>
                     <h1>История в фотографиях и документах</h1>
-                    <p><small><xsl:value-of select="dig:Digests/dig:Digest/dig:published" /></small></p>
+                    <p><small><xsl:value-of select="dig:Digests/dig:Digest/dig:published" />&#173;</small></p>
                     <h2><xsl:value-of select="dig:Digests/dig:Digest/dig:title" /></h2>
                     <xsl:value-of select="dig:Digests/dig:Digest/dig:comments" disable-output-escaping="yes"  />
                     <div class="menu">
