@@ -113,7 +113,10 @@
                 </div>
                 <div id="docs">
                     <div id="docs_container">
-                        <xsl:if test="not($DOCS/doc:Document)"><h4>Нет документов</h4></xsl:if>
+                        <xsl:if test="not($DOCS/doc:Document)">
+                            <h4>К сожалению, в настоящее время раздел не содержит ни одного документа. Но это не означает, что их нет. Мы продолжаем обрабатывать и публиковать архив музея школы. 
+                            Вы можете получать уведомления о новых публикациях, если зарегистрируетесь в группе <a href="https://www.facebook.com/groups/school.30.izhevsk/">Facebook</a>.</h4>
+                        </xsl:if>
                         <xsl:apply-templates select="$DOCS/doc:Document" mode="tape">
                             <xsl:sort select="doc:year" />
                         </xsl:apply-templates>

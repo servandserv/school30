@@ -38,8 +38,8 @@
 <xsl:template name="common-header">
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta name="keywords" content="Ижевский естественно гуманитарный лицей Школа 30, МБОУ, ИЕГЛ, Школа-30, лицей, архив, фотографии, история, Школа № 30, школы, тридцатка, Ижевск, Удмуртия, Россия" />
-    <meta name="description" content="Фотоархив документов посвященных истории Школы №30 города Ижевска" />
+    <meta name="keywords" content="Ижевский естественно гуманитарный лицей Школа 30, Школа 30, МБОУ, ИЕГЛ, Школа-30, лицей, архив, фотографии, история, Школа № 30, школы, тридцатка, Ижевск, Удмуртия, Россия" />
+    <meta name="description" content="Фотоархив документов посвященных истории Школы №30 города Ижевска, Школа 30, тридцатка, Ижевский естественно гуманитарный лицей Школа 30, ИЕГЛ" />
     
     <link href='{$ROOT}/assets/favicon.png' rel='shortcut icon' type='image/png' />
     <link href="../{$ROOT}/bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -73,6 +73,9 @@
     <script type="text/javascript" src="{$ROOT}/js/school30.min.js" >;</script>
 </xsl:template>
 
+<xsl:template name="hide-data">
+    
+</xsl:template>
 
 <xsl:template name="theme">
     <xsl:param name="ref" />
@@ -188,6 +191,7 @@
     <h2><a href="{$ROOT}api/persons">Поиск</a></h2>
     <h2><a href="{$ROOT}api/cohorts">Поколения</a></h2>
     <h2><a href="{$ROOT}api/events">События</a></h2>
+    <h2><a href="{$ROOT}api/videos">Видеоматериалы</a></h2>
     <h2>Дайджесты</h2>
     <xsl:apply-templates select="$DIGESTS" mode="digests-card-container" />
     <h2><a href="{$ROOT}api/stat">О проекте</a></h2>
@@ -283,7 +287,7 @@
             </xsl:variable>
             <!--img src="{$CDN}{$TRANS}{substring-before($file/doc:Obverse/doc:Thumb/doc:src,'.thumb')}{$W640XL}" /-->
             <!--img id="obv_{doc:ID}" src="{$TMP_IMG}?width={$width}&amp;height={$height}&amp;max-width=640" alt="фотография" /-->
-            <img id="obv_{doc:ID}" src="{$ROOT}tmpimg/{$width}/{$height}/640" alt="фотография" />
+            <img id="obv_{doc:ID}" src="{$ROOT}tmpimg/{$width}/{$height}/640" alt="{doc:year},{doc:comments}" />
             <script type="text/javascript">
                 window.addEventListener('load', function() {
                     document.getElementById('obv_<xsl:value-of select="doc:ID" />').setAttribute('src','<xsl:value-of select="$obv_src" />');

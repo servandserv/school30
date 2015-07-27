@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:ru:battleship:School:Videos"
+	xmlns:ns0="urn:ru:battleship:School:Links"
+	targetNamespace="urn:ru:battleship:School:Videos">
+
+<xsd:import schemaLocation="Links.xsd" namespace="urn:ru:battleship:School:Links" /> 
+
+<xsd:element name="Video">
+	<xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation>Видео</xsd:documentation>
+	</xsd:annotation>
+	<xsd:sequence>
+			<xsd:element name="autouid" type="xsd:integer" minOccurs="0" />
+			<xsd:element name="ID" type="xsd:string" minOccurs="0" />
+			<xsd:element name="name" type="xsd:string" />
+			<xsd:element name="year" type="xsd:string" />
+			<xsd:element name="comments" type="xsd:string" minOccurs="0" />
+			<xsd:element name="href" type="xsd:string" />
+			<xsd:element ref="ns0:Link" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Videos">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Video" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+</xsd:schema>

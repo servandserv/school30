@@ -14,6 +14,8 @@
 	xmlns:ns3="urn:ru:battleship:School:Digests"
 	xmlns:ns4="urn:ru:battleship:School:Documents"
 	xmlns:ns5="urn:ru:battleship:School:Links"
+	xmlns:ns6="urn:ru:battleship:School:Events"
+	xmlns:ns7="urn:ru:battleship:School:Videos"
 	>
 	 
 	<doc title="School30 API">
@@ -26,6 +28,8 @@
 		<include href="schemas/School/Digests.xsd" />
 		<include href="schemas/School/Documents.xsd" />
 		<include href="schemas/School/Links.xsd" />
+		<include href="schemas/School/Events.xsd" />
+		<include href="schemas/School/Videos.xsd" />
 	</grammars>
 	
 	<resources base="http://www.school-30.com/api/v1.0/">
@@ -46,6 +50,41 @@
 				<response status="200">
 					<param name="Etag" style="header" />
 					<representation mediaType="application/xml; charset=UTF-8" element="ns2:Statistics">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="304">
+					<param name="Etag" style="header" />
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+		</resource>
+		<resource id="videos" path="videos">
+			<doc title="Видеоматериалы">
+			</doc>
+			<method name="GET" id="FindVideosUseCase">
+				<doc title="Запрос на реестра видеоматериалов">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+				</request>
+				<response status="200">
+					<param name="Etag" style="header" />
+					<representation mediaType="application/xml; charset=UTF-8" element="ns7:Videos">
 						<doc title="OK" >Accept header application/xml</doc>
 					</representation>
 					<representation mediaType="application/json; charset=UTF-8">

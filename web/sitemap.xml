@@ -4,6 +4,9 @@
     <loc>http://www.school-30.com/api/v0.1/stat</loc>
   </url>
   <url>
+    <loc>http://www.school-30.com/api/v0.1/videos</loc>
+  </url>
+  <url>
     <loc>http://www.school-30.com/api/v0.1/staff</loc>
   </url>
   <url>

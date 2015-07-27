@@ -95,7 +95,10 @@
                 <div id="docs">
                      <div id="docs_container">
                         <xsl:attribute name="class">count-<xsl:value-of select="count(doc:Documents/doc:Document[doc:published = '1'])" /></xsl:attribute>
-                        <xsl:if test="not(doc:Documents/doc:Document)"><h4>Нет документов</h4></xsl:if>
+                        <xsl:if test="count(doc:Documents/doc:Document[doc:published = '1']) = 0">
+                            <h4>К сожалению, в настоящее время раздел не содержит ни одного документа. Но это не означает, что их нет. Мы продолжаем обрабатывать и публиковать архив музея школы. 
+                            Вы можете получать уведомления о новых публикациях, если зарегистрируетесь в группе <a href="https://www.facebook.com/groups/school.30.izhevsk/">Facebook</a>.</h4>
+                        </xsl:if>
                         <xsl:apply-templates select="doc:Documents/doc:Document[doc:published = '1' and doc:type= '2']" mode="tape" />
                         <xsl:apply-templates select="doc:Documents/doc:Document[doc:published = '1' and not(doc:type= '2')]" mode="tape">
                             <xsl:sort select="concat(doc:type,doc:year)" />

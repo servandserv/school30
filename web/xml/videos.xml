@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Videos xmlns="urn:ru:battleship:School:Videos">
+    <Video>
+        <ID>1</ID>
+        <name>Видеоматериалы музея. Часть 1</name>
+        <year>19??</year>
+        <comments>Видеозарисовки разных лет</comments>
+        <href>http://www.youtube.com/embed/sgjNDuAqnLI</href>
+    </Video>
+    <Video>
+        <ID>2</ID>
+        <name>Видеоматериалы музея. Часть 2</name>
+        <year>19??</year>
+        <comments>Основание школы, военные годы</comments>
+        <href>http://www.youtube.com/embed/EbW5yIvf6cI</href>
+    </Video>
+    <Video>
+        <ID>3</ID>
+        <name>Видеоматериалы музея. Часть 3</name>
+        <year>19??</year>
+        <comments>50-е, 60-е годы. основание музея школы.</comments>
+        <href>http://www.youtube.com/embed/-8ltjDVx4m8</href>
+    </Video>
+    <Video>
+        <ID>4</ID>
+        <name>Видеоматериалы музея. Часть 4</name>
+        <year>198?</year>
+        <comments>70-е, 80-е годы</comments>
+        <href>http://www.youtube.com/embed/Y0_bMX35tgg</href>
+    </Video>
+    <Video>
+        <ID>5</ID>
+        <name>Видеоматериалы музея. Часть 5</name>
+        <year>19??</year>
+        <comments>Видеозарисовки разных лет</comments>
+        <href>http://www.youtube.com/embed/EA4949H40Es</href>
+    </Video>
+    <Video>
+        <ID>6</ID>
+        <name>Видеоматериалы музея. Часть 6</name>
+        <year>19??</year>
+        <comments>Наши учителя</comments>
+        <href>http://www.youtube.com/embed/hunhFsKAQLQ</href>
+    </Video>
+</Videos>

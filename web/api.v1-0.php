@@ -12,6 +12,13 @@ $app->REF = function( $url ) use ($app) {
         $result = call_user_func_array(array(&$usecase,"execute"),$args);
         return $app->handleOutput( $result );
     }
+    $args = $app->matchAll( "/videos", $url );
+    if( $args !== NULL ) {
+        $usecase = $app->USECASES."\\FindVideosUseCase";
+        $usecase = new $usecase();
+        $result = call_user_func_array(array(&$usecase,"execute"),$args);
+        return $app->handleOutput( $result );
+    }
     $args = $app->matchAll( "/staff", $url );
     if( $args !== NULL ) {
         $usecase = $app->USECASES."\\FindStaffUseCase";
@@ -242,6 +249,28 @@ $app->CONTROLLER = function() use ($app) {
             try {
                 $app->request( null );
                 $usecase = $app->USECASES."\\FindStatisticsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->responseHtml($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/videos",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Videos");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindVideosUseCase";
                 $usecase = new $usecase();
                 $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
                 $app->responseHtml($result);
@@ -805,6 +834,10 @@ $app->CONTROLLER = function() use ($app) {
     );
     $app->get("/events",
         function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Events");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
             try {
                 if(!isset( $app->QUERY["start"] ) ) { 
                     $query = $app->QUERY;
@@ -832,6 +865,10 @@ $app->CONTROLLER = function() use ($app) {
         }
     );
     $app->get("/events/:id",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Events\Event");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
         function() use ($app) {
             try {
                 $app->request( null );

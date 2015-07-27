@@ -10,11 +10,12 @@
 	xmlns:link="urn:ru:battleship:School:Links"
 	xmlns:ev="urn:ru:battleship:School:Events"
 	xmlns:dig="urn:ru:battleship:School:Digests"
+	xmlns:mov="urn:ru:battleship:School:Videos"
 	xmlns:exsl="http://exslt.org/common"
 	xmlns:wadlext="urn:wadlext"
 	xmlns:ns="urn:namespace"
 	extension-element-prefixes="exsl"
-	exclude-result-prefixes="xsl html res pers un doc link dig ev wadlext ns"
+	exclude-result-prefixes="xsl html res pers un doc link dig ev mov wadlext ns"
 	version="1.0">
 
 <xsl:output
@@ -35,12 +36,12 @@
 <xsl:variable name="DIGESTS" select="document('../../api/digests')/dig:Digests" />
 <xsl:variable name="ROOT" select="'../'" />
 
-<xsl:template match="ev:Events">
+<xsl:template match="mov:Videos">
     <html lang="ru" xml:lang="ru">
         <head>
-            <title>События в жизни школы | Школа 30 | Ижевск</title>
+            <title>Видеоматериалы | Школа 30 | Ижевск</title>
             <xsl:call-template name="common-header" />
-            <link href="{$ROOT}css/persons.min.css" rel="stylesheet" type="text/css" />
+            <link href="{$ROOT}css/videos.min.css" rel="stylesheet" type="text/css" />
             <xsl:call-template name="theme">
                 <xsl:with-param name="ref" select="." />
             </xsl:call-template>
@@ -57,28 +58,31 @@
                     <h6>Фотоархив Ижевского ественно-гуманитарного лицея «Школа № 30»</h6>
                     <!--h1>Документ</h1-->
                     <!--h1><xsl:value-of select="doc:Documents/doc:Document/doc:year" /></h1-->
-                    <h1>События в жизни школы</h1>
-                    <p  class="help">На основании документов архива мы постарались сделать подборки документов отражающих те или иные события в жизни школы.
-                    Для просмотра документов соответствующего события следует перейти по ссылке.</p>
+                    <h1>Видеоматериалы</h1>
+                    <p  class="help">Предлагаем вашему вниманию уникальные видеоматериалы из жизни школы.</p>
                     <div class="menu">
                         <xsl:call-template name="menu">
-                            <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/persons?ln=',res:Ref[res:rel='ln']/res:href)" />
+                            <xsl:with-param name="social-href" select="'http://www.school-30.com/api/videos'" />
                         </xsl:call-template>
                     </div>
                 </div>
                 <div id="docs">
-                    <h4>найдена <xsl:value-of select="count(ev:Event)" /> запись(ей).</h4>
                     <ul>
-                        <xsl:for-each select="ev:Event">
+                        <xsl:for-each select="mov:Video">
                             <li>
-                                <p><a href="{$ROOT}api/events/{ev:ID}/sources"><xsl:value-of select="concat(ev:dt,', ',ev:name)" /></a></p>
+                                <div>
+                                    <iframe src="{mov:href}" frameborder="0" allowfullscreen="1">&#173;</iframe>
+                                </div>
+                                <xsl:if test="not(mov:comments='')">
+                                    <h3><xsl:value-of select="mov:comments" /></h3>
+                                </xsl:if>
                             </li>
                         </xsl:for-each>
                     </ul>
                 </div>
                 <div id="menu" class="menu">
                     <xsl:call-template name="menu">
-                        <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/persons?ln=',res:Ref[res:rel='ln']/res:href)" />
+                        <xsl:with-param name="social-href" select="'http://www.school-30.com/api/videos'" />
                     </xsl:call-template>
                 </div>
                 <div id="copy">

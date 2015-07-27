@@ -21,7 +21,9 @@ class FindCohortLeagueDocumentsUseCase {
         while($row = $sth->fetch()) {
             $d = new \School\Port\Adaptor\Data\School\Documents\Document();
             $d->fromXmlStr($row["xmlview"]);
-            $docs->setDocument($d);
+            if($d->getPublished()) {
+                $docs->setDocument($d);
+            }
 		}
         //$docs->setPI(str_replace($app->API_VERSION.$app->PATH_INFO,"",$_SERVER["SCRIPT_URI"])."/stylesheets/School/CohortDocuments.xsl");
 		return $docs;

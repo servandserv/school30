@@ -35,7 +35,7 @@
 <xsl:template match="res:Resources" mode="digest">
     <html lang="ru" xml:lang="ru">
         <head>
-            <title>Дайджест | Школа 30 | Ижевск</title>
+            <title>Дайджест <xsl:value-of select="dig:Digests/dig:Digest/dig:title" /> | Школа 30 | Ижевск</title>
             <xsl:call-template name="common-header" />
             <link href="{$ROOT}css/digests.min.css" rel="stylesheet" type="text/css" />
             <xsl:call-template name="theme">

@@ -37,7 +37,7 @@
 <xsl:template match="pers:Persons">
     <html lang="ru" xml:lang="ru">
         <head>
-            <title>Поиск | Школа 30 | Ижевск</title>
+            <title>Поиск преподавателей и учеников | Школа 30 | Ижевск</title>
             <xsl:call-template name="common-header" />
             <link href="{$ROOT}css/persons.min.css" rel="stylesheet" type="text/css" />
             <xsl:call-template name="theme">
