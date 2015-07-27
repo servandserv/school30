@@ -107,7 +107,7 @@
                     </ul>
                     <div class="menu">
                         <xsl:call-template name="menu">
-                            <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/events/',ev:Events/ev:Event/ev:ID,'/sources')" />
+                            <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/cohorts/',$COHORT/un:year)" />
                         </xsl:call-template>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                         </xsl:for-each>
                     </ul>
                     <xsl:call-template name="menu">
-                        <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/events/',ev:Events/ev:Event/ev:ID,'/sources')" />
+                        <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/cohorts/',$COHORT/un:year)" />
                     </xsl:call-template>
                 </div>
                 <div id="copy">

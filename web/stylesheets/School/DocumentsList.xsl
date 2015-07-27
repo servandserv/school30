@@ -80,7 +80,7 @@
                         <td><xsl:value-of select="doc:comments" /></td>
                         <td><xsl:value-of select="doc:readiness" /></td>
                         <td><xsl:value-of select="count(doc:File)" /></td>
-                        <td><img src="http://www.school-30.com/images{doc:File/doc:Obverse/doc:Thumb/doc:src}"/></td>
+                        <td><img src="{$ROOT}images{doc:File/doc:Obverse/doc:Thumb/doc:src}"/></td>
                     </tr>
                 </xsl:for-each>
             </table>

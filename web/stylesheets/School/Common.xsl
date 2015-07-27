@@ -25,7 +25,8 @@
 	doctype-public="-//W3C//DTD XHTML 1.1//EN"
 	doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" />
 	
-<xsl:variable name="CDN" select="'http://www.school-30.com/images'" />
+<!--xsl:variable name="CDN" select="'http://www.school-30.com/images'" /-->
+<xsl:variable name="CDN" select="concat($ROOT,'images')" />
 <xsl:variable name="TRANS" select="''" />
 <xsl:variable name="LARGE" select="'.large.jpg'" />
 <xsl:variable name="W640XL" select="'.thumb.640x.jpg'" />
@@ -180,9 +181,6 @@
         <li>
             <a href="https://plus.google.com/share?url={$href}" title="Google+"><span>Google+</span></a>
         </li>
-        <!--li>
-            <a href="http://connect.mail.ru/share?status={$href}" target="_blank" title="Мой Мир@mail.ru"><span>Мой Мир</span></a>
-        </li-->
     </ul>
 </xsl:template>
 
