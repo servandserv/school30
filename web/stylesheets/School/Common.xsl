@@ -41,8 +41,8 @@
     <meta name="keywords" content="Ижевский естественно гуманитарный лицей Школа 30, Школа 30, МБОУ, ИЕГЛ, Школа-30, лицей, архив, фотографии, история, Школа № 30, школы, тридцатка, Ижевск, Удмуртия, Россия" />
     <meta name="description" content="Фотоархив документов посвященных истории Школы №30 города Ижевска, Школа 30, тридцатка, Ижевский естественно гуманитарный лицей Школа 30, ИЕГЛ" />
     
-    <link href='{$ROOT}/assets/favicon.png' rel='shortcut icon' type='image/png' />
-    <link href="../{$ROOT}/bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='{$ROOT}assets/favicon.png' rel='shortcut icon' type='image/png' />
+    <link href="{$ROOT}components/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="{$ROOT}components/semanticss/dist/css/semanticss.min.css" rel="stylesheet" type="text/css" />
     <link href="{$ROOT}css/common.min.css" rel="stylesheet" type="text/css" />
     <link href="{$ROOT}css/print.min.css" rel="stylesheet" type="text/css" media="print" />
