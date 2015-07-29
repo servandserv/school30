@@ -96,6 +96,11 @@
         margin-top: 0;
         line-height: 1.25;
     }
+    
+    #docs_container > h4 {
+	margin: 0 3rem;
+    }
+    
     #docs > ul > li {
         display: block;
         -webkit-flex: 1 33%;

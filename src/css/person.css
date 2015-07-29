@@ -79,6 +79,7 @@
     #docs > div > div div:last-child > p:first-child {
         margin-top: 0;
     }
+    
     #header > .menu {
         margin-top: 3rem;
         display: block;
@@ -134,6 +135,9 @@
     }
     #docs > div > div {
         max-width: 32%;
+    }
+    #docs_container > h4 {
+	margin: 0 3rem;
     }
 }
 @media only screen and (min-width : 2000px) {

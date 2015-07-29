@@ -189,7 +189,7 @@
     <h2><a href="{$ROOT}api/persons">Поиск</a></h2>
     <h2><a href="{$ROOT}api/cohorts">Поколения</a></h2>
     <h2><a href="{$ROOT}api/events">События</a></h2>
-    <h2><a href="{$ROOT}api/videos">Видеоматериалы</a></h2>
+    <h2><a href="{$ROOT}api/videos">Видео</a></h2>
     <h2>Дайджесты</h2>
     <xsl:apply-templates select="$DIGESTS" mode="digests-card-container" />
     <h2><a href="{$ROOT}api/stat">О проекте</a></h2>

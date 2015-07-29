@@ -1,0 +1,58 @@
+#!/bin/sh
+read -n 1 -p "Скрипт деплоит проект в продакшен!!!! Ты уверен, что хочешь запустить это (y/[a]): " AMSURE 
+[ "$AMSURE" = "y" ] || exit
+echo "" 1>&2
+
+s=$(dirname $(dirname $(dirname $(realpath $0))))
+d=$(realpath $(dirname $s)/school)
+mkdir -p $d
+
+cp -f -R "${s}/classes" "${d}"
+echo "deploy ${d}/classes"
+
+cp -f -R "${s}/conf" "${d}"
+echo "deploy ${d}/conf"
+
+mkdir -p "${d}/web"
+cp -f -R "${s}/web/assets" "${d}/web"
+echo "deploy ${d}/assets"
+
+cp -f -R "${s}/web/components" "${d}/web"
+echo "deploy ${d}/components"
+
+cp -f -R "${s}/web/css" "${d}/web"
+#cp -f -R "${s}/web/font" "${d}/web/font"
+cp -f -R "${s}/web/images" "${d}/web"
+echo "deploy ${d}/images"
+
+mkdir -p "${d}/web/js"
+cp -f "${s}/web/js/school30.min.js" "${d}/web/js/school30.min.js"
+echo "deploy ${d}/scripts"
+
+mkdir -p "${d}/web/schemas/School"
+find ${s}/web/schemas -type f -name *.xsd | while read f; do
+    fl=$(basename "$f")
+    cp -f "${f}" "${d}/web/schemas/School/${fl}"
+done
+cp -f "${s}/web/schemas/School/School.v1-0.wadl" "${d}/web/schemas/School/School.v1-0.wadl"
+echo "deploy ${d}/schemas"
+
+mkdir -p "${d}/web/stylesheets"
+cp -f -R "${s}/web/stylesheets/School" "${d}/web/stylesheets"
+rm -f "${d}/web/stylesheets/School/component"
+cp -f "${s}/web/stylesheets/wadl2html.xsl" "${d}/web/stylesheets/wadl2html.xsl"
+cp -f "${s}/web/stylesheets/xml2html.xsl" "${d}/web/stylesheets/xml2html.xsl"
+echo "deploy ${d}/stylesheets"
+
+cp -f -R "${s}/web/system" "${d}/web"
+cp -f -R "${s}/web/xml" "${d}/web"
+cp -f "${s}/web/api.v1-0.php" "${d}/web/api.v1-0.php"
+cp -f "${s}/web/index.html" "${d}/web/index.html"
+cp -f "${s}/web/index.php" "${d}/web/index.php"
+cp -f "${s}/web/robots.txt" "${d}/web/robots.txt"
+cp -f "${s}/web/sitemap.xml" "${d}/web/sitemap.xml"
+cp -f "${s}/web/tmp.image.php" "${d}/web/tmp.image.php"
+cp -f "${s}/src/bin/sources/.production_htaccess" "${d}/web/.htaccess"
+echo "deploy ${d}/web"
+
+chmod -R 755 $d
