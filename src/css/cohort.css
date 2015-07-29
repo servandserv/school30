@@ -110,6 +110,9 @@
         max-width: 49%;
         margin-left:1%;
     }
+    #docs_container > h4 {
+	margin: 0 3rem;
+    }
 }
 @media only screen and (min-width : 1200px) {
     #header {
