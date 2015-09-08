@@ -428,7 +428,7 @@
 				<div class="col s12">
 					<div class="card">
 						<div id="<%= file.Obverse.name %>_card" class="card-image">
-							<img id="<%= file.Obverse.name %>_img" src="../school/images/<%= file.Obverse.Large.src %>" alt="<%= index %>" />
+							<img id="<%= file.Obverse.name %>_img" src="images/<%= file.Obverse.Large.src %>" alt="<%= index %>" />
 							<span class="card-title"><%= file.Obverse.Large.src %></span>
 						</div>
 						<div class="card-content">
@@ -454,7 +454,7 @@
 							<div class="card-reveal" style="padding:0;">
 								<span class="card-title grey-text text-darken-4"><i class="mdi-navigation-close right"></i></span>
 								<div class="card-image" style="width:100%;height:auto;margin:2em 0 0 0;">
-									<img src="../school/images/<%= file.Reverse.Large.src %>" />
+									<img src="images/<%= file.Reverse.Large.src %>" />
 								</div>
 							</div>
 						<% } %>
@@ -597,9 +597,9 @@
 							</td>
 							<td>
 								<% _.each(document.File, function(file,index) { %>
-									<img class="materialboxed" src="../school/images<%= file.Obverse.Large.src %>" height="100px"/>
+									<img class="materialboxed" src="images<%= file.Obverse.Large.src %>" height="100px"/>
 									<% if ( file.Reverse ) { %>
-										<img class="materialboxed" src="../school/images<%= file.Reverse.Large.src %>" height="100px"  />
+										<img class="materialboxed" src="images<%= file.Reverse.Large.src %>" height="100px"  />
 									<% } %>
 								<% }); %>
 							</td>

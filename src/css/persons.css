@@ -118,6 +118,10 @@
     #docs > h4 {
         margin-top: 0;
         line-height: 1.25;
+        margin-left:3rem;
+    }
+    #docs > ul {
+        margin:0 3rem;
     }
     #docs > ul > li {
         display: block;

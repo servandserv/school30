@@ -2,10 +2,10 @@
 
 require_once __DIR__.'/../conf/bootstrap.php';
 
-define("TMP","/public/media/photo/project30/tmp");
-define("ROTATED_DIR","/public/media/photo/project30/rotated");
-define("CROPED_DIR","/public/media/photo/project30/croped");
-define("IMAGES_DIR","/var/www/localhost/htdocs/school/web/images");
+define("TMP","/tmp/school30/tmp");
+define("ROTATED_DIR","/tmp/school30/rotated");
+define("CROPED_DIR","/tmp/school30/croped");
+define("IMAGES_DIR","/var/www/localhost/htdocs/school30/web/images");
 
 $path = $_POST["path"];
 $target_path = CROPED_DIR ."/".$path."/".basename( $_FILES['filedata']['name']);

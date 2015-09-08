@@ -39,7 +39,7 @@ echo "deploy ${d}/schemas"
 
 mkdir -p "${d}/web/stylesheets"
 cp -f -R "${s}/web/stylesheets/School" "${d}/web/stylesheets"
-rm -f "${d}/web/stylesheets/School/component"
+rm -rf "${d}/web/stylesheets/School/component"
 cp -f "${s}/web/stylesheets/wadl2html.xsl" "${d}/web/stylesheets/wadl2html.xsl"
 cp -f "${s}/web/stylesheets/xml2html.xsl" "${d}/web/stylesheets/xml2html.xsl"
 echo "deploy ${d}/stylesheets"

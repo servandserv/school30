@@ -124,6 +124,7 @@
 							return staff[i];
 						}
 					}
+					return {};
 					break;
 				case "pupil":
 					var persons = this.get('Persons');
@@ -132,8 +133,10 @@
 							return persons.Person[i];
 						}
 					}
+					return {};
 					break;
 				default:
+				    console.log(ref);
 					return {};
 			}
 		}
@@ -286,6 +289,7 @@
 				areas = d.File[i].Obverse.Large.Area;
 				//console.log(areas);
 				for( var j = 0; j < areas.length; j++ ) {
+				    tooltip = "Unknown";
 					$('<div>', {
 						'alt': j,
 						'id': 'Ref_'+areas[j].Ref[0].href,
@@ -838,6 +842,7 @@
 			Happymeal.Mediator.subscribe("Link:ready",this.render, this);
 		},
 		render: function(link) {
+            //console.log(link.toJSON());
 			$('#link-edit-modal').openModal();
 			this.el.html( this.template({link:link.toJSON()}));
 			materialize('#link-edit-form');

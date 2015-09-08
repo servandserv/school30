@@ -246,7 +246,17 @@
             <ul>
                 <xsl:for-each select="un:Form">
                     <li>
-                       <p><xsl:value-of select="concat(un:year,un:league,', выпуск ',un:cohort)" /></p>
+                        <xsl:choose>
+                            <xsl:when test="un:league and not(un:league='?')">
+                                <p><a href="{$ROOT}api/cohorts/{un:cohort}/leagues/{un:league}"><xsl:value-of select="concat(un:year,un:league,', выпуск ',un:cohort)" /></a></p>
+                            </xsl:when>
+                            <xsl:when test="un:cohort">
+                                <p><a href="{$ROOT}api/cohorts/{un:cohort}"><xsl:value-of select="concat(un:year,un:league,', выпуск ',un:cohort)" /></a></p>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <p><xsl:value-of select="concat(un:year,un:league,', выпуск ',un:cohort)" /></p>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </li>
                 </xsl:for-each>
             </ul>

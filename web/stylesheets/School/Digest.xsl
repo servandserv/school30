@@ -85,8 +85,9 @@
                 </div>
                 <div id="docs">
                     <div id="docs_container">
+                        <xsl:if test="not(doc:Documents/doc:Document)">&#160;</xsl:if>
                         <xsl:apply-templates select="doc:Documents/doc:Document" mode="tape">
-                            <xsl:sort select="concat(link:Link/link:dtStart,doc:year)" />
+                            <xsl:sort select="concat(link:Link/link:type,link:Link/link:dtStart,doc:year)" />
                         </xsl:apply-templates>
                     </div>
                 </div>
