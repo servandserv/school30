@@ -740,8 +740,8 @@
 			this.$el.html( this.template({ unions: collection.toJSON() }));
 			$(".union-add").on('click','i', function() {
 				var link = Happymeal.Locator("School.Port.Adaptor.Data.School.Links.Link");
-				link.setSource(this.getAttribute("id"));
-				link.setDestination(document.getElementById("document-id").value);
+				link.setSource(document.getElementById("document-id").value);
+				link.setDestination(this.getAttribute("id"));
 				link.setType('union');
 				link.setDtStart(document.getElementById("document-year").value);
 				link.setDtEnd(document.getElementById("document-year").value);
@@ -1122,8 +1122,8 @@
 			var formForm = new app.View.FormForm({ model: doc }); 
 			var staffForm = new app.View.StaffForm({ model: doc }); 
 			var personsForm = new app.View.PersonsForm({ model: doc }); 
-			var unionsForm = new app.View.UnionsForm({ model: doc }); 
 			dest = new app.Model.ResourceD({});
+			var unionsForm = new app.View.UnionsForm({ model: dest }); 
 			var eventsForm = new app.View.EventsForm({ model: dest }); 
 			var digestsForm = new app.View.DigestsForm({ model: dest }); 
 			docs.fetch();

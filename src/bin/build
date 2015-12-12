@@ -8,10 +8,10 @@ projectRoot=$(dirname $(dirname $(dirname $(realpath $0))))
 cd $(realpath $projectRoot/../vendor/happymeal)
 
 #build php, js classes & tests
-#./happymeal xsd2code -s "${projectRoot}/web/schemas" -o "${projectRoot}" -vjm "School\\Port\\Adaptor\\Data" School
+./happymeal xsd2code -s "${projectRoot}/web/schemas" -o "${projectRoot}" -vjm "School\\Port\\Adaptor\\Data" School
 
 #build controller code
-#./happymeal wadl2code -s "${projectRoot}/web/schemas" -o "${projectRoot}" -m "School\\Port\\Adaptor\\Data" School
+./happymeal wadl2code -s "${projectRoot}/web/schemas" -o "${projectRoot}" -m "School\\Port\\Adaptor\\Data" School
 
 cd $(realpath $projectRoot)
 #minify && uglify

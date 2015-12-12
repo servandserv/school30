@@ -2,16 +2,15 @@
 
 namespace School\Application;
 
-class FindLinkedResourcesService {
+class FindStaffDestinationsUseCase {
 
 	public function __construct() {
 	}
 	
-	protected function findLinkedResources($id,$from,$to) {
-		$app = \App::getInstance();
-		//переменные пути
-		//$args = func_get_args();
-		$resources = new \School\Port\Adaptor\Data\School\Resources();
+	public function execute($alias) {
+	    $app = \App::getInstance();
+	    
+	    $resources = new \School\Port\Adaptor\Data\School\Resources();
 		$staff = new \School\Port\Adaptor\Data\School\Persons\Staff();
 		$persons = new \School\Port\Adaptor\Data\School\Persons();
 		$forms = new \School\Port\Adaptor\Data\School\Unions\Forms();
@@ -20,12 +19,16 @@ class FindLinkedResourcesService {
 		$digests = new \School\Port\Adaptor\Data\School\Digests();
 		$events = new \School\Port\Adaptor\Data\School\Events();
 		$conn = $app->DB_CONNECT;
-		$params = array($id);
-		$query = "SELECT * FROM `resources` WHERE id=?;";
+		$params = array($alias."%");
+		$query = "SELECT `p`.* FROM `resources` AS `s` 
+					JOIN `links` AS `l` ON `s`.`id`=`l`.`destination`
+					JOIN `resources` AS `p` ON `l`.`source`=`p`.`id`
+					WHERE `s`.`id`='sVuTMPP1' AND `p`.`key1` LIKE ? ORDER BY `p`.`key1`, `p`.`key2` LIMIT 0,1;";
 		$sth = $conn->prepare($query);
 		$sth->execute($params);
 		//error_log($sth->rowCount());
 		while($row = $sth->fetch()) {
+		    $params = [$row["id"]];
 			$type = $row["type"];
 			$autoid = $row["autoid"];
 			switch($type) {
@@ -88,8 +91,8 @@ class FindLinkedResourcesService {
 		}
 		$query = "
 			SELECT `r`.*, `l`.`type` AS `linktype`, `l`.`xmlview` AS `linkview` FROM `links` l
-			JOIN `resources` r ON l.".$to."=r.id
-			WHERE l.".$from."=? ORDER BY `l`.`dt_start`,`r`.`created`;";
+			JOIN `resources` r ON l.destination=r.id
+			WHERE l.source=? ORDER BY `l`.`dt_start`,`r`.`created`;";
 		$sth = $conn->prepare($query);
 		$sth->execute($params);
 		while($row = $sth->fetch()) {
@@ -152,6 +155,8 @@ class FindLinkedResourcesService {
 		$resources->setUnions($unions);
 		$resources->setEvents($events);
 		$resources->setDigests($digests);
+		
+	    $resources->setPI(str_replace($app->API_VERSION.$app->PATH_INFO,"",$_SERVER["SCRIPT_URI"])."/stylesheets/School/StaffDestinations.xsl");
 		return $resources;
 	}
 }

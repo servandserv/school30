@@ -40,7 +40,7 @@
         <head>
             <title><xsl:value-of select="ev:Events/ev:Event/ev:name" /> | Школа 30 | Ижевск</title>
             <xsl:call-template name="common-header" />
-            <link href="../../../css/person.min.css" rel="stylesheet" type="text/css" />
+            <link href="{$ROOT}css/person.min.css" rel="stylesheet" type="text/css" />
             <xsl:call-template name="theme">
                 <xsl:with-param name="ref" select="$SOURCES/dig:Digests/dig:Digest" />
             </xsl:call-template>
@@ -144,36 +144,6 @@
             </ul-->
         </div>
     </xsl:if>
-</xsl:template>
-
-<xsl:template match="un:Forms">
-    <xsl:if test="un:Form">
-        <div id="forms">
-            <h2>Учился(лась)</h2>
-            <ul>
-                <xsl:for-each select="un:Form">
-                    <li>
-                        <p><xsl:value-of select="concat(un:year,un:league,', выпуск ',un:cohort)" /></p>
-                    </li>
-                </xsl:for-each>
-            </ul>
-        </div>
-    </xsl:if>
-</xsl:template>
-
-<xsl:template match="un:Unions">
-    <xsl:if test="un:Union[not(link:Link/link:type = 'teacher')]">
-        <div id="unions">
-            <h2>Объединения и клубы</h2>
-        </div>
-    </xsl:if>
-</xsl:template>
-
-<xsl:template match="un:Union[link:Link/link:type = 'teacher']">
-    <h3>Преподаватель, <xsl:value-of select="link:Link/link:dtStart" /> - <xsl:value-of select="link:Link/link:dtEnd" /></h3>
-    <!--xsl:if test="link:Link/link:comments">
-        <p><xsl:value-of select="link:Link/link:comments" /></p>
-    </xsl:if-->
 </xsl:template>
 
 </xsl:stylesheet>

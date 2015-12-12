@@ -26,6 +26,13 @@ $app->REF = function( $url ) use ($app) {
         $result = call_user_func_array(array(&$usecase,"execute"),$args);
         return $app->handleOutput( $result );
     }
+    $args = $app->matchAll( "/staff/:alias", $url );
+    if( $args !== NULL ) {
+        $usecase = $app->USECASES."\\FindStaffDestinationsUseCase";
+        $usecase = new $usecase();
+        $result = call_user_func_array(array(&$usecase,"execute"),$args);
+        return $app->handleOutput( $result );
+    }
     $args = $app->matchAll( "/persons", $url );
     if( $args !== NULL ) {
         $usecase = $app->USECASES."\\FindPersonsUseCase";
@@ -127,6 +134,20 @@ $app->REF = function( $url ) use ($app) {
     $args = $app->matchAll( "/unions", $url );
     if( $args !== NULL ) {
         $usecase = $app->USECASES."\\FindUnionsUseCase";
+        $usecase = new $usecase();
+        $result = call_user_func_array(array(&$usecase,"execute"),$args);
+        return $app->handleOutput( $result );
+    }
+    $args = $app->matchAll( "/unions/:id", $url );
+    if( $args !== NULL ) {
+        $usecase = $app->USECASES."\\FindUnionUseCase";
+        $usecase = new $usecase();
+        $result = call_user_func_array(array(&$usecase,"execute"),$args);
+        return $app->handleOutput( $result );
+    }
+    $args = $app->matchAll( "/unions/:id/sources", $url );
+    if( $args !== NULL ) {
+        $usecase = $app->USECASES."\\FindUnionSourcesUseCase";
         $usecase = new $usecase();
         $result = call_user_func_array(array(&$usecase,"execute"),$args);
         return $app->handleOutput( $result );
@@ -334,6 +355,31 @@ $app->CONTROLLER = function() use ($app) {
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/staff/:alias",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Resources");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindStaffDestinationsUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->responseHtml($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    case 404:
+                        $app->throwError($e);
+                        break;
                     default:
                         $app->throwError(new \Exception("System error",550));
                         break;
@@ -1113,6 +1159,116 @@ $app->CONTROLLER = function() use ($app) {
             } catch( \Exception $e ) {
                 error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
                 switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->post("/unions",
+        function() use ($app) {
+            try {
+                $app->request( \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Unions\Union") );
+                $usecase = $app->USECASES."\\CreateUnionUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->responseHtml($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/unions/:id",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Unions\Union");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindUnionUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->responseHtml($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    case 404:
+                        $app->throwError($e);
+                        break;
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->put("/unions/:id",
+        function() use ($app) {
+            try {
+                $app->request( \Adaptor_Bindings::create("\School\Port\Adaptor\Data\School\Unions\Union") );
+                $usecase = $app->USECASES."\\UpdateUnionUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->responseHtml($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    case 404:
+                        $app->throwError($e);
+                        break;
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->delete("/unions/:id",
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\DeleteUnionUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->responseHtml($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    case 404:
+                        $app->throwError($e);
+                        break;
+                    default:
+                        $app->throwError(new \Exception("System error",550));
+                        break;
+                }
+            }
+        }
+    );
+    $app->get("/unions/:id/sources",
+        function() use ($app) {
+            $em = $app->EM->create("\\"."School\Port\Adaptor\Data\School\Resources");
+            $app->cacheControl( $em->lastmod( func_get_args() ) );
+        },
+        function() use ($app) {
+            try {
+                $app->request( null );
+                $usecase = $app->USECASES."\\FindUnionSourcesUseCase";
+                $usecase = new $usecase();
+                $result = call_user_func_array(array(&$usecase,"execute"),func_get_args());
+                $app->responseHtml($result);
+            } catch( \Exception $e ) {
+                error_log($e->getLine().":".$e->getFile()." ".$e->getMessage());
+                switch( $e->getCode() ) {
+                    case 404:
+                        $app->throwError($e);
+                        break;
                     default:
                         $app->throwError(new \Exception("System error",550));
                         break;

@@ -9,11 +9,12 @@
 	xmlns:doc="urn:ru:battleship:School:Documents"
 	xmlns:link="urn:ru:battleship:School:Links"
 	xmlns:dig="urn:ru:battleship:School:Digests"
+	xmlns:ev="urn:ru:battleship:School:Events"
 	xmlns:exsl="http://exslt.org/common"
 	xmlns:wadlext="urn:wadlext"
 	xmlns:ns="urn:namespace"
 	extension-element-prefixes="exsl"
-	exclude-result-prefixes="xsl html res pers un doc link dig wadlext ns"
+	exclude-result-prefixes="xsl html res pers un doc link dig ev wadlext ns"
 	version="1.0">
 
 <xsl:output
@@ -29,25 +30,25 @@
 
 <xsl:include href="Common.xsl" xml:base="." />
 
-<xsl:variable name="DESTINATIONS" select="/res:Resources" />
-<xsl:variable name="SOURCES" select="document(concat('../../api/persons/',$DESTINATIONS/pers:Persons/pers:Person/pers:ID,'/sources'))/res:Resources" />
+<xsl:variable name="SOURCES" select="/res:Resources" />
+<!--xsl:variable name="SOURCES" select="document(concat('../../api/persons/',$DESTINATIONS/pers:Persons/pers:Person/pers:ID,'/sources'))/res:Resources" /-->
 <xsl:variable name="DIGESTS" select="document('../../api/digests')/dig:Digests" />
 <xsl:variable name="ROOT" select="'../../../'" />
 
 <xsl:template match="res:Resources">
     <html lang="ru" xml:lang="ru">
         <head>
-            <title><xsl:value-of select="pers:Persons/pers:Person/pers:fullName" /> | Школа 30 | Ижевск</title>
+            <title><xsl:value-of select="un:Unions/un:Union/un:name" /> | Школа 30 | Ижевск</title>
             <xsl:call-template name="common-header" />
             <link href="{$ROOT}css/person.min.css" rel="stylesheet" type="text/css" />
             <xsl:call-template name="theme">
-                <xsl:with-param name="ref" select="$DESTINATIONS/dig:Digests/dig:Digest" />
+                <xsl:with-param name="ref" select="$SOURCES/dig:Digests/dig:Digest" />
             </xsl:call-template>
             <!--script src='http://www.google-analytics.com/ga.js' type='text/javascript'>;</script-->
             <script type="text/javascript">
                 <![CDATA[
                     window.onload = function() {
-                        //document.getElementById("loader").style.display = "none";
+                        document.getElementById("loader").style.display = "none";
                         document.addEventListener("touchstart", function() {},false);
                         window.addEventListener("resize", function() {
                             resize_docs_container(document.getElementById('docs_container'),columns());
@@ -64,7 +65,7 @@
             </script>
         </head>
         <body>
-            <!--xsl:call-template name="loader" /-->
+            <xsl:call-template name="loader" />
             <div id="nav">
                 <ul>
                     <li><a href="#digests">Дайджесты</a></li>
@@ -77,37 +78,30 @@
                     <!--h1>Документ</h1-->
                     <!--h1><xsl:value-of select="doc:Documents/doc:Document/doc:year" /></h1-->
                     <h1>
-                        <xsl:value-of select="pers:Persons/pers:Person/pers:fullName" />
+                        <xsl:value-of select="un:Unions/un:Union/un:name" />
                     </h1>
-                    <h4><xsl:value-of select="pers:Persons/pers:Person/pers:DOB" /></h4>
-                    <xsl:apply-templates select="un:Unions/un:Union[link:Link/link:type = 'teacher']" />
-                    <xsl:apply-templates select="un:Forms" />
-                    <xsl:apply-templates select="un:Unions" />
-                    <xsl:if test="pers:Persons/pers:Person/pers:comments">
-                        <xsl:value-of select="pers:Persons/pers:Person/pers:comments"  disable-output-escaping="yes"/>
+                    <!--h4><xsl:value-of select="ev:Events/ev:Event/ev:dt" /></h4-->
+                    <xsl:if test="un:Unions/un:Union/un:comments">
+                        <xsl:value-of select="un:Unions/un:Union/un:comments"  disable-output-escaping="yes"/>
                     </xsl:if>
                     <div class="menu">
                         <xsl:call-template name="menu">
-                            <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/persons/',pers:Persons/pers:Person/pers:ID,'/destinations')" />
+                            <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/unions/',un:Unions/un:Union/un:ID,'/sources')" />
                         </xsl:call-template>
                     </div>
                 </div>
                 <div id="docs">
                      <div id="docs_container">
                         <xsl:attribute name="class">count-<xsl:value-of select="count(doc:Documents/doc:Document[doc:published = '1'])" /></xsl:attribute>
-                        <xsl:if test="count(doc:Documents/doc:Document[doc:published = '1']) = 0">
-                            <h4>К сожалению, в настоящее время раздел не содержит ни одного документа. Но это не означает, что их нет. Мы продолжаем обрабатывать и публиковать архив музея школы. 
-                            Вы можете получать уведомления о новых публикациях, если зарегистрируетесь в группе <a href="https://www.facebook.com/groups/school.30.izhevsk/">Facebook</a>.</h4>
-                        </xsl:if>
-                        <xsl:apply-templates select="doc:Documents/doc:Document[doc:published = '1' and doc:type= '2']" mode="tape" />
-                        <xsl:apply-templates select="doc:Documents/doc:Document[doc:published = '1' and not(doc:type= '2')]" mode="tape">
+                        <xsl:if test="not(doc:Documents/doc:Document)">&#173;</xsl:if>
+                        <xsl:apply-templates select="doc:Documents/doc:Document" mode="tape">
                             <xsl:sort select="concat(doc:type,doc:year)" />
                         </xsl:apply-templates>
                     </div>
                 </div>
                 <div id="menu" class="menu">
                     <xsl:call-template name="menu">
-                        <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/persons/',pers:Persons/pers:Person/pers:ID,'/destinations')" />
+                        <xsl:with-param name="social-href" select="concat('http://www.school-30.com/api/unions/',un:Unions/un:Union/un:ID,'/sources')" />
                     </xsl:call-template>
                 </div>
                 <div id="copy">
@@ -150,45 +144,6 @@
             </ul-->
         </div>
     </xsl:if>
-</xsl:template>
-
-<xsl:template match="un:Forms">
-    <xsl:if test="un:Form">
-        <div id="forms">
-            <h2>Учился(лась)</h2>
-            <ul>
-                <xsl:for-each select="un:Form">
-                    <li>
-                        <p>
-                            <xsl:choose>
-                                <xsl:when test="not(un:league = '' or un:league='?')">
-                                    <a href="{$ROOT}api/cohorts/{un:cohort}/leagues/{un:league}"><xsl:value-of select="concat(un:year,un:league,', выпуск ',un:cohort)" /></a>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <a href="{$ROOT}api/cohorts/{un:cohort}"><xsl:value-of select="concat(un:year,un:league,', выпуск ',un:cohort)" /></a>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </p>
-                    </li>
-                </xsl:for-each>
-            </ul>
-        </div>
-    </xsl:if>
-</xsl:template>
-
-<xsl:template match="un:Unions">
-    <xsl:if test="un:Union[not(link:Link/link:type = 'teacher')]">
-        <div id="unions">
-            <h2>Объединения и клубы</h2>
-        </div>
-    </xsl:if>
-</xsl:template>
-
-<xsl:template match="un:Union[link:Link/link:type = 'teacher']">
-    <h3>Преподаватель, <xsl:value-of select="link:Link/link:dtStart" /> - <xsl:value-of select="link:Link/link:dtEnd" /></h3>
-    <!--xsl:if test="link:Link/link:comments">
-        <p><xsl:value-of select="link:Link/link:comments" /></p>
-    </xsl:if-->
 </xsl:template>
 
 </xsl:stylesheet>

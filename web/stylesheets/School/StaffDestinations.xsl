@@ -30,9 +30,9 @@
 <xsl:include href="Common.xsl" xml:base="." />
 
 <xsl:variable name="DESTINATIONS" select="/res:Resources" />
-<xsl:variable name="SOURCES" select="document(concat('../../api/persons/',$DESTINATIONS/pers:Persons/pers:Person/pers:ID,'/sources'))/res:Resources" />
-<xsl:variable name="DIGESTS" select="document('../../api/digests')/dig:Digests" />
-<xsl:variable name="ROOT" select="'../../../'" />
+<xsl:variable name="SOURCES" select="document(concat('../api/persons/',$DESTINATIONS/pers:Persons/pers:Person/pers:ID,'/sources'))/res:Resources" />
+<xsl:variable name="DIGESTS" select="document('../api/digests')/dig:Digests" />
+<xsl:variable name="ROOT" select="'../../'" />
 
 <xsl:template match="res:Resources">
     <html lang="ru" xml:lang="ru">

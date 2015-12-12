@@ -187,6 +187,51 @@
 					</representation>
 				</response>
 			</method>
+			<resource id="staff:alias" path="{alias}">
+				<doc title="Персональные ресурсы преводавателя">
+				</doc>
+				<method name="GET" id="FindStaffDestinationsUseCase">
+					<doc title="Запрос на получение персональных ресурсов преподавателя">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="alias" style="template" type="xsd:string" required="true">
+							<doc>Алиас преподавателя</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="ns2:Resources">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Преподаватель с указанным алиасом не найден
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+			</resource>
 		</resource>
 		<resource id="persons" path="persons">
 			<doc title="Список персон связанных с документами архива">
@@ -1576,6 +1621,201 @@
 					</representation>
 				</response>
 			</method>
+			<method name="POST" id="CreateUnionUseCase">
+				<doc title="Запрос на создание нового объединения">
+				</doc>
+				<request>
+					<param name="Accept" style="header">
+						<doc>application/xml</doc>
+					</param>
+					<param name="Accept" style="header">
+						<doc>application/json</doc>
+					</param>
+					<representation mediaType="application/json; charset=UTF-8" element="ns1:Union"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="ns1:Union"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/xml; charset=UTF-8" element="ns1:Union">
+						<doc title="OK" >Accept header application/xml</doc>
+					</representation>
+					<representation mediaType="application/json; charset=UTF-8">
+						<doc title="OK">Accept header application/json</doc>
+					</representation>
+				</response>
+				<response status="550">
+					<representation mediaType="text/plain">
+						<doc title="Internal server error">
+							Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+						</doc>
+					</representation>
+				</response>
+			</method>
+			<resource id="unions:id" path="{id}">
+				<doc title="Учетная карточка конкретного объединения">
+				</doc>
+				<method name="GET" id="FindUnionUseCase">
+					<doc title="Запрос на получение учетной карточки конкретного объединения">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор объединения</doc>
+						</param>
+					</request>
+					<response status="200">
+						<param name="Etag" style="header" />
+						<representation mediaType="application/xml; charset=UTF-8" element="ns1:Union">
+							<doc title="OK" />
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK" />
+						</representation>
+					</response>
+					<response status="304">
+						<param name="Etag" style="header" />
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Объединение с данным идентификатором не найдено
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="PUT" id="UpdateUnionUseCase">
+					<doc title="Запрос на изменение данных объединения">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор объединения</doc>
+						</param>
+						<representation mediaType="application/json; charset=UTF-8" element="ns1:Union"/>
+						<representation mediaType="application/xml; charset=UTF-8" element="ns1:Union"/>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns1:Union">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Объединение с указанным идентификатором не найдено
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<method name="DELETE" id="DeleteUnionUseCase">
+					<doc title="Запрос на удаление объединения">
+					</doc>
+					<request>
+						<param name="Accept" style="header">
+							<doc>application/xml</doc>
+						</param>
+						<param name="Accept" style="header">
+							<doc>application/json</doc>
+						</param>
+						<param name="id" style="template" type="xsd:string" required="true">
+							<doc>Идентификатор объединения</doc>
+						</param>
+					</request>
+					<response status="200">
+						<representation mediaType="application/xml; charset=UTF-8" element="ns1:Union">
+							<doc title="OK" >Accept header application/xml</doc>
+						</representation>
+						<representation mediaType="application/json; charset=UTF-8">
+							<doc title="OK">Accept header application/json</doc>
+						</representation>
+					</response>
+					<response status="404">
+						<representation mediaType="text/html; charset=UTF-8">
+							<doc title="Not found">
+								Объединение с указаным идентификатором не найдено
+							</doc>
+						</representation>
+					</response>
+					<response status="550">
+						<representation mediaType="text/plain">
+							<doc title="Internal server error">
+								Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+							</doc>
+						</representation>
+					</response>
+				</method>
+				<resource id="unions:id:sources" path="sources">
+					<doc title="Коллекция ресурсов проекта имеющих непосредственное отношение к конкретному объединению">
+					</doc>
+					<method name="GET" id="FindUnionSourcesUseCase">
+						<doc title="Запрос на получение списка ресурсов">
+						</doc>
+						<request>
+							<param name="Accept" style="header">
+								<doc>application/xml</doc>
+							</param>
+							<param name="Accept" style="header">
+								<doc>application/json</doc>
+							</param>
+							<param name="id" style="template" type="xsd:string" required="true">
+								<doc>Идентификатор события</doc>
+							</param>
+						</request>
+						<response status="200">
+							<param name="Etag" style="header" />
+							<representation mediaType="application/xml; charset=UTF-8" element="ns2:Resources">
+								<doc title="OK" />
+							</representation>
+							<representation mediaType="application/json; charset=UTF-8">
+								<doc title="OK" />
+							</representation>
+						</response>
+						<response status="304">
+							<param name="Etag" style="header" />
+						</response>
+						<response status="404">
+							<representation mediaType="text/html; charset=UTF-8">
+								<doc title="Not found">
+									Объединение с указанным идентификатором не найдено
+								</doc>
+							</representation>
+						</response>
+						<response status="550">
+							<representation mediaType="text/plain">
+								<doc title="Internal server error">
+									Если возникла ошибка при работе с базой или другие серверные ошибки, то ответ содержит текст ошибки "Internal server error".
+								</doc>
+							</representation>
+						</response>
+					</method>
+				</resource>
+			</resource>
 		</resource>
 		<resource id="paths:id:position" path="paths/{id}/position">
 				<doc title="Порядковый номер документа в общей коллекции документов">

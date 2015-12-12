@@ -16,5 +16,3 @@
 			parent::validate();
 		}
 	}
-	
-

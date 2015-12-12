@@ -1862,6 +1862,173 @@
 		}());
 	});
 
+	h.Locator( "School.Port.Adaptor.Data.School.Digests.Digest", function() {
+		
+		return (function(){
+		
+			var NS="urn:ru:battleship:School:Digests";
+			var ROOT="Digest";
+			var anyComplexType = {
+				ID: null,
+				published: null,
+				title: null,
+				comments: null,
+				Link: null
+			};
+			var Digest = h.Port.Adaptor.Data.XML.Schema.AnyComplexType.extend({
+		
+				getID: function() { return anyComplexType.ID; },
+				getPublished: function() { return anyComplexType.published; },
+				getTitle: function() { return anyComplexType.title; },
+				getComments: function() { return anyComplexType.comments; },
+				getLink: function() { return anyComplexType.Link; },
+		
+				setID: function(val) { anyComplexType.ID = val; },
+				setPublished: function(val) { anyComplexType.published = val; },
+				setTitle: function(val) { anyComplexType.title = val; },
+				setComments: function(val) { anyComplexType.comments = val; },
+				setLink: function(val) { anyComplexType.Link = val; },
+				getAll: function() { return anyComplexType; },
+				setAll: function(obj) { anyComplexType=obj; },
+				fromXmlParser: function(parser,parent,callback) {
+					this.parent = parent;
+					var self = this;
+					
+					if(parser.tag.isSelfClosing === true && parent !== null) {
+						parent.fromXmlParser(parser,parent.parent,callback);
+					}
+					parser.onclosetag = function(tag) {
+						if(tag == ROOT && parent !== null) {
+							parent.fromXmlParser(parser,parent.parent,callback);
+						}else if(tag == ROOT && parent === null) {
+							callback(self);
+						}
+					};
+					parser.onopentag = function(node) {
+						switch(node.name) {
+							case "Link":
+								var Link = h.Locator("School.Port.Adaptor.Data.School.Links.Link");
+								Link.fromXmlParser(parser,self,callback);
+								self.setLink(Link);
+								break;
+							default:
+								break;
+						}
+					};
+					parser.ontext = function(t) {
+						switch(parser.tag.name) {
+							case "ID":
+								self.setID(t);
+								break;
+							case "published":
+								self.setPublished(t);
+								break;
+							case "title":
+								self.setTitle(t);
+								break;
+							case "comments":
+								self.setComments(t);
+								break;
+							default:
+								break;
+						}
+					};
+				},
+				toXmlStr: function() {
+					var prop, str;
+					str = "<"+ROOT+" xmlns='"+NS+"'>";
+					prop = this.getID();
+					if( prop !== null ) {
+						str += "<ID>"+this.getID()+"</ID>";
+					}
+					prop = this.getPublished();
+					if( prop !== null ) {
+						str += "<published>"+this.getPublished()+"</published>";
+					}
+					prop = this.getTitle();
+					if( prop !== null ) {
+						str += "<title>"+this.getTitle()+"</title>";
+					}
+					prop = this.getComments();
+					if( prop !== null ) {
+						str += "<comments>"+this.getComments()+"</comments>";
+					}
+					var prop = this.getLink();
+					if(prop !== null) {
+						str += this.getLink().toXmlStr();
+					}
+					str += "</"+ROOT+">";
+					return str;
+				}
+			});
+			return h.Model.extend(Digest);
+		}());
+	});
+
+	h.Locator( "School.Port.Adaptor.Data.School.Digests", function() {
+		
+		return (function(){
+		
+			var NS="urn:ru:battleship:School:Digests";
+			var ROOT="Digests";
+			var anyComplexType = {
+				Digest: []
+			};
+			var Digests = h.Port.Adaptor.Data.XML.Schema.AnyComplexType.extend({
+		
+				getDigest: function() { return anyComplexType.Digest; },
+		
+				setDigest: function(val) { anyComplexType.Digest.push(val); },
+				getAll: function() { return anyComplexType; },
+				setAll: function(obj) { anyComplexType=obj; },
+				fromXmlParser: function(parser,parent,callback) {
+					this.parent = parent;
+					var self = this;
+					
+					if(parser.tag.isSelfClosing === true && parent !== null) {
+						parent.fromXmlParser(parser,parent.parent,callback);
+					}
+					parser.onclosetag = function(tag) {
+						if(tag == ROOT && parent !== null) {
+							parent.fromXmlParser(parser,parent.parent,callback);
+						}else if(tag == ROOT && parent === null) {
+							callback(self);
+						}
+					};
+					parser.onopentag = function(node) {
+						switch(node.name) {
+							case "Digest":
+								var Digest = h.Locator("School.Port.Adaptor.Data.School.Digests.Digest");
+								Digest.fromXmlParser(parser,self,callback);
+								self.setDigest(Digest);
+								break;
+							default:
+								break;
+						}
+					};
+					parser.ontext = function(t) {
+						switch(parser.tag.name) {
+							default:
+								break;
+						}
+					};
+				},
+				toXmlStr: function() {
+					var prop, str;
+					str = "<"+ROOT+" xmlns='"+NS+"'>";
+					prop = this.getDigest();
+					var len = prop.length;
+					for(var i=0;i < len;i++ ) {
+						str += prop[i].toXmlStr();
+					}
+					str += "</"+ROOT+">";
+					return str;
+				}
+			});
+			return h.Model.extend(Digests);
+		}());
+	});
+
 	h.Locator( "School.Port.Adaptor.Data.School.Events.Event", function() {
 		
 		return (function(){
@@ -2987,31 +3154,37 @@
 		}());
 	});
 
-	h.Locator( "School.Port.Adaptor.Data.School.Digests.Digest", function() {
+	h.Locator( "School.Port.Adaptor.Data.School.Videos.Video", function() {
 		
 		return (function(){
 		
-			var NS="urn:ru:battleship:School:Digests";
-			var ROOT="Digest";
+			var NS="urn:ru:battleship:School:Videos";
+			var ROOT="Video";
 			var anyComplexType = {
+				autouid: null,
 				ID: null,
-				published: null,
-				title: null,
+				name: null,
+				year: null,
 				comments: null,
+				href: null,
 				Link: null
 			};
-			var Digest = h.Port.Adaptor.Data.XML.Schema.AnyComplexType.extend({
+			var Video = h.Port.Adaptor.Data.XML.Schema.AnyComplexType.extend({
 		
+				getAutouid: function() { return anyComplexType.autouid; },
 				getID: function() { return anyComplexType.ID; },
-				getPublished: function() { return anyComplexType.published; },
-				getTitle: function() { return anyComplexType.title; },
+				getName: function() { return anyComplexType.name; },
+				getYear: function() { return anyComplexType.year; },
 				getComments: function() { return anyComplexType.comments; },
+				getHref: function() { return anyComplexType.href; },
 				getLink: function() { return anyComplexType.Link; },
 		
+				setAutouid: function(val) { anyComplexType.autouid = val; },
 				setID: function(val) { anyComplexType.ID = val; },
-				setPublished: function(val) { anyComplexType.published = val; },
-				setTitle: function(val) { anyComplexType.title = val; },
+				setName: function(val) { anyComplexType.name = val; },
+				setYear: function(val) { anyComplexType.year = val; },
 				setComments: function(val) { anyComplexType.comments = val; },
+				setHref: function(val) { anyComplexType.href = val; },
 				setLink: function(val) { anyComplexType.Link = val; },
 				getAll: function() { return anyComplexType; },
 				setAll: function(obj) { anyComplexType=obj; },
@@ -3042,17 +3215,23 @@
 					};
 					parser.ontext = function(t) {
 						switch(parser.tag.name) {
+							case "autouid":
+								self.setAutouid(t);
+								break;
 							case "ID":
 								self.setID(t);
 								break;
-							case "published":
-								self.setPublished(t);
+							case "name":
+								self.setName(t);
 								break;
-							case "title":
-								self.setTitle(t);
+							case "year":
+								self.setYear(t);
 								break;
 							case "comments":
 								self.setComments(t);
+								break;
+							case "href":
+								self.setHref(t);
 								break;
 							default:
 								break;
@@ -3062,21 +3241,29 @@
 				toXmlStr: function() {
 					var prop, str;
 					str = "<"+ROOT+" xmlns='"+NS+"'>";
+					prop = this.getAutouid();
+					if( prop !== null ) {
+						str += "<autouid>"+this.getAutouid()+"</autouid>";
+					}
 					prop = this.getID();
 					if( prop !== null ) {
 						str += "<ID>"+this.getID()+"</ID>";
 					}
-					prop = this.getPublished();
+					prop = this.getName();
 					if( prop !== null ) {
-						str += "<published>"+this.getPublished()+"</published>";
+						str += "<name>"+this.getName()+"</name>";
 					}
-					prop = this.getTitle();
+					prop = this.getYear();
 					if( prop !== null ) {
-						str += "<title>"+this.getTitle()+"</title>";
+						str += "<year>"+this.getYear()+"</year>";
 					}
 					prop = this.getComments();
 					if( prop !== null ) {
 						str += "<comments>"+this.getComments()+"</comments>";
+					}
+					prop = this.getHref();
+					if( prop !== null ) {
+						str += "<href>"+this.getHref()+"</href>";
 					}
 					var prop = this.getLink();
 					if(prop !== null) {
@@ -3086,24 +3273,24 @@
 					return str;
 				}
 			});
-			return h.Model.extend(Digest);
+			return h.Model.extend(Video);
 		}());
 	});
 
-	h.Locator( "School.Port.Adaptor.Data.School.Digests", function() {
+	h.Locator( "School.Port.Adaptor.Data.School.Videos", function() {
 		
 		return (function(){
 		
-			var NS="urn:ru:battleship:School:Digests";
-			var ROOT="Digests";
+			var NS="urn:ru:battleship:School:Videos";
+			var ROOT="Videos";
 			var anyComplexType = {
-				Digest: []
+				Video: []
 			};
-			var Digests = h.Port.Adaptor.Data.XML.Schema.AnyComplexType.extend({
+			var Videos = h.Port.Adaptor.Data.XML.Schema.AnyComplexType.extend({
 		
-				getDigest: function() { return anyComplexType.Digest; },
+				getVideo: function() { return anyComplexType.Video; },
 		
-				setDigest: function(val) { anyComplexType.Digest.push(val); },
+				setVideo: function(val) { anyComplexType.Video.push(val); },
 				getAll: function() { return anyComplexType; },
 				setAll: function(obj) { anyComplexType=obj; },
 				fromXmlParser: function(parser,parent,callback) {
@@ -3122,10 +3309,10 @@
 					};
 					parser.onopentag = function(node) {
 						switch(node.name) {
-							case "Digest":
-								var Digest = h.Locator("School.Port.Adaptor.Data.School.Digests.Digest");
-								Digest.fromXmlParser(parser,self,callback);
-								self.setDigest(Digest);
+							case "Video":
+								var Video = h.Locator("School.Port.Adaptor.Data.School.Videos.Video");
+								Video.fromXmlParser(parser,self,callback);
+								self.setVideo(Video);
 								break;
 							default:
 								break;
@@ -3141,7 +3328,7 @@
 				toXmlStr: function() {
 					var prop, str;
 					str = "<"+ROOT+" xmlns='"+NS+"'>";
-					prop = this.getDigest();
+					prop = this.getVideo();
 					var len = prop.length;
 					for(var i=0;i < len;i++ ) {
 						str += prop[i].toXmlStr();
@@ -3150,7 +3337,7 @@
 					return str;
 				}
 			});
-			return h.Model.extend(Digests);
+			return h.Model.extend(Videos);
 		}());
 	});
 
@@ -3453,193 +3640,6 @@
 				}
 			});
 			return h.Model.extend(Images);
-		}());
-	});
-
-	h.Locator( "School.Port.Adaptor.Data.School.Videos.Video", function() {
-		
-		return (function(){
-		
-			var NS="urn:ru:battleship:School:Videos";
-			var ROOT="Video";
-			var anyComplexType = {
-				autouid: null,
-				ID: null,
-				name: null,
-				year: null,
-				comments: null,
-				href: null,
-				Link: null
-			};
-			var Video = h.Port.Adaptor.Data.XML.Schema.AnyComplexType.extend({
-		
-				getAutouid: function() { return anyComplexType.autouid; },
-				getID: function() { return anyComplexType.ID; },
-				getName: function() { return anyComplexType.name; },
-				getYear: function() { return anyComplexType.year; },
-				getComments: function() { return anyComplexType.comments; },
-				getHref: function() { return anyComplexType.href; },
-				getLink: function() { return anyComplexType.Link; },
-		
-				setAutouid: function(val) { anyComplexType.autouid = val; },
-				setID: function(val) { anyComplexType.ID = val; },
-				setName: function(val) { anyComplexType.name = val; },
-				setYear: function(val) { anyComplexType.year = val; },
-				setComments: function(val) { anyComplexType.comments = val; },
-				setHref: function(val) { anyComplexType.href = val; },
-				setLink: function(val) { anyComplexType.Link = val; },
-				getAll: function() { return anyComplexType; },
-				setAll: function(obj) { anyComplexType=obj; },
-				fromXmlParser: function(parser,parent,callback) {
-					this.parent = parent;
-					var self = this;
-					
-					if(parser.tag.isSelfClosing === true && parent !== null) {
-						parent.fromXmlParser(parser,parent.parent,callback);
-					}
-					parser.onclosetag = function(tag) {
-						if(tag == ROOT && parent !== null) {
-							parent.fromXmlParser(parser,parent.parent,callback);
-						}else if(tag == ROOT && parent === null) {
-							callback(self);
-						}
-					};
-					parser.onopentag = function(node) {
-						switch(node.name) {
-							case "Link":
-								var Link = h.Locator("School.Port.Adaptor.Data.School.Links.Link");
-								Link.fromXmlParser(parser,self,callback);
-								self.setLink(Link);
-								break;
-							default:
-								break;
-						}
-					};
-					parser.ontext = function(t) {
-						switch(parser.tag.name) {
-							case "autouid":
-								self.setAutouid(t);
-								break;
-							case "ID":
-								self.setID(t);
-								break;
-							case "name":
-								self.setName(t);
-								break;
-							case "year":
-								self.setYear(t);
-								break;
-							case "comments":
-								self.setComments(t);
-								break;
-							case "href":
-								self.setHref(t);
-								break;
-							default:
-								break;
-						}
-					};
-				},
-				toXmlStr: function() {
-					var prop, str;
-					str = "<"+ROOT+" xmlns='"+NS+"'>";
-					prop = this.getAutouid();
-					if( prop !== null ) {
-						str += "<autouid>"+this.getAutouid()+"</autouid>";
-					}
-					prop = this.getID();
-					if( prop !== null ) {
-						str += "<ID>"+this.getID()+"</ID>";
-					}
-					prop = this.getName();
-					if( prop !== null ) {
-						str += "<name>"+this.getName()+"</name>";
-					}
-					prop = this.getYear();
-					if( prop !== null ) {
-						str += "<year>"+this.getYear()+"</year>";
-					}
-					prop = this.getComments();
-					if( prop !== null ) {
-						str += "<comments>"+this.getComments()+"</comments>";
-					}
-					prop = this.getHref();
-					if( prop !== null ) {
-						str += "<href>"+this.getHref()+"</href>";
-					}
-					var prop = this.getLink();
-					if(prop !== null) {
-						str += this.getLink().toXmlStr();
-					}
-					str += "</"+ROOT+">";
-					return str;
-				}
-			});
-			return h.Model.extend(Video);
-		}());
-	});
-
-	h.Locator( "School.Port.Adaptor.Data.School.Videos", function() {
-		
-		return (function(){
-		
-			var NS="urn:ru:battleship:School:Videos";
-			var ROOT="Videos";
-			var anyComplexType = {
-				Video: []
-			};
-			var Videos = h.Port.Adaptor.Data.XML.Schema.AnyComplexType.extend({
-		
-				getVideo: function() { return anyComplexType.Video; },
-		
-				setVideo: function(val) { anyComplexType.Video.push(val); },
-				getAll: function() { return anyComplexType; },
-				setAll: function(obj) { anyComplexType=obj; },
-				fromXmlParser: function(parser,parent,callback) {
-					this.parent = parent;
-					var self = this;
-					
-					if(parser.tag.isSelfClosing === true && parent !== null) {
-						parent.fromXmlParser(parser,parent.parent,callback);
-					}
-					parser.onclosetag = function(tag) {
-						if(tag == ROOT && parent !== null) {
-							parent.fromXmlParser(parser,parent.parent,callback);
-						}else if(tag == ROOT && parent === null) {
-							callback(self);
-						}
-					};
-					parser.onopentag = function(node) {
-						switch(node.name) {
-							case "Video":
-								var Video = h.Locator("School.Port.Adaptor.Data.School.Videos.Video");
-								Video.fromXmlParser(parser,self,callback);
-								self.setVideo(Video);
-								break;
-							default:
-								break;
-						}
-					};
-					parser.ontext = function(t) {
-						switch(parser.tag.name) {
-							default:
-								break;
-						}
-					};
-				},
-				toXmlStr: function() {
-					var prop, str;
-					str = "<"+ROOT+" xmlns='"+NS+"'>";
-					prop = this.getVideo();
-					var len = prop.length;
-					for(var i=0;i < len;i++ ) {
-						str += prop[i].toXmlStr();
-					}
-					str += "</"+ROOT+">";
-					return str;
-				}
-			});
-			return h.Model.extend(Videos);
 		}());
 	});
 
